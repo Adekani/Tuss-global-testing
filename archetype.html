@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Archetype — Identity Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<style>
+  /* ===========================
+     CSS VARIABLES & RESET
+  =========================== */
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE6D6;
+    --ink: #1A1A18;
+    --ink-muted: #4A4840;
+    --ink-light: #8A8478;
+    --forest: #2D4A3E;
+    --forest-light: #3D6456;
+    --gold: #B8962E;
+    --gold-light: #D4B054;
+    --gold-pale: #F0E4B8;
+    --terracotta: #C06040;
+    --slate: #5A6472;
+    --white: #FEFCF8;
+    --shadow: rgba(26,26,24,0.08);
+    --shadow-md: rgba(26,26,24,0.14);
+    --radius: 4px;
+    --radius-lg: 12px;
+    --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ===========================
+     TYPOGRAPHY
+  =========================== */
+  h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.1; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.15; }
+  h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); line-height: 1.2; }
+  p { font-size: 0.95rem; }
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* ===========================
+     LAYOUT
+  =========================== */
+  #app {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .screen {
+    width: 100%;
+    max-width: 680px;
+    padding: 24px 20px 60px;
+    display: none;
+    flex-direction: column;
+    animation: screenIn 0.5s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .screen.active { display: flex; }
+
+  @keyframes screenIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===========================
+     HEADER STRIP
+  =========================== */
+  .site-header {
+    width: 100%;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .wordmark span { color: var(--gold); }
+
+  .dev-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ink-light);
+    opacity: 0.4;
+    transition: opacity 0.2s;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .dev-trigger:hover { opacity: 0.8; }
+  .dev-trigger .material-icons-round { font-size: 18px; }
+
+  /* ===========================
+     DECORATIVE ELEMENTS
+  =========================== */
+  .rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px 0;
+  }
+  .rule.center { margin-left: auto; margin-right: auto; }
+  .rule.lg { width: 80px; }
+
+  /* ===========================
+     LANDING SCREEN
+  =========================== */
+  #screen-home {
+    padding-top: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-eyebrow {
+    padding-top: 32px;
+  }
+
+  .home-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-light);
+    border-radius: 40px;
+    padding: 6px 14px;
+    margin-bottom: 32px;
+  }
+  .home-badge .material-icons-round { font-size: 14px; color: var(--gold); }
+  .home-badge span:not(.material-icons-round) { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+
+  .home-title {
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .home-title em {
+    font-style: italic;
+    color: var(--forest);
+  }
+
+  .home-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-muted);
+    max-width: 400px;
+    margin: 0 auto 36px;
+    line-height: 1.5;
+  }
+
+  .home-desc {
+    max-width: 440px;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin: 0 auto 40px;
+  }
+
+  .home-meta {
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+  }
+  .meta-item .material-icons-round { font-size: 15px; color: var(--gold); }
+
+  /* ===========================
+     BUTTONS
+  =========================== */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--forest);
+    color: var(--white);
+    border: none;
+    padding: 16px 36px;
+    border-radius: 60px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    box-shadow: 0 4px 20px rgba(45,74,62,0.25);
+  }
+  .btn-primary:hover {
+    background: var(--forest-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(45,74,62,0.3);
+  }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary .material-icons-round { font-size: 18px; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--forest);
+    border: 1.5px solid var(--forest);
+    padding: 12px 28px;
+    border-radius: 60px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+  .btn-secondary:hover {
+    background: var(--forest);
+    color: var(--white);
+  }
+  .btn-secondary .material-icons-round { font-size: 16px; }
+
+  .btn-ghost {
+    background: none;
+    border: none;
+    color: var(--ink-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+  .btn-ghost .material-icons-round { font-size: 16px; }
+
+  /* ===========================
+     PROGRESS BAR
+  =========================== */
+  .progress-wrap {
+    width: 100%;
+    margin-bottom: 28px;
+    padding-top: 8px;
+  }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .progress-label { font-size: 0.75rem; color: var(--ink-light); }
+  .progress-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+  }
+  .progress-track {
+    width: 100%;
+    height: 2px;
+    background: var(--cream-dark);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--forest), var(--gold));
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* Dot indicators */
+  .progress-dots {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .dot.done { background: var(--forest); }
+  .dot.current { background: var(--gold); transform: scale(1.3); }
+
+  /* ===========================
+     QUESTION CARD
+  =========================== */
+  #screen-quiz {
+    padding-top: 0;
+  }
+
+  .question-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    box-shadow: 0 2px 24px var(--shadow);
+    border: 1px solid rgba(184,150,46,0.12);
+    position: relative;
+    overflow: hidden;
+  }
+  .question-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--forest), var(--gold));
+  }
+
+  .q-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.15rem, 3.5vw, 1.55rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+
+  .q-sub {
+    font-size: 0.82rem;
+    color: var(--ink-light);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+
+  /* Multiple choice options */
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option-btn {
+    background: var(--cream);
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 8px;
+    padding: 14px 18px;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    transition: all 0.2s;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .option-btn::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink-light);
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.2s;
+    background: transparent;
+  }
+  .option-btn:hover {
+    border-color: var(--forest);
+    background: rgba(45,74,62,0.04);
+    color: var(--ink);
+  }
+  .option-btn:hover::before { border-color: var(--forest); }
+  .option-btn.selected {
+    border-color: var(--forest);
+    background: rgba(45,74,62,0.06);
+    color: var(--ink);
+  }
+  .option-btn.selected::before {
+    background: var(--forest);
+    border-color: var(--forest);
+    box-shadow: inset 0 0 0 3px var(--white);
+  }
+
+  /* Slider question */
+  .slider-wrap {
+    padding: 8px 0;
+  }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .slider-label-text {
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    max-width: 100px;
+    line-height: 1.3;
+  }
+  .slider-label-text:last-child { text-align: right; }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 3px;
+    background: var(--cream-dark);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    margin: 8px 0 16px;
+    background-image: linear-gradient(var(--forest), var(--forest));
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    background: var(--white);
+    border: 2.5px solid var(--forest);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--shadow-md);
+    transition: transform 0.15s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  input[type="range"]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    background: var(--white);
+    border: 2.5px solid var(--forest);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--shadow-md);
+  }
+
+  .slider-value-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .slider-pip {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    transition: all 0.2s;
+  }
+  .slider-pip.active {
+    background: var(--forest);
+    border-color: var(--forest);
+    color: var(--white);
+    transform: scale(1.1);
+  }
+
+  /* Question navigation */
+  .q-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  /* ===========================
+     RESULTS SCREEN
+  =========================== */
+  #screen-results { padding-top: 0; }
+
+  .results-header {
+    background: var(--forest);
+    margin: 0 -20px;
+    padding: 48px 28px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .results-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,150,46,0.2);
+  }
+  .results-header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,150,46,0.12);
+  }
+
+  .results-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 14px;
+  }
+
+  .results-archetype-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 8vw, 3.6rem);
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .results-archetype-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 20px;
+  }
+
+  .results-score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(184,150,46,0.2);
+    border: 1px solid rgba(184,150,46,0.4);
+    border-radius: 40px;
+    padding: 8px 18px;
+  }
+  .score-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    font-weight: 400;
+  }
+  .score-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.05em;
+  }
+  .results-emoji {
+    font-size: 2rem;
+    margin-right: 4px;
+  }
+
+  /* Profile sections */
+  .profile-body {
+    padding: 28px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .profile-section {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border: 1px solid rgba(26,26,24,0.07);
+    box-shadow: 0 1px 12px var(--shadow);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .profile-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .section-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-icon .material-icons-round { font-size: 16px; }
+  .icon-forest { background: rgba(45,74,62,0.1); color: var(--forest); }
+  .icon-gold { background: rgba(184,150,46,0.1); color: var(--gold); }
+  .icon-terra { background: rgba(192,96,64,0.1); color: var(--terracotta); }
+  .icon-slate { background: rgba(90,100,114,0.1); color: var(--slate); }
+
+  .section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .section-body {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+
+  .trait-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .pill {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-weight: 400;
+  }
+  .pill.forest { background: rgba(45,74,62,0.08); border-color: rgba(45,74,62,0.2); color: var(--forest); }
+  .pill.gold { background: rgba(184,150,46,0.1); border-color: rgba(184,150,46,0.3); color: var(--gold); }
+
+  .caution-box {
+    background: rgba(192,96,64,0.05);
+    border: 1px solid rgba(192,96,64,0.2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 4px;
+  }
+  .caution-box p { font-size: 0.87rem; color: var(--ink-muted); line-height: 1.65; }
+
+  /* Secondary archetype card */
+  .secondary-card {
+    background: var(--cream-dark);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    border: 1px solid rgba(26,26,24,0.06);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease 0.6s, transform 0.5s ease 0.6s;
+  }
+  .secondary-card.revealed { opacity: 1; transform: translateY(0); }
+
+  .secondary-pct {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--forest);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .secondary-pct span { font-size: 1rem; color: var(--gold); }
+
+  .secondary-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+  .secondary-desc { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.6; }
+
+  /* CTA area */
+  .results-cta {
+    padding: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* ===========================
+     DEV MODE MODAL
+  =========================== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,26,24,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal-box {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 32px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(26,26,24,0.2);
+    transform: scale(0.95) translateY(8px);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+  }
+  .modal-sub { font-size: 0.82rem; color: var(--ink-light); margin-bottom: 24px; }
+
+  .modal-input {
+    width: 100%;
+    background: var(--cream);
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 8px;
+    letter-spacing: 0.1em;
+  }
+  .modal-input:focus { border-color: var(--forest); }
+  .modal-input.error { border-color: var(--terracotta); }
+
+  .modal-error {
+    font-size: 0.78rem;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+    min-height: 18px;
+  }
+
+  .modal-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  /* ===========================
+     DEV BROWSER
+  =========================== */
+  #screen-dev {
+    display: none;
+    padding-top: 0;
+  }
+  #screen-dev.active { display: flex; }
+
+  .dev-header {
+    background: var(--ink);
+    margin: 0 -20px;
+    padding: 32px 28px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .dev-header-left h2 { color: var(--white); }
+  .dev-header-left p { color: var(--ink-light); font-size: 0.8rem; margin-top: 4px; }
+
+  .dev-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 24px 0;
+  }
+
+  .dev-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 18px 16px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all 0.2s;
+    box-shadow: 0 1px 8px var(--shadow);
+  }
+  .dev-card:hover {
+    border-color: var(--forest);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--shadow-md);
+  }
+  .dev-card-emoji { font-size: 1.5rem; margin-bottom: 8px; }
+  .dev-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .dev-card-tagline { font-size: 0.72rem; color: var(--ink-light); margin-top: 2px; }
+
+  .dev-profile-back {
+    padding: 20px 0 12px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ===========================
+     ANIMATIONS
+  =========================== */
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-slide {
+    animation: fadeSlideIn 0.45s cubic-bezier(0.4,0,0.2,1) both;
+  }
+
+  /* Loading dots */
+  .processing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    gap: 16px;
+    text-align: center;
+  }
+  .processing-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+  .dots {
+    display: flex;
+    gap: 8px;
+  }
+  .dot-anim {
+    width: 8px;
+    height: 8px;
+    background: var(--forest);
+    border-radius: 50%;
+    animation: bounce 1.2s infinite;
+  }
+  .dot-anim:nth-child(2) { animation-delay: 0.2s; background: var(--gold); }
+  .dot-anim:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+  }
+
+  /* ===========================
+     RESPONSIVE TWEAKS
+  =========================== */
+  @media (max-width: 400px) {
+    .dev-grid { grid-template-columns: 1fr; }
+    .question-card { padding: 24px 20px; }
+    .modal-box { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="wordmark">Arc<span>·</span>type</div>
+  <button class="dev-trigger" id="devTrigger" title="Developer mode" aria-label="Developer mode">
+    <span class="material-icons-round">code</span>
+  </button>
+</header>
+
+<div id="app">
+
+  <!-- ========================
+       SCREEN: HOME
+  ========================= -->
+  <section id="screen-home" class="screen active">
+    <div class="home-eyebrow">
+      <div class="home-badge">
+        <span class="material-icons-round">auto_awesome</span>
+        <span>Brand Identity Discovery</span>
+      </div>
+    </div>
+
+    <h1 class="home-title">Discover your<br><em>brand archetype</em></h1>
+
+    <div class="rule center"></div>
+
+    <p class="home-subtitle">A thoughtful assessment of how your brand sees the world — and how the world should see you.</p>
+
+    <p class="home-desc">Rooted in 12 universal archetypes, this quiz helps you uncover the core personality driving your brand: its values, voice, and authentic way of being. Not what you want to be. What you already are.</p>
+
+    <div class="home-meta">
+      <div class="meta-item">
+        <span class="material-icons-round">schedule</span>
+        <span>5–7 minutes</span>
+      </div>
+      <div class="meta-item">
+        <span class="material-icons-round">quiz</span>
+        <span>20 questions</span>
+      </div>
+      <div class="meta-item">
+        <span class="material-icons-round">insights</span>
+        <span>Full profile report</span>
+      </div>
+    </div>
+
+    <button class="btn-primary" id="startBtn">
+      Begin the assessment
+      <span class="material-icons-round">arrow_forward</span>
+    </button>
+  </section>
+
+  <!-- ========================
+       SCREEN: QUIZ
+  ========================= -->
+  <section id="screen-quiz" class="screen">
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <span class="progress-label">Your progress</span>
+        <span class="progress-count" id="progressCount">1 / 20</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:5%"></div>
+      </div>
+      <div class="progress-dots" id="progressDots"></div>
+    </div>
+
+    <!-- Question area -->
+    <div class="question-area" id="questionArea"></div>
+
+    <!-- Nav -->
+    <div class="q-footer">
+      <button class="btn-ghost" id="prevBtn" style="visibility:hidden">
+        <span class="material-icons-round">arrow_back</span>
+        Previous
+      </button>
+      <button class="btn-primary" id="nextBtn" disabled>
+        Next
+        <span class="material-icons-round">arrow_forward</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================
+       SCREEN: PROCESSING
+  ========================= -->
+  <section id="screen-processing" class="screen" style="justify-content:center; align-items:center;">
+    <div class="processing">
+      <p class="processing-label">Analysing your brand's character…</p>
+      <div class="dots">
+        <div class="dot-anim"></div>
+        <div class="dot-anim"></div>
+        <div class="dot-anim"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SCREEN: RESULTS
+  ========================= -->
+  <section id="screen-results" class="screen"></section>
+
+  <!-- ========================
+       SCREEN: DEV BROWSER
+  ========================= -->
+  <section id="screen-dev" class="screen"></section>
+
+</div>
+
+<!-- PASSWORD MODAL -->
+<div class="modal-overlay" id="devModal">
+  <div class="modal-box">
+    <h3 class="modal-title">Developer Access</h3>
+    <p class="modal-sub">Enter the access key to unlock the archetype browser.</p>
+    <input type="password" class="modal-input" id="devPassword" placeholder="Access key" autocomplete="off">
+    <div class="modal-error" id="devError"></div>
+    <div class="modal-footer">
+      <button class="btn-ghost" id="devCancel">Cancel</button>
+      <button class="btn-primary" id="devSubmit" style="padding:12px 24px; font-size:0.85rem;">
+        Unlock
+        <span class="material-icons-round">lock_open</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   DATA: 12 ARCHETYPES
+========================================================= */
+const ARCHETYPES = {
+  innocent: {
+    name: "The Innocent",
+    emoji: "🌿",
+    tagline: "Optimism, simplicity, and a world as it should be.",
+    color: "#4A7C5E",
+    profile: {
+      identity: `Your brand carries a rare gift: the ability to see goodness as the default. Where others see complexity, you see simplicity. Where others see cynicism, you see possibility. The Innocent archetype isn't naïve — it's intentional. Your brand has made a conscious choice to lead with purity, honesty, and the belief that life can be uncomplicated and good. This is disarming in the best way. In a world saturated with anxiety and irony, your brand offers something people desperately need: a place that feels safe, clean, and true.`,
+      values: `Your brand believes in transparency, wholesomeness, and the quiet power of doing things right. You value simplicity not as a limitation, but as a philosophy. You believe that trust is built through consistency and that beauty lives in the uncluttered. Authenticity is non-negotiable — your audience senses even the smallest dishonesty, and it costs you everything. You stand for a world that could be better, and you act accordingly.`,
+      traits: ["Optimistic", "Honest", "Gentle", "Sincere", "Uncomplicated", "Trustworthy", "Pure"],
+      voice: `Your voice is warm, clear, and direct — like a trusted friend, not a brand copywriter. You use plain language. You don't perform. You don't over-explain. There's a quiet confidence in how you communicate: unhurried, unforced, genuinely kind. You avoid irony, sarcasm, aggression, or anything that feels contrived. Your copy feels like a breath of fresh air because it actually means what it says.`,
+      strengths: `You build deep, lasting trust. Your simplicity is a superpower in overcrowded markets. People return to you because being around your brand feels good — uncomplicated, safe, and restorative. You also carry a moral credibility that few archetypes can claim: when you say something, people believe you.`,
+      inauthenticity: `Inauthenticity for your archetype looks like faking warmth. When your brand's messaging becomes saccharine, overpromising, or willfully blind to real problems your audience faces, you cross from Innocent into naive — or worse, dishonest. If your brand has rough edges but you're pretending otherwise, that gap will erode trust faster than any competitor could.`,
+      cautions: `Be careful not to oversimplify complex problems your audience actually faces. Avoid being so relentlessly positive that you seem disconnected or tone-deaf. And watch your pricing and positioning — if your brand carries a luxury premium, the Innocent archetype can create a confusing tension unless handled with nuance.`,
+      authority: `Own your origin story completely. If your product is genuinely clean, simple, or ethically made, show the process. Make your supply chain, your team, your sourcing visible. Your authority grows from radical transparency. Become the brand that simply tells the truth — in an industry where that's genuinely rare, it's a formidable position.`
+    }
+  },
+  explorer: {
+    name: "The Explorer",
+    emoji: "🧭",
+    tagline: "Freedom, discovery, and the road not yet taken.",
+    color: "#7B5E3A",
+    profile: {
+      identity: `Your brand is restless in the most magnetic way. It doesn't sit still, and it doesn't ask its audience to either. The Explorer archetype is animated by a fundamental belief that there's always more — more to see, more to understand, more to experience. Your brand gives people permission to venture beyond their comfort zone, and it walks beside them when they do. You're not about escape — you're about expansion. The difference matters: escape is running from something; exploration is running toward everything.`,
+      values: `Freedom is the cornerstone. You believe that boundaries are meant to be questioned, that conformity is a kind of slow death, and that the best version of a person — or a brand — emerges through experience. You value independence, curiosity, and self-reliance. You're suspicious of authority for its own sake and deeply respectful of earned wisdom. You believe the journey is the point, not just the destination.`,
+      traits: ["Curious", "Independent", "Adventurous", "Open-minded", "Restless", "Authentic", "Pioneering"],
+      voice: `Your voice is energetic but not loud. It's inviting, not pushy. You speak like someone who's been places and has something real to say — not someone performing adventure for a camera. You use evocative language without cliché. You avoid corporate-speak, obvious safety nets, and anything that feels like it was written by committee. Your audience is discerning — they can smell brand tourism from a mile away.`,
+      strengths: `You attract an intensely loyal, self-selecting audience. Explorers don't just buy products — they join movements. Your brand can command a community that markets itself. You also carry an air of credibility and earned wisdom that resonates powerfully in lifestyle, travel, outdoor, and discovery-oriented categories.`,
+      inauthenticity: `Inauthenticity here looks like adventure cosplay. If your brand's Explorer identity is aesthetic rather than experiential — nice imagery of mountains but no real embodiment of the values — your audience will notice and disengage. You can't buy the Explorer positioning; you have to live it.`,
+      cautions: `Explorer brands can become so focused on the journey that they lose the plot for people who want direction. Not everyone wants to forge their own path — sometimes people want to be led somewhere specific. Balance the call to adventure with enough clarity and structure that your audience knows what they're actually signing up for.`,
+      authority: `Build your authority through documented experience. Case studies, founder stories, field reports, behind-the-scenes content from actual exploration — these carry weight. Partner with credible voices in your space who embody the Explorer genuinely. And make your product genuinely essential to the journey, not just aesthetically adjacent to it.`
+    }
+  },
+  sage: {
+    name: "The Sage",
+    emoji: "📖",
+    tagline: "Knowledge, clarity, and the pursuit of truth.",
+    color: "#3D5A80",
+    profile: {
+      identity: `Your brand is a compass in a world of noise. The Sage archetype is built on an unwavering belief that knowledge is the most powerful force available, and that it's your responsibility to share it. Your brand doesn't try to entertain — it tries to illuminate. You build trust by being consistently, rigorously right. Your audience comes to you not for inspiration but for clarity, and you deliver it without equivocation or spectacle.`,
+      values: `Truth above all else. You believe that understanding leads to better decisions, and better decisions lead to better outcomes — for individuals, organizations, and the world. You value depth over breadth, accuracy over speed, and substance over style. Intellectual honesty is non-negotiable. You'd rather say "I don't know" than be wrong in an authoritative-sounding way.`,
+      traits: ["Knowledgeable", "Thoughtful", "Objective", "Credible", "Analytical", "Wise", "Clear"],
+      voice: `Measured, precise, and confident without arrogance. You cite sources. You acknowledge nuance. You don't sensationalize. Your voice sounds like someone who has spent significant time thinking about the thing they're talking about — because they have. You avoid jargon unless it genuinely aids understanding, and you avoid dumbing things down in ways that insult your audience's intelligence.`,
+      strengths: `Extraordinary trust and long-term authority. Sage brands become the reference point — the first place people go when they need to understand something. Once established, this positioning is extremely difficult for competitors to displace because it's based on accumulated, demonstrated knowledge, not just brand impression.`,
+      inauthenticity: `Inauthenticity looks like performing expertise. If your brand publishes content that sounds authoritative but is actually shallow, recycled, or simply consensus opinion dressed up as insight, people who actually know the field will notice — and word travels fast. The Sage archetype is unforgiving of intellectual dishonesty.`,
+      cautions: `The Sage can become cold, detached, or so invested in being right that it forgets to be useful. Your audience doesn't just want to know things — they want to do things with what they know. Bridge the gap between knowledge and application consistently, or a more pragmatic competitor will.`,
+      authority: `Write the definitive resource on something specific and genuinely important in your niche. Invest in original research. Develop a proprietary framework or model. Build a track record of being right — then make that track record visible. Your authority compounds over time if you protect your intellectual integrity rigorously.`
+    }
+  },
+  hero: {
+    name: "The Hero",
+    emoji: "⚡",
+    tagline: "Courage, mastery, and rising to every challenge.",
+    color: "#C0392B",
+    profile: {
+      identity: `Your brand is a call to action. The Hero archetype believes that difficulty is not a deterrent — it's the point. Your brand exists to help people overcome, to push through, to become more capable than they thought they could be. You don't offer comfort; you offer transformation through effort. This is powerful because it speaks to the part of every person that wants to rise, not settle. Your brand stands beside the determined, the committed, and the unwilling-to-quit.`,
+      values: `Courage, determination, and earned achievement. You believe that greatness requires effort and that the struggle is part of the reward. You value integrity — doing the hard thing, the right way. You don't cut corners, and you don't celebrate mediocrity. You hold your audience to a higher standard because you believe they're capable of meeting it.`,
+      traits: ["Determined", "Courageous", "Disciplined", "Inspiring", "Competitive", "Principled", "Relentless"],
+      voice: `Direct, energetic, and motivating without being manipulative. You don't hype — you challenge. Your voice carries weight because it's grounded in real stakes and real difficulty. You use active language. You speak to your audience's potential, not their limitations. You avoid excuses and passive constructions. Your copy reads like someone who has been through the fire and knows exactly what it takes.`,
+      strengths: `Exceptional ability to inspire loyalty and action. Hero brands don't just attract customers — they attract believers. When positioned well, your brand becomes part of someone's identity and self-concept, which creates some of the deepest brand loyalty available.`,
+      inauthenticity: `Inauthenticity looks like manufactured drama. When the Hero brand overhypes ordinary things as heroic — when the challenge framing doesn't match the actual difficulty of the problem — it reads as hollow or even insulting. Your audience is discerning about authenticity in this register. They know what hard actually is.`,
+      cautions: `The Hero can become aggressive, tone-deaf to people who don't want to be pushed, or so focused on conquering that it forgets about the human being behind the challenge. Not every problem is a battle, and not every customer wants a drill sergeant. Know when to hold back.`,
+      authority: `Document real transformations. Your authority is built on proof. Show the before and after — not just aesthetically, but substantively. Collect and elevate the stories of people who've done the hard work and won. Make your brand's track record of helping people succeed impossible to ignore.`
+    }
+  },
+  outlaw: {
+    name: "The Outlaw",
+    emoji: "🔥",
+    tagline: "Disruption, rebellion, and the rules worth breaking.",
+    color: "#6D4C41",
+    profile: {
+      identity: `Your brand doesn't just challenge the status quo — it renders it irrelevant. The Outlaw archetype is built on a radical act of refusal: the refusal to accept that the world has to be the way it's always been. Your brand is a permission slip for people who've felt constrained, dismissed, or misserved by the mainstream. You don't ask for a seat at the table — you build a different table entirely. This is not antagonism for its own sake; it's the conviction that better is genuinely possible and that the existing structure is actively preventing it.`,
+      values: `Freedom from convention. The belief that rules exist to serve people, not the other way around, and that when rules stop serving, they should be dismantled. You value radical honesty, disruption with purpose, and the courage to be genuinely different — not performatively different.`,
+      traits: ["Disruptive", "Fearless", "Unconventional", "Raw", "Empowering", "Provocative", "Authentic"],
+      voice: `Unapologetic, direct, and charged with intention. You don't hedge. You don't soften. You say what others in your category won't say — and you mean it. Your voice should feel like a dare and an invitation simultaneously. Avoid corporate polish, empty rebellion, or anything that sounds like a brand trying to be cool. The Outlaw voice is dangerous because it's honest, not because it's theatrical.`,
+      strengths: `You become a rallying point for an underserved, passionate audience. Outlaw brands attract people who feel like they've been waiting for exactly this — someone who finally gets it, finally says it, finally builds it. That loyalty is fierce and self-sustaining when authentic.`,
+      inauthenticity: `Inauthenticity is the Outlaw's most serious vulnerability. If your rebellion is cosmetic — a tone of voice without actual disruption in the product, model, or practice — your audience will experience it as a betrayal. You've promised liberation and delivered another version of the same thing. This is worse than being ordinary in the first place.`,
+      cautions: `Rebellion without direction loses people. Shock value without substance burns out. Ensure your brand's disruptive energy is grounded in a genuine alternative vision — not just what you're against, but what you're building. And be careful of alienating people who are sympathetic but not ready for the full dose.`,
+      authority: `Be the brand that does the thing others say can't be done. Your authority is earned by actually breaking the rule you say is worth breaking — visibly, verifiably, consequentially. Document your process. Make your alternative model transparent. Show that the disruption isn't just aesthetics — it's architecture.`
+    }
+  },
+  magician: {
+    name: "The Magician",
+    emoji: "✨",
+    tagline: "Transformation, vision, and the impossible made real.",
+    color: "#5C3D8F",
+    profile: {
+      identity: `Your brand operates at the boundary between what is and what could be. The Magician archetype holds a fundamental belief in transformation — that profound change is possible, that the world is more malleable than people think, and that your brand is the catalyst that makes the shift happen. You're not just selling a product; you're delivering a different version of reality. This is intoxicating when done well, because people deeply want to believe in transformation. They want evidence that things can change.`,
+      values: `The belief that vision and will can reshape reality. You value possibility, imagination, transformation, and the courage to pursue what seems just out of reach. You believe that conventional limits are often self-imposed, and that your role is to dissolve them.`,
+      traits: ["Visionary", "Transformative", "Charismatic", "Innovative", "Inspiring", "Mystical", "Catalytic"],
+      voice: `Evocative, expansive, and full of possibility. Your voice creates images of a different world and makes that world feel reachable. You use language that opens rather than closes, that invites rather than declares. You avoid the overly technical, the mundane, and the procedural — though you know these things exist behind the curtain. Your communication feels like it's touching something larger than the immediate product.`,
+      strengths: `You create extraordinary emotional resonance. When the Magician brand works, customers don't just buy — they convert. They become advocates who describe their experience in transformational language: "everything changed," "I've never seen anything like it." This kind of testimonial is marketing gold.`,
+      inauthenticity: `Inauthenticity here is overpromising and underdelivering. If your brand's vision exceeds your product's reality by too wide a margin, the crash is severe — and public. The gap between magical positioning and ordinary product experience breeds resentment, not just disappointment.`,
+      cautions: `Mystique can become obscurity. If your brand is so focused on the experience of transformation that it becomes unclear what, specifically, you do or offer, you lose people before they ever get to experience the magic. Maintain enough groundedness that new prospects can orient themselves.`,
+      authority: `Your authority is built through documented proof of transformation. Testimonials that describe before-and-after experiences in vivid, specific terms are your most powerful asset. Show transformation at scale — not just one person's story, but a pattern of results. Make the impossible look inevitable.`
+    }
+  },
+  everyman: {
+    name: "The Everyman",
+    emoji: "🤝",
+    tagline: "Belonging, community, and the power of the ordinary.",
+    color: "#5D7A61",
+    profile: {
+      identity: `Your brand understands something profound: most people just want to feel included, understood, and valued — not impressed. The Everyman archetype is grounded in radical belonging. You don't talk down to your audience, and you don't put them on a pedestal. You stand beside them. Your brand's promise is simple and enormously powerful: you belong here. This resonates deeply because so much of modern life is oriented around exclusion — the right brand, the right look, the right tribe. Your brand reverses that.`,
+      values: `Community, fairness, and unpretentious quality. You believe that good things should be accessible. That real value doesn't require a premium markup or a velvet rope. You value honesty over aspiration and reliability over spectacle.`,
+      traits: ["Relatable", "Inclusive", "Genuine", "Down-to-earth", "Reliable", "Friendly", "Unpretentious"],
+      voice: `Warm, conversational, and completely without affectation. You talk like a real person, not a brand character. You use language your audience actually uses. You're self-deprecating without being self-undermining. You're enthusiastic without being exhausting. Your voice should make someone feel like they're talking to someone who gets them — not someone pitching at them.`,
+      strengths: `Massive broad-market appeal and the ability to create genuine community. Everyman brands often command more loyalty in aggregate than aspirational brands do at the top — because they serve more people more deeply, and those people feel truly seen.`,
+      inauthenticity: `The failure mode is performed relatability — a brand that acts down-to-earth but is actually exclusionary in pricing, access, or culture. If your brand says "we're just like you" but your product costs what a week of groceries does, that dissonance is noticed. Your audience's trust is built on feeling genuinely included.`,
+      cautions: `Without differentiation, the Everyman can become generic. Being relatable is not a positioning strategy by itself — you need a clear point of difference or a category where your brand's warmth and accessibility become genuinely distinctive. Avoid the trap of being everything to everyone.`,
+      authority: `Build authority through community. User-generated content, customer stories, and social proof at volume are your equity. Show the breadth of the people who choose you — and make them central to your brand story, not your product. Your audience is the authority; your brand just brings them together.`
+    }
+  },
+  lover: {
+    name: "The Lover",
+    emoji: "🌹",
+    tagline: "Desire, beauty, and deep human connection.",
+    color: "#8E3B5E",
+    profile: {
+      identity: `Your brand understands desire. Not just want — desire, with all its warmth, specificity, and emotional charge. The Lover archetype is built on the conviction that beauty, connection, and sensory pleasure are not luxuries — they're essential. Your brand makes people feel seen, chosen, and beautifully known. You're in the business of intimacy at scale, which is one of the more difficult and extraordinary things a brand can attempt.`,
+      values: `Beauty, emotional depth, sensory richness, and authentic human connection. You believe that the quality of an experience matters as much as its function. That how something makes a person feel is as real as what it does. You value devotion, attention to detail, and the kind of care that shows.`,
+      traits: ["Passionate", "Sensual", "Warm", "Devoted", "Aesthetic", "Intimate", "Appreciative"],
+      voice: `Rich, sensory, and deeply personal. Your copy doesn't just describe — it evokes. You write about feeling, not just function. You make people feel chosen rather than targeted. Your voice is never clinical or transactional; every touchpoint carries warmth. You avoid cold language, generic descriptions, and anything that feels manufactured or distanced.`,
+      strengths: `Extraordinary customer devotion and word-of-mouth. Lover brands create advocates who don't just recommend — they rhapsodize. You have exceptional ability to build premium positioning because your audience connects your brand's sensory and emotional qualities with real value.`,
+      inauthenticity: `The failure mode is superficiality — beautiful surfaces with nothing beneath them. If your brand's aesthetic is stunning but the experience underneath is hollow or your service is indifferent, the betrayal is acute. Your audience came for intimacy; indifference is the most damaging response you can give.`,
+      cautions: `The Lover brand can become exclusive in ways that alienate. You can also tip into self-indulgence — so focused on the aesthetic and experiential details that you lose sight of practical value. Ensure that the beauty and feeling your brand creates is in service of something your audience genuinely cares about.`,
+      authority: `Your authority grows through obsessive attention to the sensory details of your brand experience — from the quality of your packaging to the warmth of your customer service. Build a reputation for care that is exceptional and documented. Collaborate with recognized tastemakers in your space. Make your curation and taste so distinctive that it becomes a category of its own.`
+    }
+  },
+  jester: {
+    name: "The Jester",
+    emoji: "🎭",
+    tagline: "Play, wit, and the radical act of lightening up.",
+    color: "#C07830",
+    profile: {
+      identity: `Your brand knows a secret: people are desperately waiting for permission to laugh, play, and not take everything quite so seriously. The Jester archetype offers exactly that — and in doing so, it creates connections that are warmer and more human than almost any other archetype can. You don't just entertain; you reveal truth through wit. The best Jester brands know that real humor requires intelligence, observation, and genuine affection for the audience. You're never mean, never cheap, never desperate for a laugh.`,
+      values: `Joy, levity, and the democratizing power of a good sense of humour. You believe that laughter is connective tissue between people, and that brands that take themselves too seriously become obstacles between human beings and their natural state. You value authenticity, irreverence, and the sharp insight that sits behind great comedy.`,
+      traits: ["Playful", "Witty", "Irreverent", "Fun", "Spontaneous", "Charming", "Authentic"],
+      voice: `Sharp, warm, and completely unafraid. Your voice plays. It subverts expectations with precision. It catches people off guard in ways that make them feel clever for getting the joke. You never punch down. You avoid trying too hard — the moment a Jester brand strains for laughs, the warmth collapses into awkwardness. Your best moments come from genuine observation and affection for the situation.`,
+      strengths: `Deeply shareable content and exceptional cultural virality. Jester brands often achieve organic reach that aspirational brands spend fortunes trying to buy. You also build emotional warmth faster than almost any other archetype — a shared laugh is an accelerant for connection.`,
+      inauthenticity: `Inauthenticity is trying to be funny and missing. A Jester brand that misjudges tone — going too dark, too juvenile, or just not actually landing the joke — loses credibility quickly. Your audience has no patience for a comedian who doesn't make them laugh. The other failure mode is becoming so joke-focused that your brand feels like it has nothing real to say.`,
+      cautions: `The Jester archetype is challenging to sustain at scale because humor is highly contextual and culturally specific. What lands in one market may fall flat or cause offence in another. Be especially vigilant about cultural sensitivity and the shelf life of your comic references.`,
+      authority: `Become the brand that makes an entire industry less insufferable. Identify the conventions, language, and pomposity in your niche that people secretly find ridiculous — and name it, gently and brilliantly. Authority for the Jester comes from being the voice that says what everyone's thinking but no one has said yet.`
+    }
+  },
+  caregiver: {
+    name: "The Caregiver",
+    emoji: "💛",
+    tagline: "Nurture, protection, and the gift of genuine service.",
+    color: "#5A7A6A",
+    profile: {
+      identity: `Your brand exists to serve. Not as a slogan, but as a structural fact — every decision you make is filtered through the question: does this genuinely help the people we're here for? The Caregiver archetype is animated by empathy and a deep sense of responsibility for the wellbeing of its community. You build relationships based on trust and care that transcends the transactional. This is rare, and your audience knows it.`,
+      values: `Compassion, service, and the genuine prioritization of others' wellbeing. You believe that being useful is meaningful — that a brand's integrity is measured by how well it actually helps the people it claims to serve. You value reliability, warmth, and the kind of long-term thinking that comes from genuinely caring about outcomes.`,
+      traits: ["Empathetic", "Nurturing", "Reliable", "Generous", "Protective", "Warm", "Patient"],
+      voice: `Warm, patient, and attentive. You listen before you speak — and when you do speak, it shows. Your voice never feels rushed, never prioritizes selling over helping, and never uses manipulative urgency. You address the real concerns of your audience with care and specificity. Your copy feels like it was written by someone who actually thought about the person reading it.`,
+      strengths: `Exceptional customer retention and lifetime value. Caregiver brands create the deepest loyalty because they deliver on the most fundamental human need: to feel genuinely cared for. You also build communities that support each other, amplifying your brand's impact organically.`,
+      inauthenticity: `The failure mode is performative care — a brand that says it puts people first but doesn't invest the systems, time, or resources to actually deliver on that. Customer service that takes days to respond. Policies that protect the company at the customer's expense. Smiling language around a frustrating product experience. These gaps between claim and reality are the Caregiver's most damaging contradiction.`,
+      cautions: `Caregiver brands can become enabling, martyred, or simply unsustainable. Giving more than your model can support creates a spiral. Ensure your care is delivered within structures that are healthy for your business and your team. Also watch for paternalism — caring for your audience doesn't mean speaking for them or assuming you know what they need better than they do.`,
+      authority: `Your authority is built over time through consistent, documented delivery on your promises. Customer success stories are your most powerful evidence. Build systems that make caring easier and more scalable — and make those systems visible. Become the benchmark in your category for what service actually looks like when it's done right.`
+    }
+  },
+  ruler: {
+    name: "The Ruler",
+    emoji: "👑",
+    tagline: "Authority, order, and the art of leading well.",
+    color: "#4A5568",
+    profile: {
+      identity: `Your brand doesn't aspire to authority — it embodies it. The Ruler archetype projects confidence, competence, and control in the most constructive sense: the kind of order that creates security, trust, and outcomes worth aspiring to. Your brand is the category-defining standard. You set the terms. You establish the criteria by which others are measured. This is a powerful position that carries equally powerful responsibility.`,
+      values: `Excellence, leadership, and the responsibility to use power well. You believe that structure enables freedom — that clear standards and strong execution create the conditions in which real achievement becomes possible. You value precision, accountability, and the dignity of doing things properly.`,
+      traits: ["Commanding", "Authoritative", "Confident", "Responsible", "Strategic", "Refined", "Decisive"],
+      voice: `Authoritative, precise, and unhurried. Your voice doesn't seek approval — it offers perspective. You don't hedge unnecessarily. You don't qualify to the point of losing your position. But you also don't condescend. Your tone carries weight because it's grounded in earned expertise and genuine accountability. You speak like a leader who has thought carefully and arrived at a considered view.`,
+      strengths: `Unparalleled positioning at the premium end of any market. Ruler brands become the reference point — the answer to "who does this best?" You attract customers who value quality and are willing to pay for it, and you attract them with a self-selection that makes your audience coherent, engaged, and valuable.`,
+      inauthenticity: `Inauthenticity is the worst thing that can happen to a Ruler brand — specifically, the appearance of authority without its substance. If your brand projects leadership but your product, service, or systems don't back it up, the collapse is public and significant. People who chose you because you were "the best" feel particularly deceived when that isn't true.`,
+      cautions: `The Ruler can become rigid, exclusionary, or so invested in controlling the narrative that it stops listening. In categories where consumer preferences are evolving rapidly, the brand that insists on setting the old terms can find itself suddenly irrelevant. Governance requires adaptation, not just assertion.`,
+      authority: `Your authority is built through demonstrated category leadership. Original research, product innovation, industry-defining standards, and exceptional quality at every touchpoint are your compounding assets. Be the brand that the media turns to for comment, that other brands benchmark against, that sets the terms of the conversation in your niche.`
+    }
+  },
+  creator: {
+    name: "The Creator",
+    emoji: "🎨",
+    tagline: "Imagination, craft, and the vision to build what doesn't exist yet.",
+    color: "#6B7A3E",
+    profile: {
+      identity: `Your brand is powered by the compulsion to make. The Creator archetype doesn't fit the world as it is — it envisions the world as it could be, and then builds it. Your brand's identity is inseparable from the quality and originality of what you create. You exist at the intersection of craft and imagination, and you hold both in the highest possible regard. Your audience comes to you not just for what you produce, but for how you see — and the permission that gives them to see differently too.`,
+      values: `Originality, craft, and the integrity of a made thing. You believe that making matters — that the care put into something is transmitted to the person who receives it. You value vision, execution, and the discipline to develop your craft rather than just express it. You are suspicious of shortcuts and deeply respectful of the process.`,
+      traits: ["Original", "Imaginative", "Skilled", "Visionary", "Expressive", "Passionate", "Detail-oriented"],
+      voice: `Distinct, thoughtful, and carrying the textures of the things your brand makes. Your voice isn't performative — it's expressive. It reveals point of view. It has opinions about craft, beauty, and process that feel earned. You avoid generic brand language with particular vehemence. You write like a maker, not a marketer — and that specificity is your greatest asset.`,
+      strengths: `Cultural resonance and the ability to generate organic excitement. Creator brands don't need to market loudly because their work speaks. They attract other creative people, which creates a compounding cultural effect. Your brand can also occupy a uniquely personal space in people's lives because it exists at the level of self-expression.`,
+      inauthenticity: `Inauthenticity is commodifying the aesthetic of creation without the substance of craft. If your brand looks like a Creator but is actually outsourcing, templating, or cutting corners on quality, your audience will feel it in the product before they can name it. The Creator archetype lives or dies on the actual quality of what it makes.`,
+      cautions: `Creator brands can become self-referential — so focused on the work and the process that they lose connection with the audience's actual needs. Craft excellence without market relevance is a gallery, not a business. Ensure your vision is grounded in genuine insight into what your audience wants to create, experience, or express.`,
+      authority: `Your portfolio is your authority. Make exceptional things, document the process, and make both visible. Speak with authority about craft, process, and the philosophy of your category. Develop a distinctive aesthetic that becomes recognizable — not derivative of trends, but genuinely your own. Become the brand other creators cite as an influence.`
+    }
+  }
+};
+
+/* =========================================================
+   QUESTIONS DATA
+   Weights: { archetype: weight } sums can exceed 1 per question.
+   Types: 'choice' | 'slider'
+========================================================= */
+const QUESTIONS = [
+  {
+    id: 1,
+    type: 'choice',
+    text: "When a customer comes to you with a problem they're struggling to solve, your brand's instinct is to…",
+    sub: "Think about how your brand naturally shows up, not how it aspires to.",
+    options: [
+      { text: "Give them clear, expert guidance so they understand what to do.", weights: { sage: 3, ruler: 1 } },
+      { text: "Roll up your sleeves and help them push through it.", weights: { hero: 3, caregiver: 1 } },
+      { text: "Reframe the problem in a way they hadn't considered.", weights: { magician: 3, creator: 1 } },
+      { text: "Make them feel supported and genuinely cared for.", weights: { caregiver: 3, lover: 1, everyman: 1 } }
+    ]
+  },
+  {
+    id: 2,
+    type: 'slider',
+    text: "Your brand believes that the most valuable thing it offers is the feeling it gives people, not just what it does.",
+    sub: "Rate how accurately this reflects your brand's core belief.",
+    labels: ["Mostly about function", "Mostly about feeling"],
+    archetypes: { lover: 1.2, magician: 0.9, jester: 0.7, innocent: 0.5 },
+    reverseFor: { sage: 0.8, ruler: 0.6, hero: 0.5 }
+  },
+  {
+    id: 3,
+    type: 'choice',
+    text: "Which phrase would your best customers most naturally use to describe your brand to a friend?",
+    options: [
+      { text: `"They just get it — it feels like it was made for people like us."`, weights: { everyman: 3, caregiver: 1 } },
+      { text: `“They know their stuff better than anyone I’ve found.”`, weights: { sage: 3, ruler: 1 } },
+      { text: `“There’s something different about them — I can’t always explain it.”`, weights: { magician: 2, creator: 2, outlaw: 1 } },
+      { text: `"They pushed me to do more than I thought I could."`, weights: { hero: 3 } }
+    ]
+  },
+  {
+    id: 4,
+    type: 'slider',
+    text: "Convention and established norms in your industry feel like obstacles, not assets.",
+    sub: "Be honest about your brand's actual relationship with the status quo.",
+    labels: ["Comfortable with convention", "We challenge convention"],
+    archetypes: { outlaw: 1.5, explorer: 0.9, magician: 0.7, creator: 0.6 },
+    reverseFor: { ruler: 1.0, innocent: 0.5, everyman: 0.4 }
+  },
+  {
+    id: 5,
+    type: 'choice',
+    text: "If your brand had a superpower, it would be…",
+    options: [
+      { text: "Making complex things beautifully, refreshingly simple.", weights: { innocent: 3, sage: 1 } },
+      { text: "Making people feel genuinely seen and understood.", weights: { caregiver: 2, lover: 2, everyman: 1 } },
+      { text: "Reimagining how something should work from the ground up.", weights: { creator: 2, magician: 2, outlaw: 1 } },
+      { text: "Making people feel capable of doing what they thought they couldn't.", weights: { hero: 3, magician: 1 } }
+    ]
+  },
+  {
+    id: 6,
+    type: 'slider',
+    text: "Your brand actively curates its world — the aesthetics, the sensory details, the beauty of the experience — and considers this central to your identity.",
+    labels: ["Function is our focus", "Experience is everything"],
+    archetypes: { lover: 1.3, creator: 1.0, magician: 0.8, ruler: 0.5 },
+    reverseFor: { outlaw: 0.4, hero: 0.3 }
+  },
+  {
+    id: 7,
+    type: 'choice',
+    text: "Your brand is most comfortable when it's…",
+    options: [
+      { text: "Holding a firm, confident position and helping others meet the standard.", weights: { ruler: 3, sage: 1 } },
+      { text: "Exploring the edges of what's possible and bringing people along.", weights: { explorer: 3, magician: 1 } },
+      { text: "Creating something that didn't exist before.", weights: { creator: 3, magician: 1 } },
+      { text: "Making people laugh, feel lighter, or shift their mood.", weights: { jester: 3, innocent: 1 } }
+    ]
+  },
+  {
+    id: 8,
+    type: 'slider',
+    text: "Your brand speaks to a broad, inclusive audience — not a selective, exclusive one.",
+    labels: ["Selective / niche", "Broad / inclusive"],
+    archetypes: { everyman: 1.5, caregiver: 0.8, innocent: 0.7 },
+    reverseFor: { ruler: 1.0, outlaw: 0.6, lover: 0.4 }
+  },
+  {
+    id: 9,
+    type: 'choice',
+    text: "When you think about your brand's long-term legacy, you most want it to be known for…",
+    options: [
+      { text: "Consistently having the most depth, rigor, and accurate insight in its field.", weights: { sage: 3, ruler: 1 } },
+      { text: "Genuinely transforming how people see themselves or their world.", weights: { magician: 3, hero: 1 } },
+      { text: "Making people feel like they always belonged here.", weights: { everyman: 2, caregiver: 2 } },
+      { text: "Proving that things could be done differently — and better.", weights: { outlaw: 3, creator: 1 } }
+    ]
+  },
+  {
+    id: 10,
+    type: 'slider',
+    text: "Humor and lightness are genuine parts of how your brand shows up, not just occasional departures from your 'real' voice.",
+    labels: ["Rarely — we're more serious", "Consistently — it's who we are"],
+    archetypes: { jester: 1.5, everyman: 0.7, innocent: 0.5 },
+    reverseFor: { ruler: 0.7, sage: 0.5, hero: 0.3 }
+  },
+  {
+    id: 11,
+    type: 'choice',
+    text: "In a competitive market, your brand's most defensible advantage is…",
+    options: [
+      { text: "The depth of knowledge and credibility no competitor has matched.", weights: { sage: 3, ruler: 1 } },
+      { text: "The originality and craft of what you make.", weights: { creator: 3, magician: 1 } },
+      { text: "The strength of the community and belonging you've built.", weights: { everyman: 2, caregiver: 2, outlaw: 1 } },
+      { text: "The intensity of the transformation people experience.", weights: { magician: 2, hero: 2 } }
+    ]
+  },
+  {
+    id: 12,
+    type: 'slider',
+    text: "Your brand is deeply invested in the moral or ethical dimension of what it does — it's not just about performance, but about what's right.",
+    labels: ["Ethics are implicit / background", "Ethics are core to identity"],
+    archetypes: { caregiver: 1.2, innocent: 1.0, outlaw: 0.8, hero: 0.6 },
+    reverseFor: { jester: 0.3, ruler: 0.2 }
+  },
+  {
+    id: 13,
+    type: 'choice',
+    text: "How does your brand handle being challenged or critiqued publicly?",
+    options: [
+      { text: "We engage with the substance, acknowledge what's valid, and respond with clarity.", weights: { sage: 3, ruler: 1 } },
+      { text: "We lean into it — challenge makes us more credible, not less.", weights: { hero: 2, outlaw: 2 } },
+      { text: "We take the feedback seriously and publicly improve — care is a practice.", weights: { caregiver: 3, innocent: 1 } },
+      { text: "We use it to sharpen our position and reinforce what makes us different.", weights: { outlaw: 2, creator: 2, ruler: 1 } }
+    ]
+  },
+  {
+    id: 14,
+    type: 'slider',
+    text: "Freedom — in the sense of independence, uncharted territory, and self-determination — is a core value your brand genuinely embodies.",
+    labels: ["Not especially — structure matters", "Completely — freedom defines us"],
+    archetypes: { explorer: 1.5, outlaw: 1.0, creator: 0.7 },
+    reverseFor: { ruler: 0.9, caregiver: 0.4, everyman: 0.3 }
+  },
+  {
+    id: 15,
+    type: 'choice',
+    text: "What does your brand most want its audience to walk away feeling after every interaction?",
+    options: [
+      { text: "Clearer. More confident in their understanding or decisions.", weights: { sage: 3, ruler: 1 } },
+      { text: "Inspired, even a little transformed. Like something shifted.", weights: { magician: 3, hero: 1 } },
+      { text: "Seen, cared for, and genuinely welcomed.", weights: { caregiver: 2, lover: 2, everyman: 1 } },
+      { text: "Like they've experienced something beautiful or truly original.", weights: { creator: 2, lover: 2, magician: 1 } }
+    ]
+  },
+  {
+    id: 16,
+    type: 'slider',
+    text: "Your brand deliberately sets and maintains a high standard — you're willing to be exclusive or demanding in service of quality.",
+    labels: ["We meet people where they are", "We hold a high, defined standard"],
+    archetypes: { ruler: 1.4, hero: 0.9, sage: 0.7, creator: 0.6 },
+    reverseFor: { everyman: 1.0, caregiver: 0.6, innocent: 0.4 }
+  },
+  {
+    id: 17,
+    type: 'choice',
+    text: "Which of these best describes your brand's relationship with the people it serves?",
+    options: [
+      { text: "Teacher and student — we share what we know so they can decide better.", weights: { sage: 3 } },
+      { text: "Coach and player — we push, challenge, and invest in their growth.", weights: { hero: 3, caregiver: 1 } },
+      { text: "Friends — we're on the same level, going through it together.", weights: { everyman: 3, jester: 1 } },
+      { text: "Artist and audience — we create; they experience.", weights: { creator: 3, magician: 1 } }
+    ]
+  },
+  {
+    id: 18,
+    type: 'slider',
+    text: "Your brand's voice and personality stay remarkably consistent — you'd rather be clearly, distinctly 'you' than adaptable across every context.",
+    labels: ["We adapt to context", "We are always distinctly ourselves"],
+    archetypes: { outlaw: 1.2, creator: 1.0, ruler: 0.9, jester: 0.8 },
+    reverseFor: { everyman: 0.5, caregiver: 0.4 }
+  },
+  {
+    id: 19,
+    type: 'choice',
+    text: "Your brand is most energized when it's…",
+    options: [
+      { text: "Helping someone understand something difficult and watching it click.", weights: { sage: 3, caregiver: 1 } },
+      { text: "Connecting people to each other and creating a sense of shared identity.", weights: { everyman: 2, caregiver: 2, jester: 1 } },
+      { text: "Making something no one has seen before.", weights: { creator: 3, magician: 1 } },
+      { text: "Disrupting an assumption or showing a different way entirely.", weights: { outlaw: 2, explorer: 2, magician: 1 } }
+    ]
+  },
+  {
+    id: 20,
+    type: 'slider',
+    text: "If your brand were a place, it would be somewhere people come to rest, restore, and feel safe — not somewhere to be challenged or provoked.",
+    labels: ["Challenging / activating", "Restorative / safe"],
+    archetypes: { innocent: 1.5, caregiver: 1.2, everyman: 0.7 },
+    reverseFor: { outlaw: 1.0, hero: 0.9, explorer: 0.7 }
+  }
+];
+
+/* =========================================================
+   STATE
+========================================================= */
+const state = {
+  currentQ: 0,
+  answers: {},      // { qId: { weights } }
+  devUnlocked: false,
+  devProfileView: null
+};
+
+/* =========================================================
+   SCORING
+========================================================= */
+function calcScores() {
+  const scores = {};
+  Object.keys(ARCHETYPES).forEach(k => scores[k] = 0);
+
+  QUESTIONS.forEach(q => {
+    const ans = state.answers[q.id];
+    if (!ans) return;
+
+    if (q.type === 'choice') {
+      const opt = q.options[ans];
+      if (!opt) return;
+      Object.entries(opt.weights).forEach(([arch, w]) => {
+        scores[arch] = (scores[arch] || 0) + w;
+      });
+    } else if (q.type === 'slider') {
+      // ans is 1-5
+      const normalized = (ans - 1) / 4; // 0 to 1
+      Object.entries(q.archetypes || {}).forEach(([arch, w]) => {
+        scores[arch] = (scores[arch] || 0) + w * normalized * 3;
+      });
+      Object.entries(q.reverseFor || {}).forEach(([arch, w]) => {
+        scores[arch] = (scores[arch] || 0) + w * (1 - normalized) * 3;
+      });
+    }
+  });
+
+  return scores;
+}
+
+function getTopTwo(scores) {
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const primary = sorted[0];
+  const secondary = sorted[1];
+
+  // Scale: primary maps to 65–92, secondary maps to 40–68
+  const rawPrimary = primary[1];
+  const rawSecondary = secondary[1];
+
+  const primaryPct = Math.round(65 + (Math.min(rawPrimary, 30) / 30) * 27); // 65–92
+  // Secondary relative to primary
+  const ratio = rawSecondary / rawPrimary;
+  const secondaryPct = Math.round(40 + ratio * 28); // 40–68 range
+
+  return {
+    primary: { key: primary[0], pct: Math.min(92, primaryPct) },
+    secondary: { key: secondary[0], pct: Math.min(68, Math.max(40, secondaryPct)) }
+  };
+}
+
+/* =========================================================
+   DOM HELPERS
+========================================================= */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    target.style.animation = 'none';
+    target.offsetHeight; // reflow
+    target.style.animation = '';
+  }
+}
+
+/* =========================================================
+   QUIZ RENDER
+========================================================= */
+function renderProgress() {
+  const total = QUESTIONS.length;
+  const current = state.currentQ;
+  const pct = Math.max(5, Math.round(((current) / total) * 100));
+
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = `${current + 1} / ${total}`;
+
+  // Dots
+  const dotsEl = document.getElementById('progressDots');
+  dotsEl.innerHTML = '';
+  QUESTIONS.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i < current ? ' done' : i === current ? ' current' : '');
+    dotsEl.appendChild(d);
+  });
+
+  // Prev button
+  const prevBtn = document.getElementById('prevBtn');
+  prevBtn.style.visibility = current > 0 ? 'visible' : 'hidden';
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[state.currentQ];
+  const area = document.getElementById('questionArea');
+
+  // Animate out / in
+  area.style.opacity = '0';
+  area.style.transform = 'translateY(10px)';
+
+  setTimeout(() => {
+    area.innerHTML = buildQuestionHTML(q);
+    area.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+    area.style.opacity = '1';
+    area.style.transform = 'translateY(0)';
+
+    attachQuestionListeners(q);
+    updateNextBtn();
+  }, 180);
+}
+
+function buildQuestionHTML(q) {
+  let inner = '';
+
+  if (q.type === 'choice') {
+    const opts = q.options.map((o, i) => `
+      <button class="option-btn ${state.answers[q.id] === i ? 'selected' : ''}" data-idx="${i}">
+        ${o.text}
+      </button>
+    `).join('');
+    inner = `<div class="options-grid">${opts}</div>`;
+  } else {
+    const val = state.answers[q.id] || 3;
+    const pips = [1,2,3,4,5].map(n => `
+      <div class="slider-pip ${val === n ? 'active' : ''}" data-val="${n}">${n}</div>
+    `).join('');
+    inner = `
+      <div class="slider-wrap">
+        <div class="slider-labels">
+          <div class="slider-label-text">${q.labels[0]}</div>
+          <div class="slider-label-text">${q.labels[1]}</div>
+        </div>
+        <input type="range" id="sliderInput" min="1" max="5" value="${val}" step="1">
+        <div class="slider-value-row" id="sliderPips">${pips}</div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="question-card fade-slide">
+      <div class="q-number">Question ${q.id} of ${QUESTIONS.length}</div>
+      <div class="q-text">${q.text}</div>
+      ${q.sub ? `<div class="q-sub">${q.sub}</div>` : ''}
+      ${inner}
+    </div>
+  `;
+}
+
+function attachQuestionListeners(q) {
+  if (q.type === 'choice') {
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.idx);
+        state.answers[q.id] = idx;
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        updateNextBtn();
+        // Auto-advance after short delay
+        setTimeout(() => advanceQuestion(), 420);
+      });
+    });
+  } else {
+    const slider = document.getElementById('sliderInput');
+    if (slider) {
+      // Initialize with default
+      if (!state.answers[q.id]) state.answers[q.id] = 3;
+
+      const updateSlider = () => {
+        const val = parseInt(slider.value);
+        state.answers[q.id] = val;
+        // Update track fill
+        const pct = ((val - 1) / 4) * 100;
+        slider.style.backgroundSize = pct + '% 100%';
+        // Update pips
+        document.querySelectorAll('.slider-pip').forEach(p => {
+          p.classList.toggle('active', parseInt(p.dataset.val) === val);
+        });
+        updateNextBtn();
+      };
+
+      slider.addEventListener('input', updateSlider);
+      // Init visual state
+      const initPct = ((parseInt(slider.value) - 1) / 4) * 100;
+      slider.style.backgroundSize = initPct + '% 100%';
+
+      // Pip click
+      document.querySelectorAll('.slider-pip').forEach(pip => {
+        pip.addEventListener('click', () => {
+          slider.value = pip.dataset.val;
+          updateSlider();
+        });
+      });
+
+      updateNextBtn();
+    }
+  }
+}
+
+function updateNextBtn() {
+  const q = QUESTIONS[state.currentQ];
+  const answered = state.answers[q.id] !== undefined;
+  document.getElementById('nextBtn').disabled = !answered;
+
+  // Update button label for last question
+  const isLast = state.currentQ === QUESTIONS.length - 1;
+  document.getElementById('nextBtn').innerHTML = isLast
+    ? `See my results <span class="material-icons-round">insights</span>`
+    : `Next <span class="material-icons-round">arrow_forward</span>`;
+}
+
+function advanceQuestion() {
+  // For sliders, always enabled; for choices, only if answered
+  const q = QUESTIONS[state.currentQ];
+  if (state.answers[q.id] === undefined) return;
+
+  if (state.currentQ < QUESTIONS.length - 1) {
+    state.currentQ++;
+    renderProgress();
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    showProcessing();
+  }
+}
+
+/* =========================================================
+   RESULTS
+========================================================= */
+function showProcessing() {
+  showScreen('screen-processing');
+  setTimeout(() => renderResults(), 2200);
+}
+
+function renderResults() {
+  const scores = calcScores();
+  const { primary, secondary } = getTopTwo(scores);
+  const pa = ARCHETYPES[primary.key];
+  const sa = ARCHETYPES[secondary.key];
+
+  const screen = document.getElementById('screen-results');
+  screen.innerHTML = buildResultsHTML(pa, sa, primary.pct, secondary.pct);
+  showScreen('screen-results');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Staggered reveal of sections
+  setTimeout(() => {
+    const sections = screen.querySelectorAll('.profile-section, .secondary-card');
+    sections.forEach((s, i) => {
+      setTimeout(() => s.classList.add('revealed'), i * 120);
+    });
+  }, 300);
+
+  // Retake button
+  screen.querySelector('#retakeBtn')?.addEventListener('click', () => {
+    state.currentQ = 0;
+    state.answers = {};
+    showScreen('screen-home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+function buildResultsHTML(pa, sa, primaryPct, secondaryPct) {
+  const p = pa.profile;
+  return `
+    <div class="results-header">
+      <div class="results-eyebrow">Your primary brand archetype</div>
+      <div class="results-archetype-name">${pa.emoji} ${pa.name}</div>
+      <div class="results-archetype-tagline">${pa.tagline}</div>
+      <div class="results-score-badge">
+        <span class="score-pct">${primaryPct}%</span>
+        <span class="score-label">archetype match</span>
+      </div>
+    </div>
+
+    <div class="profile-body">
+
+      <div class="profile-section">
+        <div class="section-label">
+          <div class="section-icon icon-forest"><span class="material-icons-round">diamond</span></div>
+          <span class="section-title">Core Identity &amp; Essence</span>
+        </div>
+        <div class="section-body">${p.identity}</div>
+      </div>
+
+      <div class="profile-section">
+        <div class="section-label">
+          <div class="section-icon icon-gold"><span class="material-icons-round">favorite</span></div>
+          <span class="section-title">Values &amp; Beliefs</span>
+        </div>
+        <div class="section-body">${p.values}</div>
+      </div>
+
+      <div class="profile-section">
+        <div class="section-label">
+          <div class="section-icon icon-slate"><span class="material-icons-round">psychology</span></div>
+          <span class="section-title">Brand Personality Traits</span>
+        </div>
+        <div class="trait-pills">
+          ${p.traits.map(t => `<span class="pill forest">${t}</span>`).join('')}
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="section-label">
+          <div class="section-icon icon-gold"><span class="material-icons-round">record_voice_over</span></div>
+          <span class="section-title">Voice &amp; Tone</span>
+        </div>
+        <div class="section-body">${p.voice}</div>
+      </div>
+
+      <div class="profile-section">
+        <div class="section-label">
+          <div class="section-icon icon-forest"><span class="material-icons-round">bolt</span></div>
+          <span class="section-title">Strengths</span>
+        </div>
+        <div class="section-body">${p.strengths}</div>
+      </div>
+
+      <div class="profile-section">
+        <div class="section-label">
+          <div class="section-icon icon-terra"><span class="material-icons-round">warning_amber</span></div>
+          <span class="section-title">What Inauthenticity Looks Like</span>
+        </div>
+        <div class="section-body">${p.inauthenticity}</div>
+        <div class="caution-box">
+          <p><strong>The failure mode:</strong> ${p.cautions}</p>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="section-label">
+          <div class="section-icon icon-gold"><span class="material-icons-round">workspace_premium</span></div>
+          <span class="section-title">How to Build Authority in Your Niche</span>
+        </div>
+        <div class="section-body">${p.authority}</div>
+      </div>
+
+      <!-- Secondary archetype -->
+      <div class="label" style="padding-left:2px; margin-bottom: 8px; margin-top: 8px;">Secondary archetype</div>
+      <div class="secondary-card">
+        <div>
+          <div class="secondary-pct">${secondaryPct}<span>%</span></div>
+        </div>
+        <div>
+          <div class="secondary-name">${sa.emoji} ${sa.name}</div>
+          <div class="secondary-desc">${sa.tagline}<br><br>Your brand carries a meaningful thread of the ${sa.name} alongside your primary archetype. This shows up in ${getSecondaryHint(sa.name)} — and gives your brand a richness and nuance worth exploring intentionally.</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="results-cta">
+        <button class="btn-secondary" id="retakeBtn">
+          <span class="material-icons-round">refresh</span>
+          Retake the quiz
+        </button>
+      </div>
+
+    </div>
+  `;
+}
+
+function getSecondaryHint(name) {
+  const hints = {
+    "The Innocent": "your brand's moments of lightness, sincerity, and earnest optimism",
+    "The Explorer": "your brand's restlessness and appetite for the new",
+    "The Sage": "how your brand communicates depth and expertise",
+    "The Hero": "the way your brand shows up when stakes are high",
+    "The Outlaw": "your brand's edge, directness, and willingness to challenge",
+    "The Magician": "your brand's ability to create experiences that feel genuinely transformative",
+    "The Everyman": "your brand's warmth, accessibility, and inclusive instincts",
+    "The Lover": "the sensory and emotional richness of how your brand presents itself",
+    "The Jester": "your brand's playful moments and ability to humanize through wit",
+    "The Caregiver": "your brand's deep investment in the wellbeing of its community",
+    "The Ruler": "your brand's confidence, authority, and sense of standard",
+    "The Creator": "your brand's originality, craft, and point of view"
+  };
+  return hints[name] || "your brand's secondary qualities";
+}
+
+/* =========================================================
+   DEV MODE
+========================================================= */
+const DEV_PASSWORD = 'adekani_89';
+
+function openDevModal() {
+  const modal = document.getElementById('devModal');
+  modal.classList.add('open');
+  document.getElementById('devPassword').value = '';
+  document.getElementById('devError').textContent = '';
+  document.getElementById('devPassword').classList.remove('error');
+  setTimeout(() => document.getElementById('devPassword').focus(), 300);
+}
+
+function closeDevModal() {
+  document.getElementById('devModal').classList.remove('open');
+}
+
+function checkDevPassword() {
+  const val = document.getElementById('devPassword').value;
+  if (val === DEV_PASSWORD) {
+    state.devUnlocked = true;
+    closeDevModal();
+    renderDevBrowser();
+    showScreen('screen-dev');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    document.getElementById('devError').textContent = 'Incorrect access key. Please try again.';
+    document.getElementById('devPassword').classList.add('error');
+    document.getElementById('devPassword').value = '';
+    document.getElementById('devPassword').focus();
+  }
+}
+
+function renderDevBrowser() {
+  const screen = document.getElementById('screen-dev');
+  const cards = Object.entries(ARCHETYPES).map(([key, a]) => `
+    <div class="dev-card" data-key="${key}">
+      <div class="dev-card-emoji">${a.emoji}</div>
+      <div class="dev-card-name">${a.name}</div>
+      <div class="dev-card-tagline">${a.tagline}</div>
+    </div>
+  `).join('');
+
+  screen.innerHTML = `
+    <div class="dev-header">
+      <div class="dev-header-left">
+        <h2>Archetype Browser</h2>
+        <p>Internal reference — all 12 brand archetypes</p>
+      </div>
+      <button class="btn-ghost" id="devExitBtn" style="color: rgba(255,255,255,0.5)">
+        <span class="material-icons-round">close</span>
+        Exit
+      </button>
+    </div>
+    <div class="dev-grid">${cards}</div>
+  `;
+
+  screen.querySelectorAll('.dev-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.key;
+      renderDevProfile(key);
+    });
+  });
+
+  screen.querySelector('#devExitBtn')?.addEventListener('click', () => {
+    showScreen('screen-home');
+  });
+}
+
+function renderDevProfile(key) {
+  const a = ARCHETYPES[key];
+  const screen = document.getElementById('screen-dev');
+
+  // Reuse results HTML logic
+  const bodyHTML = buildProfileSectionsHTML(a);
+
+  screen.innerHTML = `
+    <div class="results-header" style="background: ${a.color}">
+      <div class="results-eyebrow">Archetype Profile — Developer View</div>
+      <div class="results-archetype-name">${a.emoji} ${a.name}</div>
+      <div class="results-archetype-tagline">${a.tagline}</div>
+    </div>
+    <div class="dev-profile-back">
+      <button class="btn-ghost" id="devBackBtn">
+        <span class="material-icons-round">arrow_back</span>
+        All archetypes
+      </button>
+    </div>
+    <div class="profile-body" style="padding-top: 0;">
+      ${bodyHTML}
+    </div>
+  `;
+
+  // Reveal sections
+  setTimeout(() => {
+    screen.querySelectorAll('.profile-section').forEach((s, i) => {
+      setTimeout(() => s.classList.add('revealed'), i * 80);
+    });
+  }, 100);
+
+  screen.querySelector('#devBackBtn')?.addEventListener('click', () => {
+    renderDevBrowser();
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function buildProfileSectionsHTML(a) {
+  const p = a.profile;
+  return `
+    <div class="profile-section">
+      <div class="section-label">
+        <div class="section-icon icon-forest"><span class="material-icons-round">diamond</span></div>
+        <span class="section-title">Core Identity &amp; Essence</span>
+      </div>
+      <div class="section-body">${p.identity}</div>
+    </div>
+
+    <div class="profile-section">
+      <div class="section-label">
+        <div class="section-icon icon-gold"><span class="material-icons-round">favorite</span></div>
+        <span class="section-title">Values &amp; Beliefs</span>
+      </div>
+      <div class="section-body">${p.values}</div>
+    </div>
+
+    <div class="profile-section">
+      <div class="section-label">
+        <div class="section-icon icon-slate"><span class="material-icons-round">psychology</span></div>
+        <span class="section-title">Brand Personality Traits</span>
+      </div>
+      <div class="trait-pills">
+        ${p.traits.map(t => `<span class="pill forest">${t}</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <div class="section-label">
+        <div class="section-icon icon-gold"><span class="material-icons-round">record_voice_over</span></div>
+        <span class="section-title">Voice &amp; Tone</span>
+      </div>
+      <div class="section-body">${p.voice}</div>
+    </div>
+
+    <div class="profile-section">
+      <div class="section-label">
+        <div class="section-icon icon-forest"><span class="material-icons-round">bolt</span></div>
+        <span class="section-title">Strengths</span>
+      </div>
+      <div class="section-body">${p.strengths}</div>
+    </div>
+
+    <div class="profile-section">
+      <div class="section-label">
+        <div class="section-icon icon-terra"><span class="material-icons-round">warning_amber</span></div>
+        <span class="section-title">What Inauthenticity Looks Like</span>
+      </div>
+      <div class="section-body">${p.inauthenticity}</div>
+      <div class="caution-box">
+        <p><strong>Pitfalls &amp; cautions:</strong> ${p.cautions}</p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <div class="section-label">
+        <div class="section-icon icon-gold"><span class="material-icons-round">workspace_premium</span></div>
+        <span class="section-title">Building Niche Authority</span>
+      </div>
+      <div class="section-body">${p.authority}</div>
+    </div>
+  `;
+}
+
+/* =========================================================
+   INIT & EVENT WIRING
+========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Build progress dots on quiz init
+  function initQuiz() {
+    state.currentQ = 0;
+    state.answers = {};
+    showScreen('screen-quiz');
+    renderProgress();
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Start button
+  document.getElementById('startBtn').addEventListener('click', initQuiz);
+
+  // Next button
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    // For sliders: ensure we have an answer
+    const q = QUESTIONS[state.currentQ];
+    if (q.type === 'slider' && !state.answers[q.id]) {
+      state.answers[q.id] = 3;
+    }
+    advanceQuestion();
+  });
+
+  // Prev button
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (state.currentQ > 0) {
+      state.currentQ--;
+      renderProgress();
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  // Dev trigger
+  document.getElementById('devTrigger').addEventListener('click', () => {
+    if (state.devUnlocked) {
+      renderDevBrowser();
+      showScreen('screen-dev');
+    } else {
+      openDevModal();
+    }
+  });
+
+  // Dev modal
+  document.getElementById('devCancel').addEventListener('click', closeDevModal);
+  document.getElementById('devSubmit').addEventListener('click', checkDevPassword);
+  document.getElementById('devPassword').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkDevPassword();
+    if (e.key === 'Escape') closeDevModal();
+  });
+  document.getElementById('devModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('devModal')) closeDevModal();
+  });
+});
+</script>
+</body>
+</html>
