@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Lab Series: Systems | TUSS Global</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tuss-pink: #f8a5c2;
+            --tuss-teal: #4b7bec;
+            --tuss-bg: #fffdfd;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--tuss-bg);
+            color: #2d3436;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f8a5c2 0%, #4b7bec 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(248, 165, 194, 0.2);
+            border-radius: 24px;
+        }
+
+        .step-transition {
+            transition: all 0.5s ease;
+        }
+
+        .hidden-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .active-step {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .progress-bar-fill {
+            transition: width 2s cubic-bezier(0.1, 0, 0.3, 1);
+            background: linear-gradient(90deg, #f8a5c2, #4b7bec);
+        }
+
+        .price-tag {
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(248, 165, 194, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-40 bg-white/80 backdrop-blur-md border-b border-pink-50">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="font-bold tracking-tight text-xl uppercase text-slate-800">TUSS <span class="text-pink-400">Global</span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT WRAPPER -->
+    <div id="funnel-view">
+        
+        <!-- SECTION: HERO -->
+        <header class="pt-32 pb-20 px-6 relative overflow-hidden">
+            <div class="absolute top-0 right-0 -z-10 w-64 h-64 bg-pink-100 rounded-full blur-3xl opacity-40"></div>
+            <div class="max-w-4xl mx-auto text-center animate-fade">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-slate-900">
+                    Create a Life That Runs With Structure — <span class="italic text-pink-500">Even When You’re Not Holding It All Together</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-700 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    Join the 4th Session of the Growth Lab Series: <span class="font-bold text-slate-900">Systems</span> — where you’ll learn how to gently put the right structures in place so your life, work, and responsibilities flow with more ease, clarity, and support.
+                </p>
+                <div class="bg-pink-50 inline-block px-6 py-3 rounded-2xl mb-10 border border-pink-100">
+                    <p class="text-slate-600 text-sm font-medium">
+                        This is a free, guided session designed for women who are ready to move from constant busyness to calm, effective living — without losing themselves in the process.
+                    </p>
+                </div>
+                <div>
+                    <button onclick="openModal()" class="btn-primary px-12 py-5 rounded-2xl text-white font-bold text-lg shadow-xl hover:shadow-2xl transition-all">
+                        Save My Seat (Free)
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- SECTION: YOU'VE BEEN CARRYING SO MUCH -->
+        <section class="py-20 px-6 bg-white">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">You’ve Been Carrying So Much</h2>
+                <div class="space-y-6 text-slate-600 text-lg leading-relaxed">
+                    <p>There’s a quiet weight many women carry.</p>
+                    <p>The pressure to keep everything moving. To show up for others. To stay organised, productive, and present… all at once.</p>
+                    <p>And yet, behind the scenes, it can feel like you are holding everything together manually.</p>
+                    <p class="font-bold text-slate-900 italic">If you stop, things pause. If you rest, things pile up. If you step away, things fall apart.</p>
+                    <p>This session was created for you.</p>
+                    <p>Not to overwhelm you with more to do… But to help you build systems that support you — so life doesn’t always depend on your constant effort.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: WHAT THIS SESSION WILL HELP YOU DO -->
+        <section class="py-20 px-6 bg-slate-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 text-center">What This Session Will Help You Do</h2>
+                <p class="text-center text-slate-500 mb-12">By the end of this Growth Lab session, you will begin to:</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-pink-50">
+                        <i class="fa-solid fa-leaf text-pink-400 text-2xl mb-4"></i>
+                        <h4 class="font-bold text-xl mb-2">Replace chaos with gentle, reliable structure</h4>
+                        <p class="text-slate-500 text-sm">Create foundational pillars that hold your day together without feeling rigid.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-pink-50">
+                        <i class="fa-solid fa-arrows-spin text-pink-400 text-2xl mb-4"></i>
+                        <h4 class="font-bold text-xl mb-2">Turn your daily routines into supportive systems</h4>
+                        <p class="text-slate-500 text-sm">Shift from "doing tasks" to "managing flows" that work for your unique lifestyle.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-pink-50">
+                        <i class="fa-solid fa-moon text-pink-400 text-2xl mb-4"></i>
+                        <h4 class="font-bold text-xl mb-2">Create space for rest without guilt</h4>
+                        <p class="text-slate-500 text-sm">Learn the automation and delegation mindset that buys you back your time.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-pink-50">
+                        <i class="fa-solid fa-clock text-pink-400 text-2xl mb-4"></i>
+                        <h4 class="font-bold text-xl mb-2">Manage your time without feeling controlled by it</h4>
+                        <p class="text-slate-500 text-sm">Stop reacting to the clock and start directing your energy where it matters most.</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-white p-8 rounded-3xl shadow-sm border border-pink-50 flex items-start gap-4">
+                    <i class="fa-solid fa-robot text-teal-500 text-2xl mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-xl mb-2">Use simple tools (including AI) to make life easier, not more complicated</h4>
+                        <p class="text-slate-500 text-sm">Modern technology doesn't have to be daunting. We'll show you how to make it your personal assistant.</p>
+                    </div>
+                </div>
+                <div class="mt-12 p-8 bg-pink-100 rounded-3xl text-center italic text-slate-700">
+                    "This is not about adding more work to your plate. It is about building a plate that holds everything better."
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: WHY SYSTEMS MATTER FOR WELL-BEING -->
+        <section class="py-20 px-6 bg-white">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-center">Why Systems Matter for Your Well-being</h2>
+                <div class="space-y-6 text-slate-600 text-lg leading-relaxed">
+                    <p>When you don’t have systems, your brain has to work harder to keep track of every detail. This leads to mental fatigue, decision paralysis, and that feeling of being "always on."</p>
+                    <p>Systems provide the container that allows your creativity, your presence, and your peace to flourish.</p>
+                    <p class="font-semibold text-slate-900">This session will show you how to move from "survival mode" to "structure mode" — so you can show up for what matters, including yourself.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: DETAILS -->
+        <section class="py-20 px-6 bg-slate-900 text-white text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-4">Join Us</h2>
+                <div class="grid md:grid-cols-2 gap-6 mb-12">
+                    <div class="p-6 border border-slate-700 rounded-2xl">
+                        <p class="text-slate-400 uppercase text-xs tracking-widest mb-2 font-bold">Date</p>
+                        <p class="text-xl font-bold">Saturday, 25th April, 2026</p>
+                    </div>
+                    <div class="p-6 border border-slate-700 rounded-2xl">
+                        <p class="text-slate-400 uppercase text-xs tracking-widest mb-2 font-bold">Time</p>
+                        <p class="text-xl font-bold">11:00 AM (WAT) / 4:00 PM (WAT)</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center gap-4">
+                    <button onclick="openModal()" class="btn-primary px-12 py-5 rounded-2xl text-white font-bold text-lg w-full md:w-auto">
+                        Save My Seat (Free)
+                    </button>
+                    <p class="text-slate-400 text-sm">Space is intentionally limited to ensure a supportive environment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-12 text-center text-slate-400 text-sm border-t border-slate-100">
+            <p>&copy; 2026 TUSS Global. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- UPSELL VIEW (Hidden by default) -->
+    <div id="upsell-view" class="hidden min-h-screen bg-[#fafafa]">
+        <div class="pt-24 pb-20 px-6 max-w-4xl mx-auto animate-fade">
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full font-bold text-xs uppercase mb-6">Access Confirmed</div>
+                <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4">Wait! Want to Go Deeper?</h1>
+                <p class="text-slate-600 text-lg">The Growth Lab session is a powerful starting point. But for the woman who wants more… we’ve created something extra.</p>
+            </div>
+
+            <!-- THE PACKAGE -->
+            <div class="glass-card bg-white p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden border-t-8 border-t-pink-400">
+                <h2 class="text-3xl font-bold mb-6">The Systems Implementation Support Package</h2>
+                <p class="text-slate-600 mb-8 text-lg">We know that information without implementation can just lead to more noise. This package exists to help you bridge that gap — without pressure, without overwhelm.</p>
+                
+                <h4 class="font-bold text-slate-900 mb-4 uppercase tracking-widest text-xs">The Support Bundle Includes:</h4>
+                <div class="grid md:grid-cols-2 gap-4 mb-12">
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">The Systems Guided Workbook</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">Step-by-Step Checklists</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">AI Prompt Library for Daily Tasks</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">Private Q&A Group Access</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">Time-Blocking Master Templates</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">Weekly Habit Tracker</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">Priority Event Replay Access</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">Personal Systems Audit Sheet</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">TUSS Global Digital Badge</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl">
+                        <i class="fa-solid fa-circle-check text-pink-400"></i>
+                        <span class="text-slate-700 font-medium">Exclusive Bonus Audio Guide</span>
+                    </div>
+                </div>
+
+                <!-- IMPACT -->
+                <div class="bg-pink-50 p-8 rounded-[32px] mb-12 border border-pink-100">
+                    <h3 class="text-2xl font-bold mb-4">The Impact You Create</h3>
+                    <div class="space-y-4 text-slate-700">
+                        <p>Your decision does more than support your growth. It also contributes to something deeply meaningful.</p>
+                        <p>TUSS Global is committed to supporting women’s health — particularly helping provide <span class="font-bold text-pink-600">blood pressure monitors</span> for women who may not otherwise have access.</p>
+                        <p class="italic text-slate-600">"This mission is personal. The founder’s journey as a NICU mother is a reminder of how critical access to care can be — and how one tool can make the difference between life and loss."</p>
+                        <p>When you choose this package, you are helping extend that care to other women and their babies.</p>
+                    </div>
+
+                    <!-- PROGRESS BAR -->
+                    <div class="mt-8">
+                        <div class="flex justify-between items-end mb-2">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-tighter">Goal: Provide Blood Pressure Monitors</span>
+                            <span class="text-pink-600 font-bold">78% Funded</span>
+                        </div>
+                        <div class="w-full h-4 bg-white rounded-full overflow-hidden border border-pink-100 shadow-inner">
+                            <div id="upsell-progress" class="h-full progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                        <p class="text-[10px] text-center mt-2 text-slate-400 font-medium">Every contribution moves this forward.</p>
+                    </div>
+                </div>
+
+                <!-- PRICE STACK -->
+                <div class="mb-10 text-center md:text-left">
+                    <h4 class="font-bold text-slate-900 mb-4 uppercase tracking-widest text-xs">If purchased separately:</h4>
+                    <ul class="space-y-2 text-slate-500 mb-8 max-w-xs mx-auto md:mx-0">
+                        <li class="flex justify-between"><span>Workbook</span> <span>$15</span></li>
+                        <li class="flex justify-between"><span>Templates & Tools</span> <span>$20</span></li>
+                        <li class="flex justify-between"><span>Q&A Access</span> <span>$25</span></li>
+                        <li class="flex justify-between"><span>Community Access</span> <span>$15</span></li>
+                        <li class="flex justify-between"><span>Bonus Materials</span> <span>$25</span></li>
+                        <li class="border-t border-slate-100 pt-2 flex justify-between font-bold text-slate-900">
+                            <span>Total Value</span> <span>$100+</span>
+                        </li>
+                    </ul>
+
+                    <div class="price-tag inline-block p-8 rounded-3xl border border-pink-100 text-center md:text-left w-full md:w-auto">
+                        <p class="text-slate-500 mb-1 text-sm font-medium">You won’t pay $100. Access everything for:</p>
+                        <div class="text-5xl font-bold text-slate-900 mb-6">$9.99</div>
+                        <button onclick="handlePurchase()" class="btn-primary w-full md:px-12 py-5 rounded-2xl text-white font-bold text-lg shadow-xl">
+                            Yes, I Want the Support Package
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-left text-slate-500 text-sm italic space-y-4">
+                    <p>If this feels right for you, you’re welcome to join.</p>
+                    <p>If not, that’s completely okay too. You will still receive full value from the free session. There is no pressure — only an invitation.</p>
+                    <p class="not-italic text-slate-400">Whatever you choose… You are already taking a meaningful step by showing up for yourself. And that matters.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MULTI-STAGE MODAL -->
+    <div id="reg-modal" class="fixed inset-0 z-50 flex items-center justify-center p-6 hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="relative w-full max-w-lg bg-white rounded-[40px] shadow-2xl overflow-hidden p-10 animate-fade">
+            
+            <!-- STAGE 1 -->
+            <div id="stage-1" class="step-transition active-step">
+                <h3 class="text-3xl font-bold mb-2">Welcome, Friend</h3>
+                <p class="text-slate-500 mb-8">What inspired you to join the Growth Lab today?</p>
+                <div class="space-y-3">
+                    <button onclick="goNext(2)" class="w-full text-left p-5 rounded-2xl border border-slate-100 hover:border-pink-300 hover:bg-pink-50 transition-all font-medium flex justify-between items-center group">
+                        <span>I feel overwhelmed by daily life</span>
+                        <i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-pink-400 group-hover:translate-x-1 transition-all"></i>
+                    </button>
+                    <button onclick="goNext(2)" class="w-full text-left p-5 rounded-2xl border border-slate-100 hover:border-pink-300 hover:bg-pink-50 transition-all font-medium flex justify-between items-center group">
+                        <span>I want to build better habits</span>
+                        <i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-pink-400 group-hover:translate-x-1 transition-all"></i>
+                    </button>
+                    <button onclick="goNext(2)" class="w-full text-left p-5 rounded-2xl border border-slate-100 hover:border-pink-300 hover:bg-pink-50 transition-all font-medium flex justify-between items-center group">
+                        <span>I'm looking for supportive tools</span>
+                        <i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-pink-400 group-hover:translate-x-1 transition-all"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STAGE 2 -->
+            <div id="stage-2" class="step-transition hidden-step">
+                <h3 class="text-3xl font-bold mb-2">Almost there...</h3>
+                <p class="text-slate-500 mb-8">Which area do you want to improve first?</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <button onclick="goNext(3)" class="p-6 rounded-2xl border border-slate-100 hover:border-pink-200 hover:bg-pink-50 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-heart text-pink-400 mb-3 text-xl"></i>
+                        <span class="text-sm font-bold">Personal</span>
+                    </button>
+                    <button onclick="goNext(3)" class="p-6 rounded-2xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-briefcase text-blue-400 mb-3 text-xl"></i>
+                        <span class="text-sm font-bold">Professional</span>
+                    </button>
+                    <button onclick="goNext(3)" class="p-6 rounded-2xl border border-slate-100 hover:border-teal-200 hover:bg-teal-50 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-house text-teal-400 mb-3 text-xl"></i>
+                        <span class="text-sm font-bold">Home Life</span>
+                    </button>
+                    <button onclick="goNext(3)" class="p-6 rounded-2xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-users text-slate-400 mb-3 text-xl"></i>
+                        <span class="text-sm font-bold">Relationships</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STAGE 3 -->
+            <div id="stage-3" class="step-transition hidden-step text-center">
+                <h3 class="text-3xl font-bold mb-2">Final Step</h3>
+                <p class="text-slate-500 mb-8">Where should we send your session link?</p>
+                <div class="space-y-4">
+                    <input type="text" placeholder="Full Name" class="w-full p-4 rounded-xl bg-slate-50 border-0 focus:ring-2 focus:ring-pink-200 text-slate-800 placeholder:text-slate-400">
+                    <input type="email" placeholder="Email Address" class="w-full p-4 rounded-xl bg-slate-50 border-0 focus:ring-2 focus:ring-pink-200 text-slate-800 placeholder:text-slate-400">
+                    <button onclick="finishRegistration()" class="btn-primary w-full py-5 rounded-2xl text-white font-bold text-lg shadow-xl mt-4">
+                        Confirm Registration
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- REDIRECT OVERLAY -->
+    <div id="redirect-overlay" class="fixed inset-0 z-[60] bg-white flex flex-col items-center justify-center p-10 hidden">
+        <div id="spinner" class="w-16 h-16 border-4 border-slate-100 border-t-pink-500 rounded-full animate-spin mb-6"></div>
+        <div id="redirect-msg" class="text-center">
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Redirecting to purchase...</h2>
+            <p class="text-slate-500">Securing your contribution and package access.</p>
+        </div>
+    </div>
+
+    <script>
+        // Modal Logic
+        function openModal() {
+            document.getElementById('reg-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('reg-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function goNext(step) {
+            const current = document.querySelector('.active-step');
+            current.classList.remove('active-step');
+            current.classList.add('hidden-step');
+            
+            setTimeout(() => {
+                const next = document.getElementById(`stage-${step}`);
+                next.classList.remove('hidden-step');
+                next.classList.add('active-step');
+            }, 100);
+        }
+
+        function finishRegistration() {
+            const btn = document.querySelector('#stage-3 button');
+            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Confirming...';
+            
+            setTimeout(() => {
+                closeModal();
+                document.getElementById('funnel-view').classList.add('hidden');
+                document.getElementById('upsell-view').classList.remove('hidden');
+                window.scrollTo(0,0);
+                
+                // Animate the progress bar on the upsell page
+                setTimeout(() => {
+                    document.getElementById('upsell-progress').style.width = '78%';
+                }, 500);
+            }, 1500);
+        }
+
+        function handlePurchase() {
+            const overlay = document.getElementById('redirect-overlay');
+            const msg = document.getElementById('redirect-msg');
+            const spinner = document.getElementById('spinner');
+            
+            overlay.classList.remove('hidden');
+            
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                msg.innerHTML = `
+                    <div class="max-w-md mx-auto">
+                        <div class="text-red-500 text-5xl mb-6"><i class="fa-solid fa-link-slash"></i></div>
+                        <h2 class="text-3xl font-bold text-slate-900 mb-4">Purchase link missing</h2>
+                        <p class="text-slate-600 mb-8 leading-relaxed">
+                            This is a demonstration funnel for TUSS Global. In a live environment, you would be redirected to a secure checkout page to complete your $9.99 contribution.
+                        </p>
+                        <button onclick="location.reload()" class="text-pink-500 font-bold hover:underline">Restart Demo</button>
+                    </div>
+                `;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
