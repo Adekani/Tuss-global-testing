@@ -1178,6 +1178,9 @@ src="https://www.facebook.com/tr?id=1028094412913865&ev=PageView&noscript=1"
                     throw error;
                 }
 
+                // Fire pixel Lead event
+                fbq('track', 'Lead');
+
                 // Redirect on absolute success
                 window.location.href = destinationUrl;
 
