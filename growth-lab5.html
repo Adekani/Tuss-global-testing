@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Whole Mother: Motherhood, Mental Health & Becoming Whole | TUSSGlobal</title>
+    
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1028094412913865');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1028094412913865&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    <!-- End Facebook Pixel Code -->
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Warm, elegant typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for beautiful icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            peach: '#FFF3EE',      /* Soft warm background */
+                            terracotta: '#D96B43',  /* Primary Coral / Terracotta */
+                            darkTerracotta: '#C0532C',
+                            teal: '#1A686F',        /* Elegant Deep Teal */
+                            darkTeal: '#104C52',
+                            softTeal: '#EBF4F5',
+                            charcoal: '#2D312E',    /* Premium Dark Slate */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FFF3EE;
+            color: #2D312E;
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(255,243,238,0.85) 0%, rgba(255,243,238,1) 100%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF3EE;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D96B43;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-terracotta selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-brand-teal text-white text-center py-2.5 px-4 text-xs font-semibold tracking-wider uppercase">
+        ✨ 5th Growth Lab Series — Free Virtual Event on Zoom
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="py-4 px-4 max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <!-- Custom Styled Brand Logo representation -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-brand-terracotta rounded-full flex items-center justify-center text-white font-bold shadow-md">
+                    <i class="fa-solid fa-people-roof text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-brand-teal leading-none">TUSSGlobal</h1>
+                    <span class="text-[9px] uppercase tracking-widest text-brand-charcoal font-medium">Taking Up Spaces Global</span>
+                </div>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-6 text-sm font-semibold text-brand-teal">
+            <a href="#about" class="hover:text-brand-terracotta transition-colors">About</a>
+            <a href="#speakers" class="hover:text-brand-terracotta transition-colors">Speakers</a>
+            <a href="#learn" class="hover:text-brand-terracotta transition-colors">What You'll Learn</a>
+            <a href="#register" class="bg-brand-terracotta text-white px-5 py-2.5 rounded-full hover:bg-brand-darkTerracotta transition-all shadow-md">Secure Your Seat</a>
+        </div>
+        <div class="md:hidden">
+            <a href="#register" class="bg-brand-terracotta text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-darkTerracotta shadow">Register Free</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Stunning, Emotional, Trust-building) -->
+    <section class="relative pt-6 pb-12 px-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Text details -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center space-x-2 bg-brand-softTeal text-brand-teal px-4 py-1.5 rounded-full text-xs font-bold">
+                <i class="fa-solid fa-heart-pulse animate-pulse"></i>
+                <span>AN UNMISSABLE SANCTUARY FOR MOTHERS & WOMEN</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-black text-brand-teal leading-tight">
+                The Whole Mother:<br>
+                <span class="text-brand-terracotta italic font-normal">Nurture Others Without Losing Yourself</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-brand-charcoal/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                Do you feel like you are disappearing behind the title of "Mother"? 
+                Join this powerful virtual experience designed to heal trauma, restore emotional wellness, and give you practical tools to stay whole while caretaking.
+            </p>
+
+            <!-- Quick Event Highlights for mobile scanability -->
+            <div class="grid grid-cols-2 gap-4 max-w-md mx-auto lg:mx-0 text-left pt-2">
+                <div class="flex items-start space-x-3 bg-white p-3 rounded-2xl shadow-sm border border-brand-peach">
+                    <div class="p-2 bg-brand-softTeal text-brand-teal rounded-xl">
+                        <i class="fa-regular fa-calendar-days text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-gray-400 uppercase font-bold">Date</p>
+                        <p class="text-xs font-extrabold text-brand-charcoal">Saturday, May 30th</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-3 bg-white p-3 rounded-2xl shadow-sm border border-brand-peach">
+                    <div class="p-2 bg-brand-softTeal text-brand-teal rounded-xl">
+                        <i class="fa-regular fa-clock text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-gray-400 uppercase font-bold">Time</p>
+                        <p class="text-xs font-extrabold text-brand-charcoal"> 4 PM WAT</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 bg-white p-3 rounded-2xl shadow-sm border border-brand-peach">
+                    <div class="p-2 bg-brand-softTeal text-brand-teal rounded-xl">
+                        <i class="fa-solid fa-laptop text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-gray-400 uppercase font-bold">Platform</p>
+                        <p class="text-xs font-extrabold text-brand-charcoal">Zoom (Virtual Access)</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 bg-white p-3 rounded-2xl shadow-sm border border-brand-peach">
+                    <div class="p-2 bg-[#FDF2F0] text-brand-terracotta rounded-xl">
+                        <i class="fa-solid fa-ticket text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-gray-400 uppercase font-bold">Cost</p>
+                        <p class="text-xs font-extrabold text-brand-terracotta">Free (Requires RSVP)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <a href="#register-card" class="w-full sm:w-auto text-center bg-brand-terracotta text-white font-bold px-8 py-4 rounded-full shadow-lg hover:bg-brand-darkTerracotta transition-transform transform hover:-translate-y-0.5 active:translate-y-0">
+                    <i class="fa-regular fa-paper-plane mr-2"></i> Register for the Event (Free)
+                </a>
+                <span class="text-xs text-brand-charcoal/60 flex items-center gap-1.5">
+                    <i class="fa-solid fa-users text-brand-teal"></i> Join 500+ Registered Queens
+                </span>
+            </div>
+        </div>
+
+        <!-- Emotionally Compelling Image Frame & Stat Badge -->
+        <div class="lg:col-span-5 relative mt-6 lg:mt-0 flex justify-center">
+            <div class="relative w-full max-w-sm sm:max-w-md">
+                <!-- Outer decorative element -->
+                <div class="absolute -top-4 -left-4 w-72 h-72 bg-brand-teal/5 rounded-full filter blur-xl -z-10"></div>
+                <div class="absolute -bottom-4 -right-4 w-72 h-72 bg-brand-terracotta/10 rounded-full filter blur-xl -z-10"></div>
+                
+                <!-- Main Image Card representing Mother & Child -->
+                <div class="relative rounded-3xl overflow-hidden border-8 border-white shadow-2xl">
+                    <img src="mother.jpeg" 
+                         alt="Mother embracing baby lovingly" 
+                         class="w-full h-[380px] object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1544120015-4a1d27fb2b31?q=80&w=600&auto=format&fit=crop';">
+                    
+                    <!-- Beautiful text overlay mimicking the teal circle sticker on the flyer -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                        <div class="bg-brand-teal/95 backdrop-blur-sm p-4 rounded-2xl border border-white/20 text-center shadow-lg">
+                            <span class="text-xs tracking-wider uppercase text-[#EBF4F5] block mb-1 font-semibold">Special Empowerment Moment</span>
+                            <p class="text-sm font-serif font-bold text-white leading-snug">
+                                "There is more to you and you can connect with that again."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Circular Stat Badge (Mimics the UNICEF stat badge on the flyer) -->
+                <div class="absolute -top-6 -right-2 bg-brand-teal text-white p-4 rounded-full w-40 h-40 flex flex-col justify-center items-center text-center shadow-2xl border-4 border-white animate-bounce-slow">
+                    <p class="text-xs font-black leading-tight my-1">Rediscovering Peace in Motherhood</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRIPLE-BENEFIT TRUST STRIP -->
+    <section class="bg-white border-y border-brand-peach/80 py-6 my-4">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div class="flex flex-col items-center p-2">
+                <div class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-brand-terracotta mb-3">
+                    <i class="fa-solid fa-shield-heart text-xl"></i>
+                </div>
+                <h3 class="font-extrabold text-brand-charcoal text-sm">Safe Maternal Spaces</h3>
+                <p class="text-xs text-brand-charcoal/60 mt-1">A strictly confidential, healing-focused environment with no judgment.</p>
+            </div>
+            <div class="flex flex-col items-center p-2 border-y md:border-y-0 md:border-x border-brand-peach/40">
+                <div class="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center text-brand-teal mb-3">
+                    <i class="fa-solid fa-stethoscope text-xl"></i>
+                </div>
+                <h3 class="font-extrabold text-brand-charcoal text-sm">Clinical & Clinical Experts</h3>
+                <p class="text-xs text-brand-charcoal/60 mt-1">Guidance from certified public health physicians, psychologists, & advocates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MULTI-STEP LEAD REGISTRATION FORM SECTION -->
+    <section id="register-card" class="max-w-3xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-3xl shadow-2xl border border-brand-peach overflow-hidden">
+            <!-- Form Header Progress bar banner -->
+            <div class="bg-brand-teal p-6 sm:p-8 text-white text-center relative">
+                <div class="absolute top-3 right-3 bg-brand-terracotta text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                    Registration Required
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-serif font-black">Join The 5th Growth Lab</h2>
+                <p class="text-xs sm:text-sm text-brand-peach/80 mt-1">Complete this form to receive your Zoom details and the Growth Lab toolkit.</p>
+                
+                <!-- Progress Indicator -->
+                <div class="mt-6 flex justify-between items-center max-w-sm mx-auto">
+                    <div class="flex flex-col items-center relative z-10">
+                        <div id="step-dot-1" class="w-8 h-8 rounded-full bg-brand-terracotta text-white flex items-center justify-center font-bold text-xs transition-all duration-300">1</div>
+                        <span class="text-[10px] mt-1 font-semibold">Personal</span>
+                    </div>
+                    <div class="flex-1 h-0.5 bg-brand-peach/20 mx-2 -mt-4 relative">
+                        <div id="step-line-1" class="absolute left-0 top-0 h-full bg-brand-terracotta w-0 transition-all duration-300"></div>
+                    </div>
+                    <div class="flex flex-col items-center relative z-10">
+                        <div id="step-dot-2" class="w-8 h-8 rounded-full bg-brand-teal border-2 border-brand-peach/40 text-brand-peach/60 flex items-center justify-center font-bold text-xs transition-all duration-300">2</div>
+                        <span class="text-[10px] mt-1 font-semibold text-brand-peach/60" id="step-text-2">Season</span>
+                    </div>
+                    <div class="flex-1 h-0.5 bg-brand-peach/20 mx-2 -mt-4 relative">
+                        <div id="step-line-2" class="absolute left-0 top-0 h-full bg-brand-terracotta w-0 transition-all duration-300"></div>
+                    </div>
+                    <div class="flex flex-col items-center relative z-10">
+                        <div id="step-dot-3" class="w-8 h-8 rounded-full bg-brand-teal border-2 border-brand-peach/40 text-brand-peach/60 flex items-center justify-center font-bold text-xs transition-all duration-300">3</div>
+                        <span class="text-[10px] mt-1 font-semibold text-brand-peach/60" id="step-text-3">Intent</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Form Body -->
+            <form id="growthLabForm" class="p-6 sm:p-8 space-y-6">
+                
+                <!-- Error Message Banner -->
+                <div id="errorBanner" class="hidden bg-red-50 border-l-4 border-red-500 p-4 rounded-xl text-red-700 text-xs sm:text-sm">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-exclamation text-lg"></i>
+                        <span class="font-extrabold">Failed to register.</span>
+                    </div>
+                    <p id="errorText" class="mt-1">Please check your internet connection or fill in all fields before trying again.</p>
+                </div>
+
+                <!-- STEP 1: PERSONAL DETAILS -->
+                <div id="form-step-1" class="space-y-4">
+                    <div class="border-b border-brand-peach pb-2">
+                        <h3 class="text-base font-bold text-brand-teal flex items-center gap-2">
+                            <i class="fa-regular fa-user"></i> Step 1: Tell us about yourself
+                        </h3>
+                        <p class="text-xs text-brand-charcoal/60">Provide your basic contact information so we can deliver your attendance link.</p>
+                    </div>
+
+                    <!-- Full Name -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-1" for="fullName">Full Name <span class="text-brand-terracotta">*</span></label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="fa-regular fa-user text-sm"></i>
+                            </div>
+                            <input type="text" id="fullName" name="fullName" required placeholder="e.g. Mary Okon" 
+                                class="w-full pl-10 pr-4 py-3 bg-brand-peach/40 border border-brand-peach rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition-all text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-1" for="email">Email Address <span class="text-brand-terracotta">*</span></label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="fa-regular fa-envelope text-sm"></i>
+                            </div>
+                            <input type="email" id="email" name="email" required placeholder="e.g. mary@gmail.com" 
+                                class="w-full pl-10 pr-4 py-3 bg-brand-peach/40 border border-brand-peach rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition-all text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Phone (WhatsApp Preferred) -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-1" for="phone">Phone Number (Preferably WhatsApp) <span class="text-brand-terracotta">*</span></label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                            </div>
+                            <input type="tel" id="phone" name="phone" required placeholder="e.g. +234 803 123 4567" 
+                                class="w-full pl-10 pr-4 py-3 bg-brand-peach/40 border border-brand-peach rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition-all text-sm">
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-1">This allows us to share immediate Zoom details, reminders, and PDFs.</p>
+                    </div>
+
+                    <!-- City & Country -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-1" for="locations">City & Country <span class="text-brand-terracotta">*</span></label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="fa-solid fa-earth-africa text-sm"></i>
+                            </div>
+                            <input type="text" id="locations" name="locations" required placeholder="e.g. Lagos, Nigeria" 
+                                class="w-full pl-10 pr-4 py-3 bg-brand-peach/40 border border-brand-peach rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition-all text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Age Range -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-2">Age Range <span class="text-brand-terracotta">*</span></label>
+                        <div class="grid grid-cols-4 gap-2">
+                            <label class="flex items-center justify-center p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 transition-all text-xs">
+                                <input type="radio" name="age_range" value="18-24" required class="sr-only peer">
+                                <span class="peer-checked:font-extrabold peer-checked:text-brand-terracotta text-brand-charcoal">18-24</span>
+                            </label>
+                            <label class="flex items-center justify-center p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 transition-all text-xs">
+                                <input type="radio" name="age_range" value="25-34" class="sr-only peer">
+                                <span class="peer-checked:font-extrabold peer-checked:text-brand-terracotta text-brand-charcoal">25-34</span>
+                            </label>
+                            <label class="flex items-center justify-center p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 transition-all text-xs">
+                                <input type="radio" name="age_range" value="35-44" class="sr-only peer">
+                                <span class="peer-checked:font-extrabold peer-checked:text-brand-terracotta text-brand-charcoal">35-44</span>
+                            </label>
+                            <label class="flex items-center justify-center p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 transition-all text-xs">
+                                <input type="radio" name="age_range" value="45+" class="sr-only peer">
+                                <span class="peer-checked:font-extrabold peer-checked:text-brand-terracotta text-brand-charcoal">45+</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: YOUR CURRENT SEASON -->
+                <div id="form-step-2" class="hidden space-y-4">
+                    <div class="border-b border-brand-peach pb-2">
+                        <h3 class="text-base font-bold text-brand-teal flex items-center gap-2">
+                            <i class="fa-solid fa-spa"></i> Step 2: Your Motherhood Season
+                        </h3>
+                        <p class="text-xs text-brand-charcoal/60">TUSSGlobal curates responses to perfectly fit mothers in different milestones.</p>
+                    </div>
+
+                    <!-- How did you hear about us? -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-2">How did you hear about the Growth Lab? <span class="text-brand-terracotta">*</span></label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="flex items-center space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="heard_from" value="Instagram" required class="text-brand-teal focus:ring-brand-teal">
+                                <span>Instagram</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="heard_from" value="WhatsApp" class="text-brand-teal focus:ring-brand-teal">
+                                <span>WhatsApp</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="heard_from" value="Friend/Referral" class="text-brand-teal focus:ring-brand-teal">
+                                <span>Friend/Referral</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="heard_from" value="TUSS Global Community" class="text-brand-teal focus:ring-brand-teal">
+                                <span>TUSS Global Community</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs col-span-2">
+                                <input type="radio" name="heard_from" value="Other" class="text-brand-teal focus:ring-brand-teal">
+                                <span>Other / Facebook / Socials</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Current Season (Multi-select checkbox group) -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-1">Which of these best describes your current season? <span class="text-brand-terracotta">*</span></label>
+                        <p class="text-[10px] text-gray-400 mb-2">(Check all that apply)</p>
+                        <div class="space-y-2 max-h-48 overflow-y-auto border border-brand-peach/60 p-3 rounded-xl bg-brand-peach/20">
+                            <label class="flex items-start space-x-3 text-xs text-brand-charcoal cursor-pointer">
+                                <input type="checkbox" name="curr_season" value="Trying to conceive / infertility journey" class="mt-0.5 rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Trying to conceive / infertility journey</span>
+                            </label>
+                            <label class="flex items-start space-x-3 text-xs text-brand-charcoal cursor-pointer">
+                                <input type="checkbox" name="curr_season" value="Pregnant" class="mt-0.5 rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Pregnant</span>
+                            </label>
+                            <label class="flex items-start space-x-3 text-xs text-brand-charcoal cursor-pointer">
+                                <input type="checkbox" name="curr_season" value="New mom (0-2 years postpartum)" class="mt-0.5 rounded text-brand-teal focus:ring-brand-teal">
+                                <span>New mom (0-2 years postpartum)</span>
+                            </label>
+                            <label class="flex items-start space-x-3 text-xs text-brand-charcoal cursor-pointer">
+                                <input type="checkbox" name="curr_season" value="Student/figuring life out" class="mt-0.5 rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Student/figuring life out</span>
+                            </label>
+                            <label class="flex items-start space-x-3 text-xs text-brand-charcoal cursor-pointer">
+                                <input type="checkbox" name="curr_season" value="Healing from loss/trauma" class="mt-0.5 rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Healing from loss/trauma</span>
+                            </label>
+                            <label class="flex items-start space-x-3 text-xs text-brand-charcoal cursor-pointer">
+                                <input type="checkbox" name="curr_season" value="Not a mother yet but preparing for future motherhood" class="mt-0.5 rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Not a mother yet but preparing for future motherhood</span>
+                            </label>
+                            <label class="flex items-start space-x-3 text-xs text-brand-charcoal cursor-pointer">
+                                <input type="checkbox" name="curr_season" value="Single mother" class="mt-0.5 rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Single mother</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Statement best describes you right now -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-2">Which statement best describes you right now? <span class="text-brand-terracotta">*</span></label>
+                        <div class="space-y-2">
+                            <label class="flex items-start space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="describer" value="I'm doing okay but want community" required class="mt-0.5 text-brand-teal focus:ring-brand-teal">
+                                <span>I'm doing okay but want community</span>
+                            </label>
+                            <label class="flex items-start space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="describer" value="I want emotional healing support" class="mt-0.5 text-brand-teal focus:ring-brand-teal">
+                                <span>I want emotional healing support</span>
+                            </label>
+                            <label class="flex items-start space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="describer" value="I feel stuck" class="mt-0.5 text-brand-teal focus:ring-brand-teal">
+                                <span>I feel stuck</span>
+                            </label>
+                            <label class="flex items-start space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="describer" value="I'm functioning but I know I need better systems" class="mt-0.5 text-brand-teal focus:ring-brand-teal">
+                                <span>I'm functioning but I know I need better systems</span>
+                            </label>
+                            <label class="flex items-start space-x-2 p-2 border border-brand-peach bg-white rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="describer" value="I feel overwhelmed and need clarity" class="mt-0.5 text-brand-teal focus:ring-brand-teal">
+                                <span>I feel overwhelmed and need clarity</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: INTENTIONS & OUTCOMES -->
+                <div id="form-step-3" class="hidden space-y-4">
+                    <div class="border-b border-brand-peach pb-2">
+                        <h3 class="text-base font-bold text-brand-teal flex items-center gap-2">
+                            <i class="fa-regular fa-lightbulb"></i> Step 3: What are your goals?
+                        </h3>
+                        <p class="text-xs text-brand-charcoal/60">Finalize your registration by setting intentions for this session.</p>
+                    </div>
+
+                    <!-- Next 6 Months Goals (Multi-select) -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-1">What do you want your life to look like in the next 6 months? <span class="text-brand-terracotta">*</span></label>
+                        <p class="text-[10px] text-gray-400 mb-2">(Check all that apply)</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <label class="flex items-center space-x-3 p-2.5 border border-brand-peach rounded-xl bg-white cursor-pointer text-xs">
+                                <input type="checkbox" name="next_months" value="Better physical health" class="rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Better physical health</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-2.5 border border-brand-peach rounded-xl bg-white cursor-pointer text-xs">
+                                <input type="checkbox" name="next_months" value="Better parenting systems" class="rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Better parenting systems</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-2.5 border border-brand-peach rounded-xl bg-white cursor-pointer text-xs">
+                                <input type="checkbox" name="next_months" value="Stronger faith life" class="rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Stronger faith life</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-2.5 border border-brand-peach rounded-xl bg-white cursor-pointer text-xs">
+                                <input type="checkbox" name="next_months" value="Better mental health" class="rounded text-brand-teal focus:ring-brand-teal">
+                                <span>Better mental health</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-2.5 border border-brand-peach rounded-xl bg-white cursor-pointer text-xs sm:col-span-2">
+                                <input type="checkbox" name="next_months" value="More rest" class="rounded text-brand-teal focus:ring-brand-teal">
+                                <span>More rest</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Specific Question (Optional) -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-1" for="specificQuestion">What specific question would you love answered during this session? <span class="text-gray-400 font-normal">(Optional)</span></label>
+                        <textarea id="specificQuestion" name="specificQuestion" rows="2" placeholder="e.g. How do I balance postpartum depression with a demanding job?" 
+                            class="w-full px-4 py-3 bg-brand-peach/40 border border-brand-peach rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition-all text-sm"></textarea>
+                    </div>
+
+                    <!-- Worth it -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-1" for="worthIt">What would make this Growth Lab "worth it" for you? <span class="text-brand-terracotta">*</span></label>
+                        <input type="text" id="worthIt" name="worthIt" required placeholder="e.g. Getting practical tools to deal with my anxiety" 
+                            class="w-full px-4 py-3 bg-brand-peach/40 border border-brand-peach rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition-all text-sm">
+                    </div>
+
+                    <!-- Accountability Groups -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-2">Would you be open to accountability groups or follow-up sessions? <span class="text-brand-terracotta">*</span></label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="flex items-center justify-center p-2.5 border border-brand-peach rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="accountability" value="Yes" required class="mr-2 text-brand-teal focus:ring-brand-teal">
+                                <span>Yes, absolutely</span>
+                            </label>
+                            <label class="flex items-center justify-center p-2.5 border border-brand-peach rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="accountability" value="No" class="mr-2 text-brand-teal focus:ring-brand-teal">
+                                <span>No, not yet</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Future Updates -->
+                    <div>
+                        <label class="block text-xs font-bold text-brand-charcoal mb-2">Would you like to receive future updates, opportunities and resources from TUSS Global? <span class="text-brand-terracotta">*</span></label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="flex items-center justify-center p-2.5 border border-brand-peach rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="future_updates" value="Yes" required class="mr-2 text-brand-teal focus:ring-brand-teal">
+                                <span>Yes, opt me in</span>
+                            </label>
+                            <label class="flex items-center justify-center p-2.5 border border-brand-peach rounded-xl cursor-pointer hover:bg-brand-peach/30 text-xs">
+                                <input type="radio" name="future_updates" value="No" class="mr-2 text-brand-teal focus:ring-brand-teal">
+                                <span>No, thank you</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NAVIGATION BUTTONS -->
+                <div class="pt-6 border-t border-brand-peach flex justify-between items-center gap-4">
+                    <button type="button" id="prevBtn" class="hidden text-xs font-bold text-brand-teal bg-brand-softTeal px-6 py-3 rounded-full hover:bg-teal-100 transition-colors">
+                        <i class="fa-solid fa-arrow-left mr-1.5"></i> Back
+                    </button>
+                    
+                    <!-- Empty div placeholder to push Next to right when back is hidden -->
+                    <div id="spacer" class="flex-grow"></div>
+
+                    <button type="button" id="nextBtn" class="text-xs font-bold text-white bg-brand-terracotta px-8 py-3 rounded-full hover:bg-brand-darkTerracotta transition-colors shadow">
+                        Next Step <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                    </button>
+
+                    <button type="submit" id="submitBtn" class="hidden w-full sm:w-auto text-xs font-bold text-white bg-brand-teal px-8 py-4 rounded-full hover:bg-brand-darkTeal transition-colors shadow-lg flex items-center justify-center">
+                        <span id="btnText"><i class="fa-solid fa-check mr-2"></i> Submit Registration</span>
+                        <span id="loadingSpinner" class="hidden">
+                            <i class="fa-solid fa-spinner animate-spin mr-2"></i> Saving Details... Please hold
+                        </span>
+                    </button>
+                </div>
+                
+                <p class="text-[10px] text-center text-gray-400 mt-4 leading-relaxed">
+                    🔒 We respect your privacy. Your emotional and private journey is secure. We never sell your data. By submitting, you agree to our privacy conditions and to receive transactional WhatsApp notifications regarding the Growth Lab.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- OBJECTION CRUSHER & SKEPTICISM CLEANING / VALUE STRIP -->
+    <section id="about" class="bg-white py-12 px-4 border-t border-brand-peach">
+        <div class="max-w-4xl mx-auto space-y-12">
+            
+            <!-- Question heading -->
+            <div class="text-center space-y-3">
+                <span class="text-xs uppercase tracking-widest text-brand-terracotta font-extrabold">Is this event for you?</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-black text-brand-teal">"I'm so busy, why should I attend?"</h2>
+                <p class="text-sm text-brand-charcoal/70 max-w-2xl mx-auto">
+                    We get it. You are juggling work, parenting, domestic tasks, and life. You have no spare seconds. 
+                    But running on empty is slowly draining your sanity. Here is why this 90-minute session will redefine your year:
+                </p>
+            </div>
+
+            <!-- Value Prop Columns -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-brand-peach/30 p-5 rounded-2xl border border-brand-peach/60 flex items-start space-x-3">
+                    <div class="text-brand-terracotta text-lg mt-1"><i class="fa-solid fa-circle-check"></i></div>
+                    <div>
+                        <h4 class="font-bold text-brand-charcoal text-sm">For the Tired & Overwhelmed Mom</h4>
+                        <p class="text-xs text-brand-charcoal/75 mt-1">Get actual steps to boundary setting. Learn how to say "No" without feeling maternal guilt or dropping critical priorities.</p>
+                    </div>
+                </div>
+
+                <div class="bg-brand-peach/30 p-5 rounded-2xl border border-brand-peach/60 flex items-start space-x-3">
+                    <div class="text-brand-terracotta text-lg mt-1"><i class="fa-solid fa-circle-check"></i></div>
+                    <div>
+                        <h4 class="font-bold text-brand-charcoal text-sm">For the Pregnant or TTC Sister</h4>
+                        <p class="text-xs text-brand-charcoal/75 mt-1">Mental resilience starts before the baby arrives. Unpack medical indicators, postpartum warning signs, and physical self-care guidelines.</p>
+                    </div>
+                </div>
+
+                <div class="bg-brand-peach/30 p-5 rounded-2xl border border-brand-peach/60 flex items-start space-x-3">
+                    <div class="text-brand-terracotta text-lg mt-1"><i class="fa-solid fa-circle-check"></i></div>
+                    <div>
+                        <h4 class="font-bold text-brand-charcoal text-sm">For the Women Recovering from Trauma</h4>
+                        <p class="text-xs text-brand-charcoal/75 mt-1">Whether experiencing loss, postpartum depression, or NICU challenges, get a soft, therapeutic environment to begin healing.</p>
+                    </div>
+                </div>
+
+                <div class="bg-brand-peach/30 p-5 rounded-2xl border border-brand-peach/60 flex items-start space-x-3">
+                    <div class="text-brand-terracotta text-lg mt-1"><i class="fa-solid fa-circle-check"></i></div>
+                    <div>
+                        <h4 class="font-bold text-brand-charcoal text-sm">No Cost, Just Pure Community</h4>
+                        <p class="text-xs text-brand-charcoal/75 mt-1">This growth lab is completely sponsored. There are no sales pitches or upsells—just genuine, life-saving sisterhood.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT YOU'LL LEARN SECTION -->
+    <section id="learn" class="py-12 px-4 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
+            <span class="text-xs font-bold text-brand-terracotta uppercase tracking-wider">A Glimpse into the Lab</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-teal">What You'll Take Away</h2>
+            <p class="text-xs sm:text-sm text-brand-charcoal/70">Our curriculum is strategically curated to give you actionable resources immediately after the Zoom call concludes.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Learn Card 1 -->
+            <div class="bg-white p-6 rounded-3xl border border-brand-peach shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-[#FFF3EE] flex items-center justify-center text-brand-terracotta mb-4">
+                    <i class="fa-solid fa-brain text-xl"></i>
+                </div>
+                <h3 class="font-extrabold text-brand-teal text-sm mb-2">Understanding Maternal Mental Health</h3>
+                <p class="text-xs text-brand-charcoal/80 leading-relaxed">Recognize early red flags of postpartum depression (PPD), anxiety, and maternal exhaustion in yourself or those around you.</p>
+            </div>
+
+            <!-- Learn Card 2 -->
+            <div class="bg-white p-6 rounded-3xl border border-brand-peach shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-brand-teal mb-4">
+                    <i class="fa-solid fa-face-smile text-xl"></i>
+                </div>
+                <h3 class="font-extrabold text-brand-teal text-sm mb-2">Navigating Motherhood & Identity</h3>
+                <p class="text-xs text-brand-charcoal/80 leading-relaxed">Rediscover your voice, goals, and passions. Learn how to flourish without sacrificing your individuality to motherhood.</p>
+            </div>
+
+            <!-- Learn Card 3 -->
+            <div class="bg-white p-6 rounded-3xl border border-brand-peach shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-rose-50 flex items-center justify-center text-rose-500 mb-4">
+                    <i class="fa-solid fa-spa text-xl"></i>
+                </div>
+                <h3 class="font-extrabold text-brand-teal text-sm mb-2">Trauma & Burnout Recovery</h3>
+                <p class="text-xs text-brand-charcoal/80 leading-relaxed">Practical therapeutic practices to restore safety, rest patterns, and energy reserves for worn-out bodies and spirits.</p>
+            </div>
+
+            <!-- Learn Card 4 -->
+            <div class="bg-white p-6 rounded-3xl border border-brand-peach shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-500 mb-4">
+                    <i class="fa-solid fa-scale-balanced text-xl"></i>
+                </div>
+                <h3 class="font-extrabold text-brand-teal text-sm mb-2">Boundaries & Restorative Rest</h3>
+                <p class="text-xs text-brand-charcoal/80 leading-relaxed">Establish life-affirming family patterns. Rebalance physical domestic burdens and delegate tasks without conflict.</p>
+            </div>
+
+            <!-- Learn Card 5 -->
+            <div class="bg-white p-6 rounded-3xl border border-brand-peach shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600 mb-4">
+                    <i class="fa-solid fa-users text-xl"></i>
+                </div>
+                <h3 class="font-extrabold text-brand-teal text-sm mb-2">Building Sustainable Support</h3>
+                <p class="text-xs text-brand-charcoal/80 leading-relaxed">Never mother alone again. Discover how to create an authentic village of physical and mental helpers around you.</p>
+            </div>
+
+            <!-- Learn Card 6 -->
+            <div class="bg-white p-6 rounded-3xl border border-brand-peach shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-brand-teal mb-4">
+                    <i class="fa-solid fa-compass text-xl"></i>
+                </div>
+                <h3 class="font-extrabold text-brand-teal text-sm mb-2">Practical Future-Building Tools</h3>
+                <p class="text-xs text-brand-charcoal/80 leading-relaxed">Structured worksheets, daily routines, and mental health checklists to safeguard your growth in the upcoming 6 months.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEET THE SPECTACULAR SPEAKERS PANEL -->
+    <section id="speakers" class="bg-brand-softTeal/50 py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
+                <span class="text-xs font-bold text-brand-terracotta uppercase tracking-wider">Clinical & Advocacy Leaders</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-teal">Meet Our Speakers</h2>
+                <p class="text-xs sm:text-sm text-brand-charcoal/70">Learn from seasoned practitioners dedicating their lives to physical, mental, and legal female empowerment.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Speaker 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-brand-peach/60 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative">
+                            <img src="arowolo.jpeg" 
+                                 alt="Dr. Tolu Arowolo" 
+                                 class="w-full h-56 object-cover"
+                                 onerror="this.src='https://images.unsplash.com/photo-1594744803329-e58b31de215f?q=80&w=400&auto=format&fit=crop';">
+                            <div class="absolute bottom-3 left-3 bg-brand-teal text-white px-2 py-1 rounded-md text-[10px] uppercase font-bold tracking-wider">
+                                Medical Expert
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <h3 class="text-base font-extrabold text-brand-teal">Dr. Tolu Arowolo</h3>
+                            <p class="text-[11px] font-semibold text-brand-terracotta uppercase tracking-wide">Public Health Physician & Epidemiologist</p>
+                            <p class="text-xs text-brand-charcoal/75 leading-relaxed">Expert in safe maternal pregnancy, recognizing critical clinical warnings, and neonatal prevention systems.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-brand-peach/40 mt-auto bg-brand-peach/10">
+                        <span class="text-[10px] font-bold text-brand-teal uppercase tracking-wide block mb-1">Focus Session</span>
+                        <p class="text-[11px] text-brand-charcoal/70 italic">"Maternal Health, Medical Warning Signs & Safe Postpartum Practices"</p>
+                    </div>
+                </div>
+
+                <!-- Speaker 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-brand-peach/60 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative">
+                            <img src="ironsi.jpg" 
+                                 alt="Mrs. Bose Ironsi" 
+                                 class="w-full h-56 object-cover"
+                                 onerror="this.src='https://images.unsplash.com/photo-1594744803329-e58b31de215f?q=80&w=400&auto=format&fit=crop';">
+                            <div class="absolute bottom-3 left-3 bg-brand-teal text-white px-2 py-1 rounded-md text-[10px] uppercase font-bold tracking-wider">
+                                Human Rights Advocacy
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <h3 class="text-base font-extrabold text-brand-teal">Mrs. Bose Ironsi</h3>
+                            <p class="text-[11px] font-semibold text-brand-terracotta uppercase tracking-wide">Founder & Executive Director, WRAHP</p>
+                            <p class="text-xs text-brand-charcoal/75 leading-relaxed">Pioneering leader focused on female advocacy, building protective laws, and safety networks for mothers.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-brand-peach/40 mt-auto bg-brand-peach/10">
+                        <span class="text-[10px] font-bold text-brand-teal uppercase tracking-wide block mb-1">Focus Session</span>
+                        <p class="text-[11px] text-brand-charcoal/70 italic">"Rebuilding, Strategic Advocacy & Community Support for Marginalized Women"</p>
+                    </div>
+                </div>
+
+                <!-- Speaker 3 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-brand-peach/60 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative">
+                            <img src="nonye.jpeg" 
+                                 alt="Mrs. Victoria Nonye Anaduaka" 
+                                 class="w-full h-56 object-cover"
+                                 onerror="this.src='https://images.unsplash.com/photo-1594744803329-e58b31de215f?q=80&w=400&auto=format&fit=crop';">
+                            <div class="absolute bottom-3 left-3 bg-brand-teal text-white px-2 py-1 rounded-md text-[10px] uppercase font-bold tracking-wider">
+                                Mental Health
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <h3 class="text-base font-extrabold text-brand-teal">Mrs. Victoria Nonye</h3>
+                            <p class="text-[11px] font-semibold text-brand-terracotta uppercase tracking-wide">Anaduaka, RN-MPH & Therapist</p>
+                            <p class="text-xs text-brand-charcoal/75 leading-relaxed">Certified Mental Health Nurse Practitioner and emotional rehabilitation facilitator.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-brand-peach/40 mt-auto bg-brand-peach/10">
+                        <span class="text-[10px] font-bold text-brand-teal uppercase tracking-wide block mb-1">Focus Session</span>
+                        <p class="text-[11px] text-brand-charcoal/70 italic">"Maternal Mental Health, Grief, Loss, Trauma, and Healing Pathways"</p>
+                    </div>
+                </div>
+
+                <!-- Speaker 4 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-brand-peach/60 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative">
+                            <img src="lillian.jpeg" 
+                                 alt="Mrs. Lillian Elenwoke" 
+                                 class="w-full h-56 object-cover"
+                                 onerror="this.src='https://images.unsplash.com/photo-1594744803329-e58b31de215f?q=80&w=400&auto=format&fit=crop';">
+                            <div class="absolute bottom-3 left-3 bg-brand-teal text-white px-2 py-1 rounded-md text-[10px] uppercase font-bold tracking-wider">
+                                Visionary Convener
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <h3 class="text-base font-extrabold text-brand-teal">Mrs. Lillian Elenwoke</h3>
+                            <p class="text-[11px] font-semibold text-brand-terracotta uppercase tracking-wide">Founder / Chief Steward, TUSSGLOBAL</p>
+                            <p class="text-xs text-brand-charcoal/75 leading-relaxed">National Convener dedicated to helping African mothers survive childbirth and find holistic recovery.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-brand-peach/40 mt-auto bg-brand-peach/10">
+                        <span class="text-[10px] font-bold text-brand-teal uppercase tracking-wide block mb-1">Your Host & Moderator</span>
+                        <p class="text-[11px] text-brand-charcoal/70 italic">"Coordinating safe panels, accountability groups & organizing resources"</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS (Crushing Doubts & Objections) -->
+    <section class="py-12 px-4 max-w-4xl mx-auto space-y-6">
+        <div class="text-center space-y-2 mb-8">
+            <h2 class="text-2xl sm:text-3xl font-serif font-black text-brand-teal">Frequently Asked Questions</h2>
+            <p class="text-xs sm:text-sm text-brand-charcoal/60">We want to make sure you have complete confidence before registering.</p>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <div class="bg-white rounded-2xl border border-brand-peach p-5 shadow-sm">
+                <h4 class="font-extrabold text-sm text-brand-teal flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question text-brand-terracotta"></i> Is this event really free?
+                </h4>
+                <p class="text-xs text-brand-charcoal/80 mt-2 leading-relaxed pl-6">
+                    Yes, it is 100% free to attend. We are supported by community donations and partnerships. Our primary purpose is maternal safety and wholeness, so there are absolutely no fees or hidden upsells during this session.
+                </p>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="bg-white rounded-2xl border border-brand-peach p-5 shadow-sm">
+                <h4 class="font-extrabold text-sm text-brand-teal flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question text-brand-terracotta"></i> I cannot attend live. Will there be a replay?
+                </h4>
+                <p class="text-xs text-brand-charcoal/80 mt-2 leading-relaxed pl-6">
+                    Yes, but you must register! We only email recording files, downloadable sheets, and PDF workbook material to users registered through our Supabase system.
+                </p>
+            </div>
+
+
+
+            <!-- FAQ 3-->
+            <div class="bg-white rounded-2xl border border-brand-peach p-5 shadow-sm">
+                <h4 class="font-extrabold text-sm text-brand-teal flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question text-brand-terracotta"></i> Will my responses in the form remain private?
+                </h4>
+                <p class="text-xs text-brand-charcoal/80 mt-2 leading-relaxed pl-6">
+                    Absolutely. Your personal selections, questions, and circumstances are completely confidential. We only analyze collective trends (e.g., "60% of our registered moms are currently experiencing postpartum burnouts") so our speakers can adjust their presentation to address your exact challenges.
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center pt-6">
+            <p class="text-xs text-brand-charcoal/70 mb-3">Don't leave your emotional restoration to chance.</p>
+            <a href="#register-card" class="inline-flex items-center space-x-2 bg-brand-terracotta text-white font-bold px-6 py-3 rounded-full hover:bg-brand-darkTerracotta transition-colors text-xs shadow-md">
+                <span>Secure My Spot Now</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER WITH AD POLICY COMPLIANCE & BRAND DETAILS -->
+    <footer class="bg-brand-teal text-white py-12 px-4 border-t border-white/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+            
+            <!-- Brand Information -->
+            <div class="md:col-span-5 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-brand-terracotta rounded-full flex items-center justify-center text-white font-bold">
+                        <i class="fa-solid fa-people-roof text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-white tracking-tight">TUSSGlobal</h4>
+                        <span class="text-[9px] uppercase tracking-widest text-[#A5E3E9] font-medium block">Taking Up Spaces Global</span>
+                    </div>
+                </div>
+                <p class="text-xs text-white/70 leading-relaxed max-w-sm">
+                    TUSSGlobal is a safe, compassionate, and life-changing space dedicated to helping African women heal, hope, and become whole. Through specialized education, physical care packs, and advocacy, we bridge the gap in maternal safety.
+                </p>
+                
+                <div class="flex items-center space-x-3 text-white/80 pt-2">
+                    <a href="https://instagram.com/mytussglobalstory" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-sm">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-sm">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-sm">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Links & Location details -->
+            <div class="md:col-span-3 space-y-3">
+                <h5 class="text-xs uppercase tracking-wider text-[#A5E3E9] font-bold">Contact Channels</h5>
+                <ul class="space-y-2 text-xs text-white/80">
+                    <li class="flex items-center gap-2">
+                        <i class="fa-regular fa-envelope text-[#A5E3E9]"></i>
+                        <a href="mailto:info@tussglobal.org" class="hover:underline">info@tussglobal.org</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-[#A5E3E9]"></i>
+                        <a href="https://www.tussglobal.org" target="_blank" class="hover:underline">www.tussglobal.org</a>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-location-dot text-[#A5E3E9] mt-0.5"></i>
+                        <span>Lagos, Nigeria & Virtual globally</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Program series details -->
+            <div class="md:col-span-4 space-y-3">
+                <h5 class="text-xs uppercase tracking-wider text-[#A5E3E9] font-bold">Important Information</h5>
+                <p class="text-[11px] text-white/60 leading-relaxed">
+                    Disclaimer: The advice, clinical data, and public health indicators presented during this Growth Lab series are for educational and awareness purposes. They are not a replacement for direct individual psychotherapy or specialized medical diagnosis. Please consult your physician for custom clinical cases.
+                </p>
+            </div>
+        </div>
+
+        <!-- FACEBOOK ADVERTISING POLICY DISCLAIMER (Mandatory) -->
+        <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/10 text-center space-y-4">
+            <p class="text-[10px] text-white/40 leading-relaxed max-w-4xl mx-auto">
+                This site is not a part of the Meta website, Meta Platforms, Inc., Facebook, or Instagram. Additionally, this site is NOT endorsed by Facebook or Meta in any way. "FACEBOOK" and "INSTAGRAM" are registered trademarks of META PLATFORMS, Inc.
+            </p>
+            <p class="text-[10px] text-white/30">
+                &copy; 2026 TUSSGlobal. All rights reserved. Empowering women with life-saving tools & mental resources.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE MULTI-STEP FORM SCRIPT & SUPABASE CONFIGURATION -->
+    <script>
+        // Supabase configuration
+        const projectUrl = "https://xsdudtnszfszlvjpqrij.supabase.co";
+        const anonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZHVkdG5zemZzemx2anBxcmlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NjkwOTIsImV4cCI6MjA4NzE0NTA5Mn0.v51jTNwUGBMzX4PlAdBMNSj25XBVirLhiqStKSsFBuw";
+        
+        // Initializing the client safely without overlapping naming schemas
+        const dbClient = supabase.createClient(projectUrl, anonKey);
+        const destinationUrl = "https://chat.whatsapp.com/DcaEd4b7imqBQKU5lRCGjY?s=sh&p=a&mlu=0";
+
+        // Multi-Step Form Logic
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        const step1 = document.getElementById('form-step-1');
+        const step2 = document.getElementById('form-step-2');
+        const step3 = document.getElementById('form-step-3');
+
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const spacer = document.getElementById('spacer');
+
+        const dot1 = document.getElementById('step-dot-1');
+        const dot2 = document.getElementById('step-dot-2');
+        const dot3 = document.getElementById('step-dot-3');
+
+        const line1 = document.getElementById('step-line-1');
+        const line2 = document.getElementById('step-line-2');
+
+        const text2 = document.getElementById('step-text-2');
+        const text3 = document.getElementById('step-text-3');
+
+        function updateFormUI() {
+            // Hide all steps
+            step1.classList.add('hidden');
+            step2.classList.add('hidden');
+            step3.classList.add('hidden');
+
+            // Show current step
+            if (currentStep === 1) {
+                step1.classList.remove('hidden');
+                prevBtn.classList.add('hidden');
+                spacer.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+
+                // Progress visuals
+                dot1.className = "w-8 h-8 rounded-full bg-brand-terracotta text-white flex items-center justify-center font-bold text-xs transition-all duration-300";
+                dot2.className = "w-8 h-8 rounded-full bg-brand-teal border-2 border-brand-peach/40 text-brand-peach/60 flex items-center justify-center font-bold text-xs transition-all duration-300";
+                dot3.className = "w-8 h-8 rounded-full bg-brand-teal border-2 border-brand-peach/40 text-brand-peach/60 flex items-center justify-center font-bold text-xs transition-all duration-300";
+                line1.style.width = "0%";
+                line2.style.width = "0%";
+                text2.className = "text-[10px] mt-1 font-semibold text-brand-peach/60";
+                text3.className = "text-[10px] mt-1 font-semibold text-brand-peach/60";
+            } else if (currentStep === 2) {
+                step2.classList.remove('hidden');
+                prevBtn.classList.remove('hidden');
+                spacer.classList.add('hidden');
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+
+                // Progress visuals
+                dot1.className = "w-8 h-8 rounded-full bg-brand-terracotta text-white flex items-center justify-center font-bold text-xs transition-all duration-300";
+                dot2.className = "w-8 h-8 rounded-full bg-brand-terracotta text-white flex items-center justify-center font-bold text-xs transition-all duration-300";
+                dot3.className = "w-8 h-8 rounded-full bg-brand-teal border-2 border-brand-peach/40 text-brand-peach/60 flex items-center justify-center font-bold text-xs transition-all duration-300";
+                line1.style.width = "100%";
+                line2.style.width = "0%";
+                text2.className = "text-[10px] mt-1 font-semibold text-brand-terracotta";
+                text3.className = "text-[10px] mt-1 font-semibold text-brand-peach/60";
+            } else if (currentStep === 3) {
+                step3.classList.remove('hidden');
+                prevBtn.classList.remove('hidden');
+                spacer.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+
+                // Progress visuals
+                dot1.className = "w-8 h-8 rounded-full bg-brand-terracotta text-white flex items-center justify-center font-bold text-xs transition-all duration-300";
+                dot2.className = "w-8 h-8 rounded-full bg-brand-terracotta text-white flex items-center justify-center font-bold text-xs transition-all duration-300";
+                dot3.className = "w-8 h-8 rounded-full bg-brand-terracotta text-white flex items-center justify-center font-bold text-xs transition-all duration-300";
+                line1.style.width = "100%";
+                line2.style.width = "100%";
+                text2.className = "text-[10px] mt-1 font-semibold text-brand-terracotta";
+                text3.className = "text-[10px] mt-1 font-semibold text-brand-terracotta";
+            }
+        }
+
+        // Validate the active step values to prevent empty form submission bypass
+        function validateStep(step) {
+            if (step === 1) {
+                const name = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const location = document.getElementById('locations').value.trim();
+                const ageSelected = document.querySelector('input[name="age_range"]:checked');
+
+                if (!name || !email || !phone || !location || !ageSelected) {
+                    showInlineWarning("Please complete all fields in Step 1 before continuing.");
+                    return false;
+                }
+                
+                // Simple email verification pattern
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    showInlineWarning("Please enter a valid email address.");
+                    return false;
+                }
+            } else if (step === 2) {
+                const heardSelected = document.querySelector('input[name="heard_from"]:checked');
+                const seasonChecked = document.querySelectorAll('input[name="curr_season"]:checked');
+                const describerSelected = document.querySelector('input[name="describer"]:checked');
+
+                if (!heardSelected) {
+                    showInlineWarning("Please select how you heard about us.");
+                    return false;
+                }
+                if (seasonChecked.length === 0) {
+                    showInlineWarning("Please check at least one season option.");
+                    return false;
+                }
+                if (!describerSelected) {
+                    showInlineWarning("Please select the description statement that fits you.");
+                    return false;
+                }
+            }
+            // Clear warning banner if everything looks green
+            hideInlineWarning();
+            return true;
+        }
+
+        function showInlineWarning(message) {
+            const banner = document.getElementById('errorBanner');
+            const txt = document.getElementById('errorText');
+            banner.classList.remove('hidden');
+            txt.innerText = message;
+            banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function hideInlineWarning() {
+            document.getElementById('errorBanner').classList.add('hidden');
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                currentStep++;
+                updateFormUI();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentStep--;
+            updateFormUI();
+        });
+
+        // Initialize Form UI state
+        updateFormUI();
+
+        // Form Submit Handler
+        const formEl = document.getElementById('growthLabForm');
+        formEl.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Final Step 3 Validation
+            const next6MonthsChecked = document.querySelectorAll('input[name="next_months"]:checked');
+            const worthItVal = document.getElementById('worthIt').value.trim();
+            const accountabilitySelected = document.querySelector('input[name="accountability"]:checked');
+            const futureUpdatesSelected = document.querySelector('input[name="future_updates"]:checked');
+
+            if (next6MonthsChecked.length === 0) {
+                showInlineWarning("Please check at least one goal option for the next 6 months.");
+                return;
+            }
+            if (!worthItVal) {
+                showInlineWarning("Please enter what would make this Growth Lab worth it for you.");
+                return;
+            }
+            if (!accountabilitySelected) {
+                showInlineWarning("Please make a selection for the accountability group option.");
+                return;
+            }
+            if (!futureUpdatesSelected) {
+                showInlineWarning("Please select your preference for future updates.");
+                return;
+            }
+
+            // Set loading state
+            const submitBtnEl = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            submitBtnEl.disabled = true;
+            btnText.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+            hideInlineWarning();
+
+            // Extract values and serialize checkbox arrays cleanly
+            const fullNameVal = document.getElementById('fullName').value.trim();
+            const emailVal = document.getElementById('email').value.trim();
+            const phoneVal = document.getElementById('phone').value.trim();
+            const locationVal = document.getElementById('locations').value.trim();
+            const ageRangeVal = document.querySelector('input[name="age_range"]:checked').value;
+            const heardFromVal = document.querySelector('input[name="heard_from"]:checked').value;
+
+            // Multi-checkbox Season to string
+            const seasonArray = [];
+            document.querySelectorAll('input[name="curr_season"]:checked').forEach(box => {
+                seasonArray.push(box.value);
+            });
+            const currSeasonString = seasonArray.join(', ');
+
+            const describerVal = document.querySelector('input[name="describer"]:checked').value;
+
+            // Multi-checkbox next 6 months to string
+            const monthsArray = [];
+            document.querySelectorAll('input[name="next_months"]:checked').forEach(box => {
+                monthsArray.push(box.value);
+            });
+            const nextMonthsString = monthsArray.join(', ');
+
+            const specificQuestionVal = document.getElementById('specificQuestion').value.trim() || '';
+            const accountabilityVal = document.querySelector('input[name="accountability"]:checked').value;
+            const futureUpdatesVal = document.querySelector('input[name="future_updates"]:checked').value;
+
+            // Compile Payload corresponding perfectly to Supabase gl5_leads columns
+            const leadPayload = {
+                full_name: fullNameVal,
+                email: emailVal,
+                phone: phoneVal,
+                locations: locationVal,
+                age_range: ageRangeVal,
+                heard_from: heardFromVal,
+                curr_season: currSeasonString,
+                describer: describerVal,
+                next_months: nextMonthsString,
+                specific_question: specificQuestionVal,
+                worth_it: worthItVal,
+                accountability: accountabilityVal,
+                future_updates: futureUpdatesVal
+            };
+
+            try {
+                // Submit to Supabase
+                const { data, error } = await dbClient
+                    .from('gl5_leads')
+                    .insert([leadPayload])
+
+                if (error) {
+                    throw error;
+                }
+
+                // Redirect on absolute success
+                window.location.href = destinationUrl;
+
+            } catch (err) {
+                console.error("Submission failed:", err);
+                showInlineWarning("There was an error saving your registration details. Please check your network and try again.");
+                
+                // Re-enable submit button
+                submitBtnEl.disabled = false;
+                btnText.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
