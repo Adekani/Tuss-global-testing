@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUSSGlobal: Stand With Her (Donation Pledge)</title>
+    <!-- Google Fonts: Cormorant Garamond for Serifs, DM Sans for clean copy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                    },
+                    colors: {
+                        tuss: {
+                            coral: '#E8735A',
+                            teal: '#7BBCB8',
+                            mauve: '#B08A9E',
+                            gold: '#C4A882',
+                            charcoal: '#1A1A1A',
+                            cream: '#FDF8F5',
+                            lightCoral: '#FDF0ED',
+                            lightTeal: '#EEF6F5',
+                            warmGrey: '#F5F2EF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDF8F5; /* Brand Cream */
+            background-image: radial-gradient(circle at 10% 20%, rgba(253, 240, 237, 0.6) 0%, transparent 40%), 
+                              radial-gradient(circle at 90% 80%, rgba(238, 246, 245, 0.6) 0%, transparent 50%);
+        }
+        .step-transition {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .step-hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .step-visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom scrollbar matching branding */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C4A882;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="font-sans text-tuss-charcoal min-h-screen flex flex-col antialiased selection:bg-tuss-lightCoral">
+
+    <!-- Header / Navbar -->
+    <header class="w-full py-6 px-4 md:px-8 bg-white/75 backdrop-blur-md border-b border-tuss-warmGrey sticky top-0 z-40">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <!-- Brand Logo container with Image and robust Heart SVG Fallback -->
+                <div class="relative w-12 h-12 flex-shrink-0 flex items-center justify-center">
+                    <!-- Standard PNG Logo as requested -->
+                    <img id="brand-logo" src="tuss-logo.png" alt="TUSSGlobal Logo" 
+                         class="max-w-full max-h-full object-contain transition-opacity duration-300"
+                         onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden');">
+                    
+                    <!-- Beautiful Caregiver Heart Fallback Icon if image file is absent -->
+                    <div id="logo-fallback" class="hidden w-11 h-11 rounded-full bg-tuss-lightCoral flex items-center justify-center text-tuss-coral shadow-sm">
+                        <svg class="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+                
+                <div>
+                    <h1 class="font-serif font-bold text-xl text-tuss-charcoal tracking-wide leading-none">Taking Up Spaces</h1>
+                    <p class="text-[10px] uppercase tracking-widest text-tuss-coral font-bold mt-1">GLOBAL : HEALING, HOPE, WHOLENESS</p>
+                </div>
+            </div>
+            
+            <div class="hidden sm:flex flex-col items-end text-right text-xs">
+                <span class="text-[9px] uppercase tracking-wider text-stone-400">Supported by</span>
+                <span class="font-bold text-tuss-charcoal">MBisAfrican</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-8 md:py-12 flex flex-col justify-center">
+        <!-- Main Form Container -->
+        <div class="bg-white rounded-3xl shadow-xl shadow-tuss-lightCoral/30 border border-tuss-warmGrey overflow-hidden">
+            
+            <!-- Contextual Banner: Grounded Caregiver Archetype -->
+            <div class="relative bg-gradient-to-r from-tuss-lightCoral via-tuss-cream to-white p-8 md:p-12 border-b border-tuss-warmGrey flex flex-col md:flex-row items-center gap-8">
+                <div class="flex-1 space-y-4">
+                    <span class="inline-block px-3 py-1 bg-tuss-lightCoral text-tuss-coral text-xs font-bold tracking-wider rounded-full uppercase">Pledge Partnership</span>
+                    <h2 class="font-serif text-3xl md:text-4xl text-tuss-charcoal leading-tight">
+                        Because every woman deserves space to heal, grow, and build.
+                    </h2>
+                    <p class="text-stone-600 text-sm md:text-base leading-relaxed max-w-xl">
+                        TUSSGlobal works across interconnected spaces to guide women from vulnerability to lasting economic power. Your support today is a hand of solidarity, directly impacting lives on the ground.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Steps Progress Navigation -->
+            <div class="px-8 pt-8 pb-4">
+                <nav aria-label="Progress Tracker">
+                    <ol class="flex items-center justify-between w-full">
+                        <!-- Step 1: Who Are You? -->
+                        <li class="relative flex-1">
+                            <button id="indicator-1" onclick="navigateToStep(1)" class="group flex flex-col border-t-4 border-tuss-coral pt-4 pb-2 text-left w-full focus:outline-none">
+                                <span class="text-[11px] font-bold text-tuss-coral tracking-wider uppercase">Step 1</span>
+                                <span class="text-sm font-bold text-tuss-charcoal">Who Are You?</span>
+                            </button>
+                        </li>
+                        <div class="w-6"></div>
+                        <!-- Step 2: Giving Path -->
+                        <li class="relative flex-1">
+                            <button id="indicator-2" onclick="navigateToStep(2)" class="group flex flex-col border-t-4 border-stone-200 pt-4 pb-2 text-left w-full focus:outline-none" disabled>
+                                <span class="text-[11px] font-bold text-stone-400 tracking-wider uppercase">Step 2</span>
+                                <span class="text-sm font-semibold text-stone-500">How to Help</span>
+                            </button>
+                        </li>
+                        <div class="w-6"></div>
+                        <!-- Step 3: Review -->
+                        <li class="relative flex-1">
+                            <button id="indicator-3" onclick="navigateToStep(3)" class="group flex flex-col border-t-4 border-stone-200 pt-4 pb-2 text-left w-full focus:outline-none" disabled>
+                                <span class="text-[11px] font-bold text-stone-400 tracking-wider uppercase">Step 3</span>
+                                <span class="text-sm font-semibold text-stone-500">Review and Send</span>
+                            </button>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Main Form Block -->
+            <form id="pledgeForm" onsubmit="event.preventDefault();" class="p-8 md:p-12">
+                
+                <!-- ================== STEP 1: WHO ARE YOU? ================== -->
+                <div id="step-1" class="step-transition step-visible space-y-6">
+                    <div class="border-b border-tuss-warmGrey pb-4">
+                        <h3 class="font-serif text-2xl text-tuss-charcoal">Let us begin with a safe, authentic connection</h3>
+                        <p class="text-stone-500 text-sm mt-1">We honor everyone who steps forward to share our vision. Kindly fill out your basic contact details below.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Full Name -->
+                        <div class="space-y-1.5">
+                            <label for="fullName" class="block text-xs font-bold text-tuss-charcoal uppercase tracking-wider">Full Name <span class="text-tuss-coral">*</span></label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                </div>
+                                <input type="text" id="fullName" name="fullName" required placeholder="e.g. Mary Johnson"
+                                       class="w-full pl-10 pr-4 py-3 bg-tuss-cream/40 border border-stone-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-tuss-coral/20 focus:border-tuss-coral transition-all text-tuss-charcoal placeholder:text-stone-400 text-sm outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="space-y-1.5">
+                            <label for="email" class="block text-xs font-bold text-tuss-charcoal uppercase tracking-wider">Email Address <span class="text-tuss-coral">*</span></label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <input type="email" id="email" name="email" required placeholder="name@example.com"
+                                       class="w-full pl-10 pr-4 py-3 bg-tuss-cream/40 border border-stone-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-tuss-coral/20 focus:border-tuss-coral transition-all text-tuss-charcoal placeholder:text-stone-400 text-sm outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="space-y-1.5">
+                            <label for="phone" class="block text-xs font-bold text-tuss-charcoal uppercase tracking-wider">Phone Number <span class="text-stone-400 font-normal">(Optional)</span></label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                </div>
+                                <input type="tel" id="phone" name="phone" placeholder="e.g. +234 803 000 0000"
+                                       class="w-full pl-10 pr-4 py-3 bg-tuss-cream/40 border border-stone-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-tuss-coral/20 focus:border-tuss-coral transition-all text-tuss-charcoal placeholder:text-stone-400 text-sm outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Organization / Church / Community -->
+                        <div class="space-y-1.5">
+                            <label for="organization" class="block text-xs font-bold text-tuss-charcoal uppercase tracking-wider">Organization, Church, or Community <span class="text-stone-400 font-normal">(Optional)</span></label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                </div>
+                                <input type="text" id="organization" name="organization" placeholder="e.g. Grace Assembly, Sisterhood Network"
+                                       class="w-full pl-10 pr-4 py-3 bg-tuss-cream/40 border border-stone-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-tuss-coral/20 focus:border-tuss-coral transition-all text-tuss-charcoal placeholder:text-stone-400 text-sm outline-none">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 1 Validation Alert -->
+                    <div id="step-1-warning" class="hidden text-tuss-coral text-xs font-bold flex items-center gap-2 mt-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <span>Please fill in your full name and email address to proceed.</span>
+                    </div>
+
+                    <!-- Step 1 Actions -->
+                    <div class="flex justify-end pt-4 border-t border-tuss-warmGrey">
+                        <button type="button" onclick="validateStep1AndNext()"
+                                class="inline-flex items-center gap-2 bg-tuss-coral hover:bg-tuss-coral/95 text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition-all active:scale-95 text-sm">
+                            <span>Choose how to support her</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ================== STEP 2: HOW WOULD YOU LIKE TO HELP? ================== -->
+                <div id="step-2" class="step-transition step-hidden space-y-6">
+                    <div class="border-b border-tuss-warmGrey pb-4 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                        <div>
+                            <h3 class="font-serif text-2xl text-tuss-charcoal">How would you like to walk with her?</h3>
+                            <p class="text-stone-500 text-sm mt-1">Select one focus pathway. Your choice translates directly to critical support on the ground.</p>
+                        </div>
+                        
+                        <!-- Currency Toggle: USD | NGN -->
+                        <div class="flex items-center bg-tuss-warmGrey p-1 rounded-xl self-start md:self-end">
+                            <button type="button" id="currency-usd" onclick="setCurrency('USD')"
+                                    class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-white shadow-sm text-tuss-charcoal">
+                                USD ($)
+                            </button>
+                            <button type="button" id="currency-ngn" onclick="setCurrency('NGN')"
+                                    class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-stone-500 hover:text-tuss-charcoal">
+                                NGN (₦)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Options Stack -->
+                    <div class="space-y-4">
+                        
+                        <!-- Card A: Blood Pressure Monitor with Lillian's Story -->
+                        <div id="card-a" onclick="selectGivingOption('card-a')" 
+                             class="group relative border-2 border-tuss-coral bg-tuss-lightCoral/30 p-5 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 hover:border-tuss-coral/70 flex flex-col sm:flex-row items-start justify-between gap-4">
+                            
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="mt-1.5 w-5 h-5 rounded-full border-2 border-tuss-coral flex items-center justify-center flex-shrink-0 bg-white">
+                                    <div id="radio-dot-a" class="w-2.5 h-2.5 rounded-full bg-tuss-coral"></div>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <h4 class="font-bold text-tuss-charcoal text-base flex flex-wrap items-center gap-2">
+                                        Gift a Maternal Blood Pressure Monitor
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-tuss-lightCoral text-tuss-coral">Tiny Fingers, Strong Mamas</span>
+                                    </h4>
+                                    <p class="text-xs text-stone-600 leading-relaxed">
+                                        In Nigeria, maternal health risks are incredibly severe, and one in ten women die in childbirth. In 2025, our founder Lillian nearly lost her life to severe Eclampsia. A simple, home blood pressure monitor detected her condition early, saving her life and the life of her premature baby boy, Alpha.
+                                    </p>
+                                    <p class="text-xs text-tuss-coral italic font-bold">
+                                        Your gift goes directly to an expectant mother in underserved care, paired with training on how to use it.
+                                    </p>
+                                    <div class="pt-2 flex items-center gap-2 text-xs font-bold text-tuss-charcoal">
+                                        <span>Cost per unit:</span>
+                                        <span class="text-tuss-coral text-sm" id="card-a-unit-price"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quantity Stepper -->
+                            <div class="w-full sm:w-auto bg-white border border-stone-200 rounded-xl p-3 flex flex-col items-center gap-2 flex-shrink-0 shadow-sm" onclick="event.stopPropagation();">
+                                <span class="text-[10px] uppercase tracking-wider text-stone-400 font-bold">Quantity</span>
+                                <div class="flex items-center gap-3">
+                                    <button type="button" onclick="adjustQty(-1)" class="w-8 h-8 rounded-lg bg-tuss-warmGrey text-tuss-charcoal flex items-center justify-center hover:bg-stone-200 active:scale-95 transition-all font-bold select-none">−</button>
+                                    <span id="qty-display" class="w-6 text-center font-bold text-tuss-charcoal text-sm">1</span>
+                                    <button type="button" onclick="adjustQty(1)" class="w-8 h-8 rounded-lg bg-tuss-warmGrey text-tuss-charcoal flex items-center justify-center hover:bg-stone-200 active:scale-95 transition-all font-bold select-none">+</button>
+                                </div>
+                                <div class="border-t border-tuss-warmGrey w-full pt-1.5 mt-1 text-center">
+                                    <span class="text-[9px] text-stone-400 block uppercase font-bold">Subtotal</span>
+                                    <span id="subtotal-display" class="text-xs font-black text-tuss-coral"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card B: Emergency Stability Fund -->
+                        <div id="card-b" onclick="selectGivingOption('card-b')" 
+                             class="group relative border border-stone-200 p-5 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 hover:border-tuss-coral/50 flex flex-col sm:flex-row items-start justify-between gap-4">
+                            
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="mt-1.5 w-5 h-5 rounded-full border border-stone-300 flex items-center justify-center flex-shrink-0 bg-white">
+                                    <div id="radio-dot-b" class="w-2.5 h-2.5 rounded-full bg-transparent"></div>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <h4 class="font-bold text-tuss-charcoal text-base flex flex-wrap items-center gap-2">
+                                        Support the Emergency Stability Fund
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-tuss-lightTeal text-tuss-teal">Crisis Response</span>
+                                    </h4>
+                                    <p class="text-xs text-stone-600 leading-relaxed">
+                                        Crisis does not wait for programs. When extreme maternal emergency, displacement, or domestic distress strikes, immediate funding managed by compassionate caseworkers preserves human dignity.
+                                    </p>
+                                    <p class="text-xs text-tuss-teal italic font-bold">
+                                        Providing no-questions-asked quick stability to a sister in immediate crisis.
+                                    </p>
+                                    <div class="pt-2 flex items-center gap-1.5 text-xs text-stone-500" id="card-b-min-text">
+                                        <!-- Dynamically written minimum text -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Custom Free Amount Box -->
+                            <div class="w-full sm:w-auto flex-shrink-0" onclick="event.stopPropagation();">
+                                <div class="space-y-1.5">
+                                    <label for="customAmount" class="block text-[10px] uppercase tracking-wider text-stone-400 font-bold text-center sm:text-left">Amount to Give</label>
+                                    <div class="relative rounded-xl shadow-sm">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-500 font-bold text-sm" id="custom-amount-symbol">
+                                            $
+                                        </div>
+                                        <input type="number" id="customAmount" name="customAmount" value="50" min="10"
+                                               class="w-full sm:w-28 pl-8 pr-3 py-2 text-sm border border-stone-200 rounded-xl focus:ring-2 focus:ring-tuss-coral/20 focus:border-tuss-coral text-tuss-charcoal font-bold outline-none"
+                                               oninput="handleCustomAmountInput(this.value)">
+                                    </div>
+                                    <div id="amount-validation-error" class="hidden text-[10px] text-tuss-coral font-bold max-w-[130px] leading-tight"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card C: Other Ways to Give -->
+                        <div id="card-c" onclick="selectGivingOption('card-c')" 
+                             class="group relative border border-stone-200 p-5 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 hover:border-tuss-coral/50 flex items-start gap-4">
+                            
+                            <div class="mt-1.5 w-5 h-5 rounded-full border border-stone-300 flex items-center justify-center flex-shrink-0 bg-white">
+                                <div id="radio-dot-c" class="w-2.5 h-2.5 rounded-full bg-transparent"></div>
+                            </div>
+                            <div class="space-y-4 flex-1">
+                                <div class="space-y-1.5">
+                                    <h4 class="font-bold text-tuss-charcoal text-base flex flex-wrap items-center gap-2">
+                                        Share In-Kind, Physical Supplies, or Professional Skills
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-stone-100 text-stone-700">Alternative Support</span>
+                                    </h4>
+                                    <p class="text-xs text-stone-600 leading-relaxed">
+                                        We warmly invite structural materials, professional mentoring, neonatal items, or strategic introductions to support our five core wellness and business spaces.
+                                    </p>
+                                </div>
+
+                                <!-- Card C Fields (Only shown fully if card C is active) -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2" onclick="event.stopPropagation();">
+                                    <div class="space-y-1.5">
+                                        <label for="otherGift" class="block text-xs font-bold text-tuss-charcoal uppercase tracking-wider">What I would like to offer</label>
+                                        <input type="text" id="otherGift" placeholder="e.g. Legal services, 10 tablets, newborn care packages"
+                                               class="w-full px-3 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white text-xs outline-none text-tuss-charcoal">
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <label for="otherNotes" class="block text-xs font-bold text-tuss-charcoal uppercase tracking-wider">Anything else you want us to know <span class="text-stone-400 font-normal">(Optional)</span></label>
+                                        <textarea id="otherNotes" rows="2" placeholder="Tell us how we can help coordinate or integrate this gift..."
+                                                  class="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white text-xs outline-none text-tuss-charcoal resize-none"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Step 2 Validation warning -->
+                    <div id="step-2-warning" class="hidden text-tuss-coral text-xs font-bold flex items-center gap-2 mt-2">
+                        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <span id="step-2-warning-text">Please correct your custom contribution amount.</span>
+                    </div>
+
+                    <!-- Step 2 Actions -->
+                    <div class="flex items-center justify-between pt-4 border-t border-tuss-warmGrey">
+                        <button type="button" onclick="navigateToStep(1)"
+                                class="inline-flex items-center gap-1 text-stone-600 hover:text-tuss-charcoal font-bold text-sm transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <span>Back</span>
+                        </button>
+                        
+                        <button type="button" onclick="validateStep2AndNext()"
+                                class="inline-flex items-center gap-2 bg-tuss-charcoal hover:bg-black text-white font-bold px-6 py-3.5 rounded-xl transition-all active:scale-95 text-sm">
+                            <span>Review my details</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ================== STEP 3: REVIEW & SEND ================== -->
+                <div id="step-3" class="step-transition step-hidden space-y-6">
+                    <div class="border-b border-tuss-warmGrey pb-4">
+                        <h3 class="font-serif text-2xl text-tuss-charcoal">Let us review your pledge together</h3>
+                        <p class="text-stone-500 text-sm mt-1">Here is a warm summary of the footprint you are choosing to leave today. We deeply appreciate your presence.</p>
+                    </div>
+
+                    <div class="bg-tuss-cream/40 border border-tuss-warmGrey rounded-2xl p-6 space-y-6">
+                        <!-- Identity Card -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+                            <div>
+                                <span class="block text-[10px] uppercase font-bold text-stone-400 tracking-wider">Pledge Ambassador</span>
+                                <span class="font-bold text-tuss-charcoal text-base" id="summary-name"></span>
+                                <span class="block text-xs text-stone-500" id="summary-contact"></span>
+                            </div>
+                            <div id="summary-org-block">
+                                <span class="block text-[10px] uppercase font-bold text-stone-400 tracking-wider">Affiliated Community</span>
+                                <span class="font-bold text-tuss-charcoal text-sm block mt-1" id="summary-org"></span>
+                            </div>
+                        </div>
+
+                        <hr class="border-tuss-warmGrey">
+
+                        <!-- Selected Offer Card -->
+                        <div class="space-y-3">
+                            <span class="block text-[10px] uppercase font-bold text-stone-400 tracking-wider">Your Support Path</span>
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                                <div class="space-y-1 flex-1">
+                                    <h5 class="font-bold text-tuss-charcoal text-base" id="summary-giving-title"></h5>
+                                    <p class="text-xs text-stone-600 leading-relaxed" id="summary-giving-desc"></p>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl border border-stone-150 text-right min-w-[130px]">
+                                    <span class="text-[9px] text-stone-400 block uppercase font-bold">Pledge Total</span>
+                                    <span class="text-lg font-black text-tuss-coral" id="summary-total"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Information for Other Gifts -->
+                        <div id="summary-other-notes" class="hidden bg-stone-50 p-4 rounded-xl border border-stone-200/60 space-y-2">
+                            <div>
+                                <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">Description of Gift:</span>
+                                <p class="text-xs text-tuss-charcoal font-semibold italic" id="summary-proposed-gift"></p>
+                            </div>
+                            <div id="summary-extra-notes-block" class="hidden">
+                                <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">Coordination context:</span>
+                                <p class="text-xs text-stone-600 italic" id="summary-additional-note"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warm assurance banner with feedback edits -->
+                    <div class="bg-gradient-to-r from-tuss-lightCoral to-tuss-cream p-5 rounded-2xl border border-tuss-coral/10 flex gap-4 items-start">
+                        <div class="p-2.5 bg-white rounded-xl text-tuss-coral shadow-sm flex-shrink-0">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="space-y-1">
+                            <h5 class="font-bold text-tuss-charcoal text-sm">We walk by trust, not just transaction</h5>
+                            <p class="text-xs text-stone-600 leading-relaxed">
+                                This is a pledge of support. We do not immediately process payments or charge cards. Once you send this commitment, our team will personally reach out with secure payment details, direct invoice links for financial gifts, or simple coordination logistics for any physical supplies. Thank you for showing up for her.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 Actions -->
+                    <div class="flex items-center justify-between pt-4 border-t border-tuss-warmGrey">
+                        <button type="button" onclick="navigateToStep(2)"
+                                class="inline-flex items-center gap-1 text-stone-600 hover:text-tuss-charcoal font-bold text-sm transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <span>Back</span>
+                        </button>
+                        
+                        <button type="button" onclick="sendPledgeEmail()"
+                                class="inline-flex items-center gap-2 bg-gradient-to-r from-tuss-coral to-tuss-mauve hover:from-tuss-coral hover:to-tuss-mauve/90 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition-all active:scale-95 text-base">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                            <span>Send My Pledge</span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </main>
+
+    <!-- FLOATING SUMMARY WIDGET: Collapsible system -->
+    <div id="floating-widget" class="fixed bottom-6 right-6 z-50 transition-all duration-300">
+        <!-- Collapsed button state -->
+        <button id="widget-collapsed" onclick="toggleWidget(false)" 
+                class="hidden flex items-center gap-2 bg-gradient-to-r from-tuss-coral to-tuss-mauxs text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all focus:outline-none" style="background: linear-gradient(135deg, #E8735A, #B08A9E)">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+            </span>
+            <span class="font-bold text-xs tracking-wider uppercase">My Pledge</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+        </button>
+
+        <!-- Expanded card view state -->
+        <div id="widget-expanded" class="w-72 bg-white rounded-2xl shadow-xl border border-tuss-warmGrey overflow-hidden flex flex-col transform origin-bottom-right transition-all">
+            <!-- Header section -->
+            <div class="px-4 py-3 text-white flex items-center justify-between" style="background: linear-gradient(135deg, #E8735A, #B08A9E)">
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    <span class="text-[10px] uppercase font-bold tracking-wider">Your Active Footprint</span>
+                </div>
+                <button onclick="toggleWidget(true)" class="text-white/80 hover:text-white transition-colors focus:outline-none">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+            </div>
+            <!-- Body content -->
+            <div class="p-4 space-y-3 text-xs">
+                <div>
+                    <span class="text-[9px] text-stone-400 block uppercase font-bold">Pledge Ambassador</span>
+                    <span id="widget-partner-name" class="font-bold text-tuss-charcoal">Friend of TUSSGlobal</span>
+                </div>
+                <hr class="border-stone-100">
+                <div>
+                    <span class="text-[9px] text-stone-400 block uppercase font-bold">Chosen Support Space</span>
+                    <span id="widget-giving-title" class="font-bold text-tuss-charcoal">Blood Pressure Monitor</span>
+                </div>
+                <div class="flex justify-between items-end bg-tuss-cream p-2.5 rounded-xl border border-tuss-warmGrey">
+                    <span class="text-[9px] text-stone-500 uppercase font-bold">Pledge Amount</span>
+                    <span id="widget-total-value" class="font-black text-tuss-coral text-sm"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Footer -->
+    <footer class="bg-tuss-charcoal text-stone-400 py-12 px-6 border-t border-stone-800 mt-auto text-center space-y-4">
+        <div class="max-w-xl mx-auto space-y-3">
+            <h4 class="font-serif text-white text-lg font-bold">Taking Up Spaces Global</h4>
+            <p class="text-xs leading-relaxed max-w-sm mx-auto text-stone-400">
+                A registered Non-Governmental Organisation committed to creating safe, empowering spaces where women can heal, grow, and build lasting economic power.
+            </p>
+            <div class="flex justify-center items-center gap-3 text-[10px] font-bold tracking-widest text-tuss-coral">
+                <span>HEALING</span>
+                <span class="text-tuss-gold">•</span>
+                <span>HOPE</span>
+                <span class="text-tuss-gold">•</span>
+                <span>WHOLENESS</span>
+            </div>
+            <p class="text-[9px] text-stone-500 pt-4">
+                © 2026 TUSSGlobal Initiative. Sponsored by MBisAfrican. Together, we take up space.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive JS engine -->
+    <script>
+        // DOM shortcut hooks
+        const $ = id => document.getElementById(id);
+        const $$ = sel => document.querySelectorAll(sel);
+
+        // State Machine
+        const state = {
+            currentStep: 1,
+            currency: 'USD',
+            exchangeRate: 1550, // Default robust 2026 fallback conversion rate
+            selectedCard: 'card-a', 
+
+            // Step 1: User Identity
+            fullName: '',
+            email: '',
+            phone: '',
+            organization: '',
+
+            // Base configurations (NGN)
+            fixedNairaBPPrice: 27000,
+            fixedNairaMinStability: 10000,
+
+            // Calculated baseline (USD)
+            calculatedUSDBPPrice: 26,
+            calculatedUSDMinStability: 10,
+
+            // Card A Quantity parameters
+            cardAQty: 1,
+
+            // Card B Custom fund parameters
+            cardBCustomAmount: 50,
+
+            // Card C alternative inputs
+            cardCOtherGift: '',
+            cardCOtherNotes: ''
+        };
+
+        // Initialize state bindings on screen load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchLiveRates();
+
+            // Setup input event listeners to dynamically bind data to state
+            $('fullName').addEventListener('input', (e) => {
+                state.fullName = e.target.value;
+                updateUIRepresentations();
+            });
+            $('email').addEventListener('input', (e) => {
+                state.email = e.target.value;
+                updateUIRepresentations();
+            });
+            $('phone').addEventListener('input', (e) => {
+                state.phone = e.target.value;
+            });
+            $('organization').addEventListener('input', (e) => {
+                state.organization = e.target.value;
+                updateUIRepresentations();
+            });
+            $('otherGift').addEventListener('input', (e) => {
+                state.cardCOtherGift = e.target.value;
+                updateUIRepresentations();
+            });
+            $('otherNotes').addEventListener('input', (e) => {
+                state.cardCOtherNotes = e.target.value;
+                updateUIRepresentations();
+            });
+
+            // Populate core display
+            renderCurrencySpecificValues();
+        });
+
+        // Fetches live currency rates dynamically with exponential backoff
+        async function fetchLiveRates() {
+            let attemptLimit = 5;
+            let retryDelay = 1000;
+            const endpoint = 'https://open.er-api.com/v6/latest/USD';
+
+            while(attemptLimit > 0) {
+                try {
+                    const response = await fetch(endpoint);
+                    if (!response.ok) throw new Error('Query error');
+                    const responseData = await response.json();
+
+                    if (responseData && responseData.rates && responseData.rates.NGN) {
+                        const directRate = responseData.rates.NGN;
+                        state.exchangeRate = directRate;
+
+                        // Recalculate baseline USD amounts, rounding up to clean whole numbers
+                        state.calculatedUSDBPPrice = Math.ceil(state.fixedNairaBPPrice / directRate);
+                        state.calculatedUSDMinStability = Math.ceil(state.fixedNairaMinStability / directRate);
+
+                        // Align default customs if baseline has risen
+                        if (state.cardBCustomAmount < state.calculatedUSDMinStability) {
+                            state.cardBCustomAmount = state.calculatedUSDMinStability;
+                            $('customAmount').value = state.cardBCustomAmount;
+                        }
+
+                        renderCurrencySpecificValues();
+                        break;
+                    }
+                } catch (err) {
+                    attemptLimit--;
+                    if (attemptLimit === 0) {
+                        console.log("Using baseline offline currency estimates.");
+                    } else {
+                        await new Promise(res => setTimeout(res, retryDelay));
+                        retryDelay *= 2; // backoff multiplication
+                    }
+                }
+            }
+        }
+
+        // Toggles currency and recalculates pricing elements
+        function setCurrency(targetCurrency) {
+            state.currency = targetCurrency;
+
+            if (targetCurrency === 'USD') {
+                $('currency-usd').className = "px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-white shadow-sm text-tuss-charcoal";
+                $('currency-ngn').className = "px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-stone-500 hover:text-tuss-charcoal";
+                $('custom-amount-symbol').innerText = "$";
+
+                const currentVal = parseFloat($('customAmount').value);
+                if (isNaN(currentVal) || currentVal < state.calculatedUSDMinStability) {
+                    state.cardBCustomAmount = state.calculatedUSDMinStability;
+                } else {
+                    state.cardBCustomAmount = currentVal;
+                }
+                $('customAmount').value = state.cardBCustomAmount;
+                $('customAmount').min = state.calculatedUSDMinStability;
+            } else {
+                $('currency-usd').className = "px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-stone-500 hover:text-tuss-charcoal";
+                $('currency-ngn').className = "px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-white shadow-sm text-tuss-charcoal";
+                $('custom-amount-symbol').innerText = "₦";
+
+                const currentVal = parseFloat($('customAmount').value);
+                if (isNaN(currentVal) || currentVal < state.fixedNairaMinStability) {
+                    state.cardBCustomAmount = state.fixedNairaMinStability;
+                } else {
+                    state.cardBCustomAmount = currentVal;
+                }
+                $('customAmount').value = state.cardBCustomAmount;
+                $('customAmount').min = state.fixedNairaMinStability;
+            }
+
+            validateAmountInput();
+            renderCurrencySpecificValues();
+        }
+
+        // Reactively render labels based on active currency configuration
+        function renderCurrencySpecificValues() {
+            const sym = state.currency === 'USD' ? '$' : '₦';
+            const unitPrice = state.currency === 'USD' ? state.calculatedUSDBPPrice : state.fixedNairaBPPrice;
+            const minStab = state.currency === 'USD' ? state.calculatedUSDMinStability : state.fixedNairaMinStability;
+
+            // Render Card A Prices
+            $('card-a-unit-price').innerText = `${sym}${unitPrice.toLocaleString()}`;
+            const sub = unitPrice * state.cardAQty;
+            $('subtotal-display').innerText = `${sym}${sub.toLocaleString()}`;
+
+            // Render Card B info
+            $('card-b-min-text').innerHTML = `
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 011-18 0"></path></svg>
+                <span>The minimum pledge is <strong>${sym}${minStab.toLocaleString()}</strong></span>
+            `;
+
+            updateUIRepresentations();
+        }
+
+        // Adjust Quantities with safety floor
+        function adjustQty(mod) {
+            let nextQty = state.cardAQty + mod;
+            if (nextQty < 1) nextQty = 1;
+            state.cardAQty = nextQty;
+            $('qty-display').innerText = nextQty;
+
+            renderCurrencySpecificValues();
+        }
+
+        // Handle value entry for Custom Amounts
+        function handleCustomAmountInput(inputVal) {
+            const parsed = parseFloat(inputVal);
+            if (!isNaN(parsed)) {
+                state.cardBCustomAmount = parsed;
+            } else {
+                state.cardBCustomAmount = 0;
+            }
+            validateAmountInput();
+            updateUIRepresentations();
+        }
+
+        // Validates Custom amount field logic
+        function validateAmountInput() {
+            const minAllowed = state.currency === 'USD' ? state.calculatedUSDMinStability : state.fixedNairaMinStability;
+            const sym = state.currency === 'USD' ? '$' : '₦';
+            const field = $('customAmount');
+            const alertBox = $('amount-validation-error');
+
+            if (state.cardBCustomAmount < minAllowed) {
+                alertBox.innerText = `Minimum contribution is ${sym}${minAllowed.toLocaleString()}`;
+                alertBox.classList.remove('hidden');
+                field.classList.add('border-tuss-coral', 'bg-tuss-lightCoral/10');
+                return false;
+            } else {
+                alertBox.classList.add('hidden');
+                field.classList.remove('border-tuss-coral', 'bg-tuss-lightCoral/10');
+                return true;
+            }
+        }
+
+        // Handle select states of core giving option cards
+        function selectGivingOption(cardId) {
+            state.selectedCard = cardId;
+            const cards = ['card-a', 'card-b', 'card-c'];
+
+            cards.forEach(c => {
+                const el = $(c);
+                const dot = $(`radio-dot-${c.charAt(c.length - 1)}`);
+                if (c === cardId) {
+                    el.className = "group relative border-2 border-tuss-coral bg-tuss-lightCoral/30 p-5 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 flex flex-col sm:flex-row items-start justify-between gap-4";
+                    if (c === 'card-c') {
+                        el.className = "group relative border-2 border-tuss-coral bg-tuss-lightCoral/30 p-5 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 flex items-start gap-4";
+                    }
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-tuss-coral";
+                } else {
+                    el.className = "group relative border border-stone-200 p-5 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 hover:border-tuss-coral/40 flex flex-col sm:flex-row items-start justify-between gap-4";
+                    if (c === 'card-c') {
+                        el.className = "group relative border border-stone-200 p-5 md:p-6 rounded-2xl cursor-pointer transition-all duration-300 hover:border-tuss-coral/40 flex items-start gap-4";
+                    }
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-transparent";
+                }
+            });
+
+            updateUIRepresentations();
+        }
+
+        // Keeps summary blocks and floating widgets perfectly reactively in sync
+        function updateUIRepresentations() {
+            const sym = state.currency === 'USD' ? '$' : '₦';
+            const ambassadorName = state.fullName.trim() || 'Friend of TUSSGlobal';
+
+            $('summary-name').innerText = ambassadorName;
+            $('widget-partner-name').innerText = ambassadorName;
+
+            $('summary-contact').innerText = state.email ? `(${state.email})${state.phone ? ` • ${state.phone}` : ''}` : '';
+            
+            if (state.organization.trim()) {
+                $('summary-org-block').classList.remove('hidden');
+                $('summary-org').innerText = state.organization.trim();
+            } else {
+                $('summary-org-block').classList.add('hidden');
+            }
+
+            let textTotal = '';
+            let headline = '';
+            let descriptiveCopy = '';
+
+            if (state.selectedCard === 'card-a') {
+                headline = 'Gift a Maternal Blood Pressure Monitor';
+                const unitCost = state.currency === 'USD' ? state.calculatedUSDBPPrice : state.fixedNairaBPPrice;
+                const calcTotal = unitCost * state.cardAQty;
+                textTotal = `${sym}${calcTotal.toLocaleString()}`;
+                descriptiveCopy = `Providing ${state.cardAQty} clinically approved monitor${state.cardAQty > 1 ? 's' : ''} directly to expectant mothers in underserved communities.`;
+                
+                $('summary-other-notes').classList.add('hidden');
+            } else if (state.selectedCard === 'card-b') {
+                headline = 'Emergency Stability Fund Contribution';
+                textTotal = `${sym}${state.cardBCustomAmount.toLocaleString()}`;
+                descriptiveCopy = `Providing flexible crisis funds to empower on-site caseworkers to assist mothers encountering severe emergency circumstances.`;
+                
+                $('summary-other-notes').classList.add('hidden');
+            } else if (state.selectedCard === 'card-c') {
+                headline = 'Alternative Support Partnership';
+                textTotal = 'In-Kind Pledge';
+                descriptiveCopy = `Collaborating through custom material supplies, workspace tools, or specialized mentorship within our five spaces.`;
+
+                $('summary-other-notes').classList.remove('hidden');
+                $('summary-proposed-gift').innerText = state.cardCOtherGift.trim() || 'Details to be finalized';
+
+                if (state.cardCOtherNotes.trim()) {
+                    $('summary-extra-notes-block').classList.remove('hidden');
+                    $('summary-additional-note').innerText = state.cardCOtherNotes.trim();
+                } else {
+                    $('summary-extra-notes-block').classList.add('hidden');
+                }
+            }
+
+            $('summary-giving-title').innerText = headline;
+            $('summary-giving-desc').innerText = descriptiveCopy;
+            $('summary-total').innerText = textTotal;
+
+            $('widget-giving-title').innerText = headline;
+            $('widget-total-value').innerText = textTotal;
+        }
+
+        // Navigate step validation 1
+        function validateStep1AndNext() {
+            const hasName = $('fullName').reportValidity();
+            const hasEmail = $('email').reportValidity();
+
+            if (hasName && hasEmail) {
+                $('step-1-warning').classList.add('hidden');
+                navigateToStep(2);
+                $('indicator-2').removeAttribute('disabled');
+            } else {
+                $('step-1-warning').classList.remove('hidden');
+            }
+        }
+
+        // Navigate step validation 2
+        function validateStep2AndNext() {
+            if (state.selectedCard === 'card-b') {
+                const checksPass = validateAmountInput();
+                if (!checksPass) {
+                    $('step-2-warning-text').innerText = "Please input a pledge value that meets the baseline safety threshold.";
+                    $('step-2-warning').classList.remove('hidden');
+                    return;
+                }
+            }
+
+            $('step-2-warning').classList.add('hidden');
+            navigateToStep(3);
+            $('indicator-3').removeAttribute('disabled');
+        }
+
+        // Core navigation transition logic
+        function navigateToStep(targetIndex) {
+            for (let i = 1; i <= 3; i++) {
+                const stepPanel = $(`step-${i}`);
+                const tabButton = $(`indicator-${i}`);
+
+                if (i === targetIndex) {
+                    stepPanel.classList.remove('step-hidden');
+                    stepPanel.classList.add('step-visible');
+
+                    // Highlight active tab
+                    tabButton.className = "group flex flex-col border-t-4 border-tuss-coral pt-4 pb-2 text-left w-full focus:outline-none";
+                    tabButton.querySelector('span:first-child').className = "text-[11px] font-bold text-tuss-coral tracking-wider uppercase";
+                    tabButton.querySelector('span:last-child').className = "text-sm font-bold text-tuss-charcoal";
+                } else {
+                    stepPanel.classList.remove('step-visible');
+                    stepPanel.classList.add('step-hidden');
+
+                    if (i < targetIndex) {
+                        // Mark completed tabs with check icon and green border
+                        tabButton.className = "group flex flex-col border-t-4 border-emerald-500 pt-4 pb-2 text-left w-full focus:outline-none";
+                        tabButton.querySelector('span:first-child').className = "text-[11px] font-bold text-emerald-600 tracking-wider uppercase flex items-center gap-1";
+                        tabButton.querySelector('span:first-child').innerHTML = `
+                            <span>Step ${i}</span>
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        `;
+                        tabButton.querySelector('span:last-child').className = "text-sm font-semibold text-tuss-charcoal";
+                    } else {
+                        // Mark pending future tabs
+                        tabButton.className = "group flex flex-col border-t-4 border-stone-200 pt-4 pb-2 text-left w-full focus:outline-none";
+                        tabButton.querySelector('span:first-child').className = "text-[11px] font-bold text-stone-400 tracking-wider uppercase";
+                        tabButton.querySelector('span:last-child').className = "text-sm font-semibold text-stone-500";
+                    }
+                }
+            }
+
+            state.currentStep = targetIndex;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Slide out Collapsible floating widget
+        function toggleWidget(hidePanel) {
+            if (hidePanel) {
+                $('widget-expanded').classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    $('widget-expanded').classList.add('hidden');
+                    $('widget-collapsed').classList.remove('hidden');
+                }, 150);
+            } else {
+                $('widget-collapsed').classList.add('hidden');
+                $('widget-expanded').classList.remove('hidden');
+                setTimeout(() => {
+                    $('widget-expanded').classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+                }, 50);
+            }
+        }
+
+        // Compiles, formats, and triggers the final email draft with customized instruction pathways
+        function sendPledgeEmail() {
+            const sym = state.currency === 'USD' ? '$' : '₦';
+            const unitPrice = state.currency === 'USD' ? state.calculatedUSDBPPrice : state.fixedNairaBPPrice;
+
+            let pathSection = '';
+            let amountDetails = '';
+
+            if (state.selectedCard === 'card-a') {
+                pathSection = 'Maternal Blood Pressure Monitor Gift';
+                amountDetails = `Quantity: ${state.cardAQty}\nPledge Value: ${sym}${(unitPrice * state.cardAQty).toLocaleString()}`;
+            } else if (state.selectedCard === 'card-b') {
+                pathSection = 'Emergency Stability Fund';
+                amountDetails = `Pledge Value: ${sym}${state.cardBCustomAmount.toLocaleString()}`;
+            } else {
+                pathSection = 'Alternative Support Partnership (In-Kind / Skills)';
+                amountDetails = `Offered Item or Skill: ${state.cardCOtherGift}\nCoordination Notes: ${state.cardCOtherNotes || 'None provided'}`;
+            }
+
+            const subject = `Donation Pledge: ${state.fullName}`;
+            
+            // Explicit human-centric text outlining manual, customized payment/delivery verification
+            const body = `Dear Lillian and the TUSSGlobal Team,
+
+I am writing to share my commitment to stand with women in underserved care through a supportive pledge. Here are my verified details:
+
+--------------------------------------------------
+PARTNER PROFILE
+Name: ${state.fullName}
+Email Address: ${state.email}
+Phone Number: ${state.phone || 'Not provided'}
+Affiliation: ${state.organization || 'None specified'}
+
+PLEDGE DETAILS
+Path Selected: ${pathSection}
+${amountDetails}
+Preferred Currency: ${state.currency}
+--------------------------------------------------
+
+This is a personal pledge of support. I look forward to receiving your personal follow up. 
+
+Please send over the next steps necessary to process this. I understand you will send corresponding payment coordinates, customized direct invoice links for financial gifts, or delivery coordination details for material contributions.
+
+Thank you for walking with me on this journey from healing to hope to wholeness.
+
+Warmly,
+${state.fullName}`;
+
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+            
+            // Open user's client email editor
+            window.location.href = `mailto:contact@tussglobal.org?subject=${encodedSubject}&body=${encodedBody}`;
+        }
+    </script>
+</body>
+</html>
