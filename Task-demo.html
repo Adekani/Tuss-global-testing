@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TaskFlow - Team Task Tracker</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mbis: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                        },
+                        tuss: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        /* Custom smooth scroll bar & bottom sheet animations */
+        ::-webkit-scrollbar { display: none; }
+        html, body {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .slide-up-enter-active, .slide-up-leave-active {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+        }
+        .slide-up-enter-from, .slide-up-leave-to {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity 0.2s ease;
+        }
+        .fade-enter-from, .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-800 antialiased flex justify-center min-h-screen">
+
+    <div id="app" class="w-full max-w-md bg-slate-50 min-h-screen flex flex-col justify-between relative shadow-2xl overflow-hidden pb-20">
+        
+        <!-- TOP HEADER BAR -->
+        <header class="bg-white/90 backdrop-blur-md sticky top-0 z-30 px-4 py-3 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-indigo-200">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-slate-900 text-base leading-tight">TaskFlow</h1>
+                    <p class="text-[10px] text-slate-500 font-medium">Small Teams Tracker</p>
+                </div>
+            </div>
+
+            <!-- Current User Badge Toggle -->
+            <div class="flex items-center space-x-2 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200/80">
+                <img :src="currentUser.avatar" class="w-5 h-5 rounded-full object-cover" />
+                <span class="text-xs font-semibold text-slate-700">{{ currentUser.name.split(' ')[0] }}</span>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT CONTAINER -->
+        <main class="flex-1 overflow-y-auto px-4 py-3">
+
+            <!-- ================= TAB 1: MY TASKS ================= -->
+            <section v-if="activeTab === 'my-tasks'" class="space-y-4">
+                
+                <!-- Date Navigation Bar -->
+                <div class="bg-white rounded-2xl p-3 shadow-sm border border-slate-100 flex items-center justify-between">
+                    <button @click="changeDate(-1)" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-slate-200 active:scale-95 transition">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    
+                    <div class="text-center">
+                        <div class="text-xs font-semibold text-indigo-600 uppercase tracking-wider">{{ getRelativeDateLabel(selectedDate) }}</div>
+                        <div class="text-sm font-bold text-slate-800">{{ formatDateDisplay(selectedDate) }}</div>
+                    </div>
+
+                    <button @click="changeDate(1)" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-slate-200 active:scale-95 transition">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Section 1: Today's Tasks -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-calendar-day text-indigo-500"></i> My Tasks Today
+                            <span class="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full text-[10px] font-extrabold">{{ myTodayTasks.length }}</span>
+                        </h2>
+                    </div>
+
+                    <div v-if="myTodayTasks.length === 0" class="bg-white rounded-2xl p-6 text-center border border-dashed border-slate-200 text-slate-400">
+                        <i class="fa-regular fa-circle-check text-3xl mb-2 text-indigo-300"></i>
+                        <p class="text-xs font-medium">All caught up for this day!</p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <div v-for="task in myTodayTasks" :key="task.id" @click="openTaskDetail(task)"
+                             class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-100 hover:border-indigo-200 transition active:scale-[0.99] cursor-pointer">
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="font-bold text-slate-800 text-sm leading-snug line-clamp-2" :class="{'line-through text-slate-400': task.status === 'Done'}">
+                                    {{ task.title }}
+                                </h3>
+                                <!-- Org Chip -->
+                                <span :class="getOrgChipClass(task.org)" class="shrink-0 px-2 py-0.5 rounded-md text-[10px] font-bold">
+                                    {{ task.org }}
+                                </span>
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-50">
+                                <div class="flex items-center space-x-1.5 text-slate-500">
+                                    <span class="text-[11px]">From:</span>
+                                    <span class="font-medium text-slate-700">{{ getAssignerName(task.assignerId) }}</span>
+                                </div>
+
+                                <div class="flex items-center space-x-2">
+                                    <!-- Status Chip -->
+                                    <span :class="getStatusChipClass(task.status)" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold">
+                                        {{ task.status }}
+                                    </span>
+                                    <!-- Age / Overdue Tag -->
+                                    <span :class="getTaskAgeClass(task)" class="text-[10px] font-semibold">
+                                        {{ getTaskAgeText(task) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Waiting On Others -->
+                <div class="pt-2">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-hourglass-half text-amber-500"></i> Waiting On Others
+                            <span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full text-[10px] font-extrabold">{{ waitingOnOthersTasks.length }}</span>
+                        </h2>
+                    </div>
+
+                    <div v-if="waitingOnOthersTasks.length === 0" class="bg-white rounded-2xl p-5 text-center border border-dashed border-slate-200 text-slate-400">
+                        <p class="text-xs font-medium">No pending tasks assigned to others.</p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <div v-for="task in waitingOnOthersTasks" :key="task.id" @click="openTaskDetail(task)"
+                             class="bg-white/80 rounded-2xl p-3.5 shadow-sm border border-slate-100 hover:border-amber-200 transition active:scale-[0.99] cursor-pointer">
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="font-bold text-slate-800 text-sm leading-snug line-clamp-1">
+                                    {{ task.title }}
+                                </h3>
+                                <span :class="getOrgChipClass(task.org)" class="shrink-0 px-2 py-0.5 rounded-md text-[10px] font-bold">
+                                    {{ task.org }}
+                                </span>
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-50">
+                                <div class="flex items-center space-x-1.5 text-slate-500">
+                                    <span class="text-[11px]">Assigned to:</span>
+                                    <span class="font-medium text-slate-700">{{ getAssigneeName(task.assigneeId) }}</span>
+                                </div>
+
+                                <div class="flex items-center space-x-2">
+                                    <span :class="getStatusChipClass(task.status)" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold">
+                                        {{ task.status }}
+                                    </span>
+                                    <span :class="getTaskAgeClass(task)" class="text-[10px] font-semibold">
+                                        {{ getTaskAgeText(task) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Floating Calendar Jump Button -->
+                <div class="pt-2 flex justify-center">
+                    <button @click="isCalendarModalOpen = true" class="bg-slate-800 hover:bg-slate-900 text-white px-4 py-2 rounded-full shadow-lg text-xs font-bold flex items-center gap-2 active:scale-95 transition">
+                        <i class="fa-regular fa-calendar-days text-indigo-400"></i> Jump to Date
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= TAB 2: TEAM ================= -->
+            <section v-if="activeTab === 'team'" class="space-y-4">
+                <!-- Org Filter -->
+                <div class="flex items-center justify-between bg-white p-2 rounded-2xl border border-slate-100">
+                    <span class="text-xs font-bold text-slate-500 pl-2">Filter Org:</span>
+                    <div class="flex space-x-1">
+                        <button @click="teamOrgFilter = 'ALL'" :class="teamOrgFilter === 'ALL' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'" class="px-2.5 py-1 rounded-xl text-xs font-semibold transition">
+                            All
+                        </button>
+                        <button @click="teamOrgFilter = 'MBisAfrican'" :class="teamOrgFilter === 'MBisAfrican' ? 'bg-purple-600 text-white' : 'bg-purple-50 text-purple-700'" class="px-2.5 py-1 rounded-xl text-xs font-semibold transition">
+                            MBisAfrican
+                        </button>
+                        <button @click="teamOrgFilter = 'TUSS Global'" :class="teamOrgFilter === 'TUSS Global' ? 'bg-teal-600 text-white' : 'bg-teal-50 text-teal-700'" class="px-2.5 py-1 rounded-xl text-xs font-semibold transition">
+                            TUSS
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Member List -->
+                <div class="space-y-3">
+                    <div v-for="member in filteredTeamMembers" :key="member.id" @click="openMemberDetail(member)"
+                         class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 cursor-pointer hover:border-indigo-200 transition active:scale-[0.99]">
+                        
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <img :src="member.avatar" class="w-11 h-11 rounded-2xl object-cover ring-2 ring-slate-100" />
+                                <div>
+                                    <div class="font-bold text-slate-800 text-sm flex items-center gap-1.5">
+                                        {{ member.name }}
+                                        <span :class="getOrgChipClass(member.org)" class="text-[9px] px-1.5 py-0.2 rounded font-semibold">
+                                            {{ member.org }}
+                                        </span>
+                                    </div>
+                                    <div class="text-xs text-slate-500 font-medium">{{ member.role }}</div>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                        </div>
+
+                        <!-- Counts -->
+                        <div class="grid grid-cols-3 gap-2 text-center bg-slate-50 rounded-xl p-2 mb-3 border border-slate-100">
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase font-extrabold">Active</div>
+                                <div class="text-sm font-bold text-blue-600">{{ getMemberTaskCounts(member.id).active }}</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase font-extrabold">Pending</div>
+                                <div class="text-sm font-bold text-amber-600">{{ getMemberTaskCounts(member.id).pending }}</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase font-extrabold">Overdue</div>
+                                <div class="text-sm font-bold text-rose-600">{{ getMemberTaskCounts(member.id).overdue }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Workload Capacity Bar -->
+                        <div>
+                            <div class="flex justify-between items-center text-[10px] font-bold text-slate-500 mb-1">
+                                <span>WORKLOAD CAPACITY</span>
+                                <span>{{ getMemberWorkloadPercent(member.id) }}%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div :class="getWorkloadBarColor(getMemberWorkloadPercent(member.id))" 
+                                     :style="{ width: getMemberWorkloadPercent(member.id) + '%' }" 
+                                     class="h-full transition-all duration-500 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= TAB 3: ALL TASKS ================= -->
+            <section v-if="activeTab === 'all-tasks'" class="space-y-3">
+                <!-- Search & Filters -->
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 space-y-2.5">
+                    <!-- Search Input -->
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+                        <input type="text" v-model="allTasksSearch" placeholder="Search tasks or assignees..." 
+                               class="w-full pl-9 pr-3 py-2 bg-slate-50 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-slate-800" />
+                    </div>
+
+                    <!-- Filter Options -->
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <!-- Org Filter -->
+                        <select v-model="allTasksOrgFilter" class="bg-slate-50 border-0 rounded-xl px-2 py-1.5 text-[11px] font-semibold text-slate-700 focus:outline-none">
+                            <option value="ALL">All Orgs</option>
+                            <option value="MBisAfrican">MBisAfrican</option>
+                            <option value="TUSS Global">TUSS Global</option>
+                        </select>
+
+                        <!-- Status Filter -->
+                        <select v-model="allTasksStatusFilter" class="bg-slate-50 border-0 rounded-xl px-2 py-1.5 text-[11px] font-semibold text-slate-700 focus:outline-none">
+                            <option value="ALL">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Blocked">Blocked</option>
+                            <option value="Done">Done</option>
+                        </select>
+
+                        <!-- Assignee Filter -->
+                        <select v-model="allTasksPersonFilter" class="bg-slate-50 border-0 rounded-xl px-2 py-1.5 text-[11px] font-semibold text-slate-700 focus:outline-none">
+                            <option value="ALL">All People</option>
+                            <option v-for="m in teamMembers" :key="m.id" :value="m.id">{{ m.name.split(' ')[0] }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Group 1: Current Tasks -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                            Current Tasks ({{ filteredCurrentTasks.length }})
+                        </h2>
+                    </div>
+
+                    <div v-if="filteredCurrentTasks.length === 0" class="bg-white rounded-2xl p-5 text-center text-slate-400 text-xs">
+                        No active tasks found matching filters.
+                    </div>
+
+                    <div class="space-y-2">
+                        <div v-for="task in filteredCurrentTasks" :key="task.id" @click="openTaskDetail(task)"
+                             class="bg-white rounded-2xl p-3 shadow-sm border border-slate-100 cursor-pointer hover:border-indigo-200 transition active:scale-[0.99]">
+                            <div class="flex items-start justify-between gap-2 mb-1.5">
+                                <h3 class="font-bold text-slate-800 text-xs leading-snug">{{ task.title }}</h3>
+                                <span :class="getOrgChipClass(task.org)" class="shrink-0 px-2 py-0.5 rounded text-[9px] font-bold">
+                                    {{ task.org }}
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 pt-1 border-t border-slate-50">
+                                <span>To: <strong class="text-slate-700">{{ getAssigneeName(task.assigneeId) }}</strong></span>
+                                <div class="flex items-center space-x-1.5">
+                                    <span :class="getStatusChipClass(task.status)" class="px-2 py-0.5 rounded-full text-[9px] font-bold">
+                                        {{ task.status }}
+                                    </span>
+                                    <span :class="getTaskAgeClass(task)" class="text-[10px] font-medium">
+                                        {{ getTaskAgeText(task) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 2: Completed Tasks -->
+                <div class="pt-2">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                            Completed Tasks ({{ filteredCompletedTasks.length }})
+                        </h2>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div v-for="task in filteredCompletedTasks" :key="task.id" @click="openTaskDetail(task)"
+                             class="bg-slate-100/70 rounded-2xl p-3 border border-slate-200/60 cursor-pointer opacity-80 hover:opacity-100 transition">
+                            <div class="flex items-start justify-between gap-2 mb-1">
+                                <h3 class="font-semibold text-slate-600 text-xs line-through">{{ task.title }}</h3>
+                                <span :class="getOrgChipClass(task.org)" class="shrink-0 px-2 py-0.5 rounded text-[9px] font-bold">
+                                    {{ task.org }}
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between text-[10px] text-slate-400 pt-1">
+                                <span>Completed by: {{ getAssigneeName(task.assigneeId) }}</span>
+                                <span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-bold">Done</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ================= BOTTOM NAVIGATION BAR ================= -->
+        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-4 py-2 z-40 flex items-center justify-between">
+            <!-- Tab 1: My Tasks -->
+            <button @click="activeTab = 'my-tasks'" 
+                    :class="activeTab === 'my-tasks' ? 'text-indigo-600 font-bold' : 'text-slate-400 font-medium'"
+                    class="flex-1 flex flex-col items-center justify-center py-1 transition active:scale-90">
+                <i class="fa-solid fa-list-check text-lg mb-0.5"></i>
+                <span class="text-[10px]">My Tasks</span>
+            </button>
+
+            <!-- Tab 2: RAISED CENTER BUTTON (Assign) -->
+            <div class="flex-1 flex justify-center -mt-6">
+                <button @click="openAssignSheet" 
+                        class="w-14 h-14 rounded-full bg-gradient-to-tr from-indigo-600 to-violet-500 text-white shadow-xl shadow-indigo-300 flex flex-col items-center justify-center border-4 border-slate-50 active:scale-90 transition transform">
+                    <i class="fa-solid fa-plus text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Tab 3: Team -->
+            <button @click="activeTab = 'team'" 
+                    :class="activeTab === 'team' ? 'text-indigo-600 font-bold' : 'text-slate-400 font-medium'"
+                    class="flex-1 flex flex-col items-center justify-center py-1 transition active:scale-90">
+                <i class="fa-solid fa-user-group text-lg mb-0.5"></i>
+                <span class="text-[10px]">Team</span>
+            </button>
+
+            <!-- Tab 4: All Tasks -->
+            <button @click="activeTab = 'all-tasks'" 
+                    :class="activeTab === 'all-tasks' ? 'text-indigo-600 font-bold' : 'text-slate-400 font-medium'"
+                    class="flex-1 flex flex-col items-center justify-center py-1 transition active:scale-90">
+                <i class="fa-solid fa-cubes text-lg mb-0.5"></i>
+                <span class="text-[10px]">All Tasks</span>
+            </button>
+        </nav>
+
+        <!-- ================= BOTTOM SHEET 1: ASSIGN TASK ================= -->
+        <transition name="fade">
+            <div v-if="isAssignSheetOpen" @click.self="isAssignSheetOpen = false" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end justify-center">
+                <transition name="slide-up">
+                    <div v-if="isAssignSheetOpen" class="w-full max-w-md bg-white rounded-t-3xl p-5 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl">
+                        
+                        <!-- Sheet Header -->
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                            <div>
+                                <h3 class="font-extrabold text-slate-800 text-base">Assign New Task</h3>
+                                <p class="text-xs text-slate-400">Creates task instantly with organization tag</p>
+                            </div>
+                            <button @click="isAssignSheetOpen = false" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <!-- 1. Task Title -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Task Title *</label>
+                            <input type="text" v-model="assignForm.title" placeholder="e.g. Review Q4 Marketing Deck"
+                                   class="w-full p-3 bg-slate-50 rounded-xl text-sm border border-slate-200 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                        </div>
+
+                        <!-- 2. REQUIRED Organization Selector -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">
+                                Organization * <span class="text-indigo-600 text-[10px]">(Required Chip)</span>
+                            </label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button type="button" @click="assignForm.org = 'MBisAfrican'"
+                                        :class="assignForm.org === 'MBisAfrican' ? 'bg-purple-600 text-white ring-2 ring-purple-300' : 'bg-purple-50 text-purple-800 border border-purple-200'"
+                                        class="py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 transition active:scale-95">
+                                    <i class="fa-solid fa-building text-xs"></i>
+                                    <span>MBisAfrican</span>
+                                </button>
+                                <button type="button" @click="assignForm.org = 'TUSS Global'"
+                                        :class="assignForm.org === 'TUSS Global' ? 'bg-teal-600 text-white ring-2 ring-teal-300' : 'bg-teal-50 text-teal-800 border border-teal-200'"
+                                        class="py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 transition active:scale-95">
+                                    <i class="fa-solid fa-globe text-xs"></i>
+                                    <span>TUSS Global</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 3. Assignee Selector + Workload Helper -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Assign To</label>
+                            <select v-model="assignForm.assigneeId" class="w-full p-3 bg-slate-50 rounded-xl text-sm border border-slate-200 font-semibold text-slate-800 focus:outline-none">
+                                <option v-for="m in teamMembers" :key="m.id" :value="m.id">
+                                    {{ m.name }} ({{ m.org }})
+                                </option>
+                            </select>
+                            
+                            <!-- Dynamic Workload Subtext -->
+                            <div class="mt-1.5 flex items-center space-x-1.5 text-xs text-indigo-600 bg-indigo-50 p-2 rounded-xl font-medium border border-indigo-100">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>{{ getAssigneeWorkloadSubtext(assignForm.assigneeId, assignForm.dueDate) }}</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. Due Date -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Due Date</label>
+                            <input type="date" v-model="assignForm.dueDate" class="w-full p-3 bg-slate-50 rounded-xl text-sm border border-slate-200 font-medium text-slate-800 focus:outline-none" />
+                        </div>
+
+                        <!-- 5. Phone-Alarm Style Repeat Selector -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5">
+                                <label class="text-xs font-bold text-slate-600">Repeat Schedule</label>
+                                <div class="flex space-x-1">
+                                    <button @click="setRepeatPreset('everyday')" class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 hover:bg-indigo-100 hover:text-indigo-700">Every day</button>
+                                    <button @click="setRepeatPreset('weekdays')" class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 hover:bg-indigo-100 hover:text-indigo-700">Weekdays</button>
+                                    <button @click="setRepeatPreset('none')" class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600">None</button>
+                                </div>
+                            </div>
+
+                            <!-- 7 Tappable Weekday Circles (M T W T F S S) -->
+                            <div class="flex justify-between bg-slate-50 p-2 rounded-2xl border border-slate-200/80">
+                                <button v-for="(day, idx) in weekdayNames" :key="idx"
+                                        @click="toggleRepeatDay(idx)"
+                                        :class="assignForm.repeatDays[idx] ? 'bg-indigo-600 text-white font-bold shadow-md shadow-indigo-200 scale-105' : 'bg-white text-slate-400 font-semibold border border-slate-200'"
+                                        class="w-9 h-9 rounded-full text-xs flex items-center justify-center transition active:scale-95">
+                                    {{ day }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Create Button -->
+                        <button @click="submitNewTask" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition text-sm">
+                            Confirm & Assign Task
+                        </button>
+                    </div>
+                </transition>
+            </div>
+        </transition>
+
+        <!-- ================= BOTTOM SHEET 2: TASK DETAIL ================= -->
+        <transition name="fade">
+            <div v-if="selectedTaskDetail" @click.self="selectedTaskDetail = null" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end justify-center">
+                <transition name="slide-up">
+                    <div v-if="selectedTaskDetail" class="w-full max-w-md bg-white rounded-t-3xl p-5 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl">
+                        
+                        <!-- Header -->
+                        <div class="flex items-start justify-between">
+                            <div class="space-y-1">
+                                <span :class="getOrgChipClass(selectedTaskDetail.org)" class="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold">
+                                    {{ selectedTaskDetail.org }}
+                                </span>
+                                <h2 class="text-base font-bold text-slate-900 leading-snug">{{ selectedTaskDetail.title }}</h2>
+                            </div>
+                            <button @click="selectedTaskDetail = null" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <!-- Task Details Grid -->
+                        <div class="grid grid-cols-2 gap-2 bg-slate-50 p-3 rounded-2xl text-xs border border-slate-100">
+                            <div>
+                                <span class="text-slate-400 block text-[10px] font-extrabold">ASSIGNED TO</span>
+                                <span class="font-bold text-slate-700">{{ getAssigneeName(selectedTaskDetail.assigneeId) }}</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] font-extrabold">ASSIGNED BY</span>
+                                <span class="font-bold text-slate-700">{{ getAssignerName(selectedTaskDetail.assignerId) }}</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] font-extrabold">DUE DATE</span>
+                                <span class="font-bold text-slate-700">{{ selectedTaskDetail.dueDate }}</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] font-extrabold">STATUS</span>
+                                <span :class="getStatusChipClass(selectedTaskDetail.status)" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold inline-block">
+                                    {{ selectedTaskDetail.status }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-500 mb-1 uppercase tracking-wider">Description</h4>
+                            <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
+                                {{ selectedTaskDetail.description || 'No additional description provided.' }}
+                            </p>
+                        </div>
+
+                        <!-- Quick Action Buttons (Within 2 Taps) -->
+                        <div class="space-y-2 pt-1 border-t border-slate-100">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Actions</h4>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button @click="markTaskDone(selectedTaskDetail)" 
+                                        :class="selectedTaskDetail.status === 'Done' ? 'bg-emerald-100 text-emerald-800' : 'bg-emerald-600 text-white'"
+                                        class="py-2.5 rounded-xl font-bold text-xs flex flex-col items-center justify-center gap-1 active:scale-95 transition">
+                                    <i class="fa-solid fa-circle-check text-sm"></i>
+                                    <span>{{ selectedTaskDetail.status === 'Done' ? 'Done' : 'Mark Done' }}</span>
+                                </button>
+
+                                <button @click="promptReassign(selectedTaskDetail)" class="bg-indigo-50 text-indigo-700 border border-indigo-200 py-2.5 rounded-xl font-bold text-xs flex flex-col items-center justify-center gap-1 active:scale-95 transition">
+                                    <i class="fa-solid fa-user-pen text-sm"></i>
+                                    <span>Reassign</span>
+                                </button>
+
+                                <button @click="extendDeadline(selectedTaskDetail)" class="bg-amber-50 text-amber-700 border border-amber-200 py-2.5 rounded-xl font-bold text-xs flex flex-col items-center justify-center gap-1 active:scale-95 transition">
+                                    <i class="fa-solid fa-clock-rotate-left text-sm"></i>
+                                    <span>+1 Day</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Comments Timeline -->
+                        <div class="pt-2">
+                            <h4 class="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Comments ({{ selectedTaskDetail.comments ? selectedTaskDetail.comments.length : 0 }})</h4>
+                            
+                            <div class="space-y-2 max-h-36 overflow-y-auto mb-2">
+                                <div v-for="c in selectedTaskDetail.comments" :key="c.id" class="bg-slate-50 p-2.5 rounded-xl text-xs space-y-0.5 border border-slate-100">
+                                    <div class="flex justify-between items-center text-[10px]">
+                                        <span class="font-bold text-indigo-600">{{ c.author }}</span>
+                                        <span class="text-slate-400">{{ c.time }}</span>
+                                    </div>
+                                    <p class="text-slate-700 font-medium">{{ c.text }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Comment Input -->
+                            <div class="flex gap-2">
+                                <input type="text" v-model="newCommentText" placeholder="Add a quick comment..." 
+                                       class="flex-1 px-3 py-2 bg-slate-50 rounded-xl text-xs border border-slate-200 font-medium focus:outline-none" />
+                                <button @click="addComment(selectedTaskDetail)" class="px-3 py-2 bg-slate-800 text-white rounded-xl text-xs font-bold active:scale-95 transition">
+                                    Post
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </transition>
+            </div>
+        </transition>
+
+        <!-- ================= BOTTOM SHEET 3: TEAM MEMBER DETAIL ================= -->
+        <transition name="fade">
+            <div v-if="selectedMemberDetail" @click.self="selectedMemberDetail = null" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end justify-center">
+                <transition name="slide-up">
+                    <div v-if="selectedMemberDetail" class="w-full max-w-md bg-white rounded-t-3xl p-5 space-y-4 max-h-[85vh] overflow-y-auto shadow-2xl">
+                        
+                        <!-- Header -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img :src="selectedMemberDetail.avatar" class="w-12 h-12 rounded-2xl object-cover" />
+                                <div>
+                                    <h3 class="font-extrabold text-slate-800 text-sm">{{ selectedMemberDetail.name }}</h3>
+                                    <p class="text-xs text-slate-500 font-medium">{{ selectedMemberDetail.role }}</p>
+                                </div>
+                            </div>
+                            <button @click="selectedMemberDetail = null" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <!-- Inner Tabs: Today vs Recurring -->
+                        <div class="flex border-b border-slate-100">
+                            <button @click="memberTab = 'today'" 
+                                    :class="memberTab === 'today' ? 'border-b-2 border-indigo-600 text-indigo-600 font-bold' : 'text-slate-400 font-medium'"
+                                    class="flex-1 py-2 text-center text-xs transition">
+                                Today's Tasks
+                            </button>
+                            <button @click="memberTab = 'recurring'" 
+                                    :class="memberTab === 'recurring' ? 'border-b-2 border-indigo-600 text-indigo-600 font-bold' : 'text-slate-400 font-medium'"
+                                    class="flex-1 py-2 text-center text-xs transition">
+                                Recurring Tasks
+                            </button>
+                        </div>
+
+                        <!-- Tab 1: Member Today Tasks -->
+                        <div v-if="memberTab === 'today'" class="space-y-2">
+                            <div v-if="getMemberTasksToday(selectedMemberDetail.id).length === 0" class="text-center py-6 text-slate-400 text-xs">
+                                No tasks scheduled for today.
+                            </div>
+                            <div v-for="t in getMemberTasksToday(selectedMemberDetail.id)" :key="t.id" 
+                                 class="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center text-xs">
+                                <div>
+                                    <div class="font-bold text-slate-800">{{ t.title }}</div>
+                                    <span :class="getOrgChipClass(t.org)" class="text-[9px] px-1.5 py-0.2 rounded font-semibold">{{ t.org }}</span>
+                                </div>
+                                <span :class="getStatusChipClass(t.status)" class="px-2 py-0.5 rounded-full text-[9px] font-extrabold">
+                                    {{ t.status }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Member Recurring Tasks -->
+                        <div v-if="memberTab === 'recurring'" class="space-y-2">
+                            <div v-if="getMemberRecurringTasks(selectedMemberDetail.id).length === 0" class="text-center py-6 text-slate-400 text-xs">
+                                No recurring tasks configured.
+                            </div>
+                            <div v-for="t in getMemberRecurringTasks(selectedMemberDetail.id)" :key="t.id" 
+                                 class="p-3 bg-slate-50 rounded-2xl border border-slate-100 text-xs space-y-1">
+                                <div class="font-bold text-slate-800">{{ t.title }}</div>
+                                <div class="flex items-center gap-1 text-[10px] text-indigo-600 font-semibold">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                    <span>Repeats on active weekday schedule</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </transition>
+            </div>
+        </transition>
+
+        <!-- ================= MODAL: JUMP CALENDAR ================= -->
+        <transition name="fade">
+            <div v-if="isCalendarModalOpen" @click.self="isCalendarModalOpen = false" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                <div class="bg-white w-full max-w-xs rounded-3xl p-5 space-y-4 shadow-2xl text-center">
+                    <h3 class="font-bold text-slate-800 text-sm">Select Date</h3>
+                    <input type="date" v-model="calendarPickerDate" class="w-full p-3 bg-slate-50 rounded-xl text-sm border border-slate-200 font-semibold text-slate-800" />
+                    <div class="flex gap-2">
+                        <button @click="isCalendarModalOpen = false" class="flex-1 py-2.5 bg-slate-100 text-slate-600 rounded-xl font-bold text-xs">Cancel</button>
+                        <button @click="jumpToSelectedDate" class="flex-1 py-2.5 bg-indigo-600 text-white rounded-xl font-bold text-xs">Jump</button>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+    </div>
+
+    <script>
+        const { createApp, ref, computed } = Vue;
+
+        createApp({
+            setup() {
+                // Active tab selection
+                const activeTab = ref('my-tasks');
+
+                // Selected date for "My Tasks"
+                const selectedDate = ref(new Date());
+
+                // Current logged-in user profile
+                const currentUser = ref({
+                    id: 1,
+                    name: "Tochi Okereke",
+                    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+                    org: "MBisAfrican"
+                });
+
+                // Team members
+                const teamMembers = ref([
+                    { id: 1, name: "Tochi Okereke", role: "Product Lead", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80", org: "MBisAfrican" },
+                    { id: 2, name: "Amara Nwosu", role: "Frontend Dev", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80", org: "MBisAfrican" },
+                    { id: 3, name: "Kweku Mensah", role: "UI Designer", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80", org: "TUSS Global" },
+                    { id: 4, name: "Zainab Bello", role: "Ops Director", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80", org: "TUSS Global" },
+                    { id: 5, name: "David Osei", role: "Growth Lead", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80", org: "MBisAfrican" }
+                ]);
+
+                // Initial Tasks
+                const tasks = ref([
+                    {
+                        id: 101,
+                        title: "Finalize MBis UI Kit Components",
+                        org: "MBisAfrican",
+                        assigneeId: 1,
+                        assignerId: 2,
+                        status: "Active",
+                        dueDate: getFormattedYMD(0), // Today
+                        createdAt: getFormattedYMD(-3), // 3 days ago
+                        description: "Review button states, chip badges, and theme colors across mobile screens.",
+                        comments: [
+                            { id: 1, author: "Amara Nwosu", text: "Please verify mobile tap target sizes.", time: "2h ago" }
+                        ],
+                        repeatDays: [true, true, true, true, true, false, false]
+                    },
+                    {
+                        id: 102,
+                        title: "Prepare TUSS Global Partnership Memo",
+                        org: "TUSS Global",
+                        assigneeId: 1,
+                        assignerId: 4,
+                        status: "Pending",
+                        dueDate: getFormattedYMD(1), // Tomorrow
+                        createdAt: getFormattedYMD(-4),
+                        description: "Draft 2-page briefing on expansion plans and cross-border logistics.",
+                        comments: [],
+                        repeatDays: [false, false, false, false, false, false, false]
+                    },
+                    {
+                        id: 103,
+                        title: "Audit Stripe Payment Gateway Integration",
+                        org: "TUSS Global",
+                        assigneeId: 3,
+                        assignerId: 1,
+                        status: "Blocked",
+                        dueDate: getFormattedYMD(-1), // Overdue by 1 day
+                        createdAt: getFormattedYMD(-5),
+                        description: "Waiting for API credentials from compliance team.",
+                        comments: [
+                            { id: 1, author: "Tochi Okereke", text: "Followed up with compliance.", time: "1d ago" }
+                        ],
+                        repeatDays: [false, false, false, false, false, false, false]
+                    },
+                    {
+                        id: 104,
+                        title: "Deploy Analytics Tracking Pixel",
+                        org: "MBisAfrican",
+                        assigneeId: 2,
+                        assignerId: 1,
+                        status: "Pending",
+                        dueDate: getFormattedYMD(0),
+                        createdAt: getFormattedYMD(-1),
+                        description: "Ensure conversion events fire correctly on checkout.",
+                        comments: [],
+                        repeatDays: [true, true, true, true, true, false, false]
+                    },
+                    {
+                        id: 105,
+                        title: "Weekly Ops Sync Presentation",
+                        org: "TUSS Global",
+                        assigneeId: 4,
+                        assignerId: 1,
+                        status: "Done",
+                        dueDate: getFormattedYMD(-2),
+                        createdAt: getFormattedYMD(-6),
+                        description: "Completed weekly operational metrics deck.",
+                        comments: [],
+                        repeatDays: [false, false, false, false, false, false, false]
+                    }
+                ]);
+
+                // Helper for date string formatting
+                function getFormattedYMD(offsetDays) {
+                    const d = new Date();
+                    d.setDate(d.getDate() + offsetDays);
+                    return d.toISOString().split('T')[0];
+                }
+
+                // Modal / Sheet States
+                const isAssignSheetOpen = ref(false);
+                const selectedTaskDetail = ref(null);
+                const selectedMemberDetail = ref(null);
+                const isCalendarModalOpen = ref(false);
+                const memberTab = ref('today');
+                const newCommentText = ref('');
+                const calendarPickerDate = ref(getFormattedYMD(0));
+
+                // Assign Form State
+                const weekdayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+                const assignForm = ref({
+                    title: '',
+                    org: 'MBisAfrican',
+                    assigneeId: 2,
+                    dueDate: getFormattedYMD(0),
+                    repeatDays: [false, false, false, false, false, false, false],
+                    description: ''
+                });
+
+                // Filters State
+                const teamOrgFilter = ref('ALL');
+                const allTasksSearch = ref('');
+                const allTasksOrgFilter = ref('ALL');
+                const allTasksStatusFilter = ref('ALL');
+                const allTasksPersonFilter = ref('ALL');
+
+                // Date Navigation Methods
+                const changeDate = (days) => {
+                    const newD = new Date(selectedDate.value);
+                    newD.setDate(newD.getDate() + days);
+                    selectedDate.value = newD;
+                };
+
+                const formatDateDisplay = (d) => {
+                    return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                };
+
+                const getRelativeDateLabel = (d) => {
+                    const today = new Date();
+                    const diffTime = d.setHours(0,0,0,0) - today.setHours(0,0,0,0);
+                    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+                    if (diffDays === 0) return 'Today';
+                    if (diffDays === 1) return 'Tomorrow';
+                    if (diffDays === -1) return 'Yesterday';
+                    return diffDays > 0 ? `In ${diffDays} days` : `${Math.abs(diffDays)} days ago`;
+                };
+
+                const jumpToSelectedDate = () => {
+                    if (calendarPickerDate.value) {
+                        selectedDate.value = new Date(calendarPickerDate.value);
+                    }
+                    isCalendarModalOpen.value = false;
+                };
+
+                // Computed Task Lists for "My Tasks"
+                const myTodayTasks = computed(() => {
+                    const dateStr = selectedDate.value.toISOString().split('T')[0];
+                    return tasks.value.filter(t => t.assigneeId === currentUser.value.id && t.dueDate === dateStr);
+                });
+
+                const waitingOnOthersTasks = computed(() => {
+                    return tasks.value.filter(t => t.assignerId === currentUser.value.id && t.assigneeId !== currentUser.value.id && t.status !== 'Done');
+                });
+
+                // Name Helpers
+                const getAssigneeName = (id) => {
+                    const m = teamMembers.value.find(x => x.id === id);
+                    return m ? m.name : 'Unassigned';
+                };
+
+                const getAssignerName = (id) => {
+                    const m = teamMembers.value.find(x => x.id === id);
+                    return m ? m.name : 'System';
+                };
+
+                // Styling Helpers
+                const getOrgChipClass = (org) => {
+                    if (org === 'MBisAfrican') return 'bg-purple-100 text-purple-800 border border-purple-200';
+                    return 'bg-teal-100 text-teal-800 border border-teal-200';
+                };
+
+                const getStatusChipClass = (status) => {
+                    switch (status) {
+                        case 'Pending': return 'bg-amber-100 text-amber-800';
+                        case 'Active': return 'bg-blue-100 text-blue-800';
+                        case 'Blocked': return 'bg-rose-100 text-rose-800';
+                        case 'Done': return 'bg-emerald-100 text-emerald-800';
+                        default: return 'bg-slate-100 text-slate-700';
+                    }
+                };
+
+                // Age / Overdue calculation
+                const getTaskAgeText = (task) => {
+                    if (task.status === 'Done') return 'Completed';
+                    const today = new Date();
+                    today.setHours(0,0,0,0);
+                    const due = new Date(task.dueDate);
+                    due.setHours(0,0,0,0);
+                    const diffDays = Math.round((due - today) / (1000 * 60 * 60 * 24));
+
+                    if (diffDays < 0) return `Overdue ${Math.abs(diffDays)}d`;
+                    if (diffDays === 0) return 'Due today';
+                    return `Due in ${diffDays}d`;
+                };
+
+                const getTaskAgeClass = (task) => {
+                    if (task.status === 'Done') return 'text-emerald-600';
+                    const text = getTaskAgeText(task);
+                    if (text.includes('Overdue')) return 'text-rose-600 font-bold';
+                    return 'text-slate-400';
+                };
+
+                // Assign Sheet Actions & Helpers
+                const openAssignSheet = () => {
+                    assignForm.value.title = '';
+                    assignForm.value.dueDate = getFormattedYMD(0);
+                    isAssignSheetOpen.value = true;
+                };
+
+                const setRepeatPreset = (preset) => {
+                    if (preset === 'everyday') {
+                        assignForm.value.repeatDays = [true, true, true, true, true, true, true];
+                    } else if (preset === 'weekdays') {
+                        assignForm.value.repeatDays = [true, true, true, true, true, false, false];
+                    } else {
+                        assignForm.value.repeatDays = [false, false, false, false, false, false, false];
+                    }
+                };
+
+                const toggleRepeatDay = (index) => {
+                    assignForm.value.repeatDays[index] = !assignForm.value.repeatDays[index];
+                };
+
+                const getAssigneeWorkloadSubtext = (assigneeId, dueDateStr) => {
+                    const member = teamMembers.value.find(m => m.id === assigneeId);
+                    const count = tasks.value.filter(t => t.assigneeId === assigneeId && t.dueDate === dueDateStr && t.status !== 'Done').length;
+                    const name = member ? member.name.split(' ')[0] : 'Assignee';
+                    return `${name} has ${count} task${count === 1 ? '' : 's'} scheduled for ${dueDateStr}`;
+                };
+
+                const submitNewTask = () => {
+                    if (!assignForm.value.title.trim()) {
+                        alert("Please enter a task title.");
+                        return;
+                    }
+                    const newTask = {
+                        id: Date.now(),
+                        title: assignForm.value.title,
+                        org: assignForm.value.org,
+                        assigneeId: assignForm.value.assigneeId,
+                        assignerId: currentUser.value.id,
+                        status: 'Pending',
+                        dueDate: assignForm.value.dueDate,
+                        createdAt: getFormattedYMD(0),
+                        description: assignForm.value.description,
+                        comments: [],
+                        repeatDays: [...assignForm.value.repeatDays]
+                    };
+                    tasks.value.unshift(newTask);
+                    isAssignSheetOpen.value = false;
+                };
+
+                // Task Detail Sheet Actions
+                const openTaskDetail = (task) => {
+                    selectedTaskDetail.value = task;
+                };
+
+                const markTaskDone = (task) => {
+                    task.status = task.status === 'Done' ? 'Active' : 'Done';
+                };
+
+                const promptReassign = (task) => {
+                    const nextMember = teamMembers.value.find(m => m.id !== task.assigneeId);
+                    if (nextMember) {
+                        task.assigneeId = nextMember.id;
+                    }
+                };
+
+                const extendDeadline = (task) => {
+                    const currentD = new Date(task.dueDate);
+                    currentD.setDate(currentD.getDate() + 1);
+                    task.dueDate = currentD.toISOString().split('T')[0];
+                };
+
+                const addComment = (task) => {
+                    if (!newCommentText.value.trim()) return;
+                    if (!task.comments) task.comments = [];
+                    task.comments.push({
+                        id: Date.now(),
+                        author: currentUser.value.name,
+                        text: newCommentText.value.trim(),
+                        time: "Just now"
+                    });
+                    newCommentText.value = '';
+                };
+
+                // Team Tab Logic
+                const filteredTeamMembers = computed(() => {
+                    if (teamOrgFilter.value === 'ALL') return teamMembers.value;
+                    return teamMembers.value.filter(m => m.org === teamOrgFilter.value);
+                });
+
+                const getMemberTaskCounts = (memberId) => {
+                    const mTasks = tasks.value.filter(t => t.assigneeId === memberId);
+                    const today = getFormattedYMD(0);
+                    return {
+                        active: mTasks.filter(t => t.status === 'Active').length,
+                        pending: mTasks.filter(t => t.status === 'Pending').length,
+                        overdue: mTasks.filter(t => t.status !== 'Done' && t.dueDate < today).length
+                    };
+                };
+
+                const getMemberWorkloadPercent = (memberId) => {
+                    const counts = getMemberTaskCounts(memberId);
+                    const totalActive = counts.active + counts.pending + counts.overdue;
+                    // Max capacity threshold assumed as 5 tasks
+                    const pct = Math.min(Math.round((totalActive / 5) * 100), 100);
+                    return pct;
+                };
+
+                const getWorkloadBarColor = (pct) => {
+                    if (pct > 80) return 'bg-rose-500';
+                    if (pct > 50) return 'bg-amber-500';
+                    return 'bg-emerald-500';
+                };
+
+                const openMemberDetail = (member) => {
+                    selectedMemberDetail.value = member;
+                    memberTab.value = 'today';
+                };
+
+                const getMemberTasksToday = (memberId) => {
+                    const todayStr = getFormattedYMD(0);
+                    return tasks.value.filter(t => t.assigneeId === memberId && t.dueDate === todayStr);
+                };
+
+                const getMemberRecurringTasks = (memberId) => {
+                    return tasks.value.filter(t => t.assigneeId === memberId && t.repeatDays && t.repeatDays.some(Boolean));
+                };
+
+                // All Tasks Tab Logic
+                const filteredAllTasks = computed(() => {
+                    return tasks.value.filter(t => {
+                        // Search
+                        const matchesSearch = !allTasksSearch.value || 
+                            t.title.toLowerCase().includes(allTasksSearch.value.toLowerCase()) ||
+                            getAssigneeName(t.assigneeId).toLowerCase().includes(allTasksSearch.value.toLowerCase());
+                        
+                        // Org Filter
+                        const matchesOrg = allTasksOrgFilter.value === 'ALL' || t.org === allTasksOrgFilter.value;
+                        
+                        // Status Filter
+                        const matchesStatus = allTasksStatusFilter.value === 'ALL' || t.status === allTasksStatusFilter.value;
+                        
+                        // Person Filter
+                        const matchesPerson = allTasksPersonFilter.value === 'ALL' || t.assigneeId === Number(allTasksPersonFilter.value);
+
+                        return matchesSearch && matchesOrg && matchesStatus && matchesPerson;
+                    });
+                });
+
+                const filteredCurrentTasks = computed(() => {
+                    return filteredAllTasks.value.filter(t => t.status !== 'Done');
+                });
+
+                const filteredCompletedTasks = computed(() => {
+                    return filteredAllTasks.value.filter(t => t.status === 'Done');
+                });
+
+                return {
+                    activeTab,
+                    selectedDate,
+                    currentUser,
+                    teamMembers,
+                    tasks,
+                    isAssignSheetOpen,
+                    selectedTaskDetail,
+                    selectedMemberDetail,
+                    isCalendarModalOpen,
+                    memberTab,
+                    newCommentText,
+                    calendarPickerDate,
+                    assignForm,
+                    weekdayNames,
+                    teamOrgFilter,
+                    allTasksSearch,
+                    allTasksOrgFilter,
+                    allTasksStatusFilter,
+                    allTasksPersonFilter,
+                    changeDate,
+                    formatDateDisplay,
+                    getRelativeDateLabel,
+                    jumpToSelectedDate,
+                    myTodayTasks,
+                    waitingOnOthersTasks,
+                    getAssigneeName,
+                    getAssignerName,
+                    getOrgChipClass,
+                    getStatusChipClass,
+                    getTaskAgeText,
+                    getTaskAgeClass,
+                    openAssignSheet,
+                    setRepeatPreset,
+                    toggleRepeatDay,
+                    getAssigneeWorkloadSubtext,
+                    submitNewTask,
+                    openTaskDetail,
+                    markTaskDone,
+                    promptReassign,
+                    extendDeadline,
+                    addComment,
+                    filteredTeamMembers,
+                    getMemberTaskCounts,
+                    getMemberWorkloadPercent,
+                    getWorkloadBarColor,
+                    openMemberDetail,
+                    getMemberTasksToday,
+                    getMemberRecurringTasks,
+                    filteredCurrentTasks,
+                    filteredCompletedTasks
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html> 
