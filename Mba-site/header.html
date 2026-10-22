@@ -1,0 +1,401 @@
+<!-- Phosphor Icons CDN for Regular & Bold Weights -->
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@latest/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@latest/src/bold/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@latest/src/fill/style.css">
+
+<!-- Google Fonts: Nunito Sans & Barlow Condensed -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..900;1,6..12,300..900&display=swap" rel="stylesheet">
+
+<style>
+  /* MBisAfrican Design  Tokens */
+  :root {
+    --mba-orange: #F0470A;
+    --mba-navy: #15247A;
+    --mba-navy-dark: #0A1550;
+    --mba-gold: #F8B400;
+    --mba-tan: #C9A27A;
+    --mba-ink: #1A1A1A;
+    --bg-canvas: #FBF7F1;
+    --bg-surface: #FFFFFF;
+    --bg-muted: #F1E9DD;
+    --radius-main: 10px;
+    --font-heading: 'Nunito Sans', sans-serif;
+    --font-body: 'Nunito Sans', sans-serif;
+    --font-accent: 'Barlow Condensed', sans-serif;
+  }
+
+  /* Header Container */
+  .mba-header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(251, 247, 241, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201, 162, 122, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  .mba-header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Brand Logo */
+  .mba-logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .mba-logo-link:hover {
+    transform: scale(1.02);
+  }
+
+  .mba-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Desktop Navigation */
+  .mba-desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .mba-nav-link {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--mba-ink);
+    text-decoration: none;
+    position: relative;
+    padding: 0.4rem 0;
+    transition: color 0.2s ease;
+  }
+
+  .mba-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--mba-orange);
+    transition: width 0.25s ease;
+    border-radius: 2px;
+  }
+
+  .mba-nav-link:hover {
+    color: var(--mba-orange);
+  }
+
+  .mba-nav-link:hover::after,
+  .mba-nav-link[aria-current="page"]::after {
+    width: 100%;
+  }
+
+  .mba-nav-link[aria-current="page"] {
+    color: var(--mba-navy);
+    font-weight: 700;
+  }
+
+  /* Header CTA Button - Fire Gradient */
+  .mba-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-accent);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: var(--radius-main);
+    background: linear-gradient(135deg, var(--mba-orange), var(--mba-gold), var(--mba-orange));
+    background-size: 200% 200%;
+    animation: mba-fire-drift 10s ease infinite;
+    box-shadow: 0 4px 14px rgba(240, 71, 10, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .mba-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(240, 71, 10, 0.35);
+  }
+
+  .mba-cta-btn i {
+    font-size: 1.15rem;
+  }
+
+  /* Mobile Toggle Trigger */
+  .mba-mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--mba-navy);
+    font-size: 1.85rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+
+  .mba-mobile-toggle:hover {
+    background-color: var(--bg-muted);
+  }
+
+  /* Mobile Drawer Overlay */
+  .mba-mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 380px;
+    height: 100vh;
+    height: 100dvh;
+    background-color: var(--bg-canvas);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom, 0px)) 1.5rem;
+    box-sizing: border-box;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mba-mobile-drawer.open {
+    right: 0;
+  }
+
+  .mba-drawer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-color: rgba(21, 36, 122, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .mba-drawer-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mba-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--mba-tan);
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+
+  .mba-drawer-close {
+    background: transparent;
+    border: none;
+    font-size: 1.75rem;
+    color: var(--mba-ink);
+    cursor: pointer;
+  }
+
+  .mba-mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    padding-right: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .mba-mobile-link {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--mba-ink);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(201, 162, 122, 0.15);
+    transition: color 0.2s ease;
+  }
+
+  .mba-mobile-link[aria-current="page"] {
+    color: var(--mba-orange);
+    font-weight: 700;
+  }
+
+  .mba-drawer-footer {
+    flex-shrink: 0;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201, 162, 122, 0.25);
+    margin-top: auto;
+  }
+
+  /* Fire Gradient Animation Keyframes */
+  @keyframes mba-fire-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 992px) {
+    .mba-desktop-nav,
+    .mba-header-cta-wrap {
+      display: none;
+    }
+    .mba-mobile-toggle {
+      display: block;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mba-cta-btn {
+      animation: none;
+    }
+    .mba-mobile-drawer {
+      transition: none;
+    }
+  }
+</style>
+
+<header class="mba-header-sticky">
+  <div class="mba-header-inner">
+    <!-- Brand Logo -->
+    <a href="index.html" class="mba-logo-link" aria-label="MBisAfrican Home">
+      <img src="mba.png" alt="MBisAfrican Logo" class="mba-logo-img">
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="mba-desktop-nav" aria-label="Primary Navigation">
+      <a href="index.html" class="mba-nav-link" data-nav="index">Home</a>
+      <a href="for-vendors.html" class="mba-nav-link" data-nav="for-vendors">For Vendors</a>
+      <a href="services.html" class="mba-nav-link" data-nav="services">Services</a>
+      <a href="https://maisonblancheisafrican.com/vendor-pricing" class="mba-nav-link" data-nav="pricing">Pricing</a>
+      <a href="shop.html" class="mba-nav-link" data-nav="shop">Shop</a>
+      <a href="wholesale.html" class="mba-nav-link" data-nav="wholesale">Wholesale</a>
+      <a href="contact.html" class="mba-nav-link" data-nav="contact">Contact</a>
+    </nav>
+
+    <!-- Header Primary CTA -->
+    <div class="mba-header-cta-wrap">
+      <a href="for-vendors.html" class="mba-cta-btn">
+        <span>Apply to Work With Us</span>
+        <i class="ph-fill ph-arrow-right"></i>
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mba-mobile-toggle" id="mba-menu-open" aria-label="Open Navigation Menu">
+      <i class="ph ph-list"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer & Backdrop -->
+<div class="mba-drawer-backdrop" id="mba-drawer-backdrop"></div>
+<div class="mba-mobile-drawer" id="mba-mobile-drawer" aria-hidden="true">
+  <div class="mba-drawer-header">
+    <img src="mba.png" alt="MBisAfrican Logo" class="mba-logo-img" style="height: 38px;">
+    <button class="mba-drawer-close" id="mba-menu-close" aria-label="Close Navigation Menu">
+      <i class="ph ph-x"></i>
+    </button>
+  </div>
+  <nav class="mba-mobile-links" aria-label="Mobile Navigation">
+    <a href="index.html" class="mba-mobile-link" data-nav="index">
+      <span>Home</span> <i class="ph ph-caret-right"></i>
+    </a>
+    <a href="for-vendors.html" class="mba-mobile-link" data-nav="for-vendors">
+      <span>For Vendors</span> <i class="ph ph-caret-right"></i>
+    </a>
+    <a href="services.html" class="mba-mobile-link" data-nav="services">
+      <span>Services</span> <i class="ph ph-caret-right"></i>
+    </a>
+    <a href="https://maisonblancheisafrican.com/vendor-pricing" class="mba-mobile-link" data-nav="pricing">
+      <span>Pricing</span> <i class="ph ph-caret-right"></i>
+    </a>
+    <a href="shop.html" class="mba-mobile-link" data-nav="shop">
+      <span>Shop</span> <i class="ph ph-caret-right"></i>
+    </a>
+    <a href="wholesale.html" class="mba-mobile-link" data-nav="wholesale">
+      <span>Wholesale</span> <i class="ph ph-caret-right"></i>
+    </a>
+    <a href="contact.html" class="mba-mobile-link" data-nav="contact">
+      <span>Contact</span> <i class="ph ph-caret-right"></i>
+    </a>
+  </nav>
+  <div class="mba-drawer-footer">
+    <a href="for-vendors.html" class="mba-cta-btn" style="width: 100%; justify-content: center;">
+      <span>Apply to Work With Us</span>
+      <i class="ph-fill ph-arrow-right"></i>
+    </a>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Mobile Drawer Interactive State Logic
+    const openBtn = document.getElementById('mba-menu-open');
+    const closeBtn = document.getElementById('mba-menu-close');
+    const drawer = document.getElementById('mba-mobile-drawer');
+    const backdrop = document.getElementById('mba-drawer-backdrop');
+
+    function openMenu() {
+      if (drawer && backdrop) {
+        drawer.classList.add('open');
+        backdrop.classList.add('active');
+        drawer.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    function closeMenu() {
+      if (drawer && backdrop) {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('active');
+        drawer.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+    // Active Page Auto-Highlight Logic based on body[data-page] or window location
+    const currentPage = document.body.getAttribute('data-page') || window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+    const allNavLinks = document.querySelectorAll('[data-nav]');
+    
+    allNavLinks.forEach(link => {
+      if (link.getAttribute('data-nav') === currentPage) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      } 
+    });
+  })();
+</script>

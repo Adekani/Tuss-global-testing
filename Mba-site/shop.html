@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop African Products | MBisAfrican</title>
+<meta name="description" content="Discover and shop beautiful, high-quality African products. Handcrafted goods, textiles, and home decor ready to ship directly to you.">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brandOrange: '#F0470A',
+          brandNavy: '#15247A',
+          brandNavyDark: '#0A1550',
+          brandGold: '#F8B400',
+          brandTan: '#C9A27A',
+          brandInk: '#1A1A1A',
+          bgCanvas: '#FBF7F1',
+          bgSurface: '#FFFFFF',
+          bgMuted: '#F1E9DD'
+        },
+        fontFamily: {
+          heading: ['Nunito Sans', 'sans-serif'],
+          body: ['Nunito Sans', 'sans-serif'],
+          accent: ['Barlow Condensed', 'sans-serif']
+        },
+        borderRadius: {
+          main: '10px'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  body {
+    background-color: #FBF7F1;
+    color: #1A1A1A;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  /* Fire gradient — signature animated accent */
+  .fire-gradient {
+    background: linear-gradient(135deg, #F0470A, #F8B400, #F0470A);
+    background-size: 200% 200%;
+    animation: fire-drift 10s ease infinite;
+  }
+
+  @keyframes fire-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hero grand reveal */
+  .hero-reveal {
+    opacity: 0;
+    transform: scale(1.02);
+    animation: hero-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-reveal-text {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-text-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.35s;
+  }
+
+  @keyframes hero-in {
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes hero-text-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .channel-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .channel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(21, 36, 122, 0.08);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal, .hero-reveal-text {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .fire-gradient {
+      animation: none;
+    }
+    .channel-card:hover {
+      transform: none;
+    }
+  }
+</style>
+</head>
+<body data-page="shop">
+
+<div id="header-placeholder"></div>
+
+<main>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="relative overflow-hidden bg-brandNavy">
+    <div class="hero-reveal absolute inset-0">
+      <!-- PLACEHOLDER: replace with custom image. Original prompt: "A beautifully styled flat-lay or small vignette of finished African consumer products (textiles, home goods, or accessories), arranged like a luxury catalogue spread, natural daylight, rich and warm color palette that complements the brand's orange, navy, and gold tones, shot in the style of a premium e-commerce hero image. Warm and inviting, never cluttered. No visible competitor logos or trademarked packaging." -->
+      <img src="african-products.jpg"
+           alt="Curated high-end African home goods and lifestyle items"
+           class="w-full h-full object-cover opacity-35">
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(21,36,122,0.85) 0%, rgba(10,21,80,0.92) 100%);"></div>
+    </div>
+
+    <div class="relative max-w-[1280px] mx-auto px-6 py-24 md:py-32 flex items-center justify-center text-center">
+      <div class="hero-reveal-text max-w-3xl">
+        <span class="inline-block font-accent text-brandGold text-lg font-bold tracking-widest uppercase mb-3">
+          For Shoppers & Retail Buyers
+        </span>
+        <h1 class="font-heading text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+          Beautiful African products, ready to ship to you.
+        </h1>
+        <p class="text-white/90 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          Looking to buy, not sell? Here is where you can find and shop our products.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SHOP CHANNELS SECTION ============ -->
+  <section class="bg-bgCanvas py-20 md:py-28">
+    <div class="max-w-[1280px] mx-auto px-6">
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Channel 1: Primary Online Store -->
+        <div class="channel-card bg-bgSurface border border-brandTan/25 rounded-main p-8 md:p-10 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-main bg-brandOrange/10 flex items-center justify-center mb-6">
+              <i class="ph ph-shopping-bag-open text-3xl text-brandOrange"></i>
+            </div>
+            <h2 class="font-heading text-2xl font-bold text-brandInk mb-3">
+              Shop MBisAfrican
+            </h2>
+            <p class="text-brandInk/75 leading-relaxed mb-8">
+              Explore our full catalog directly on our official flagship storefront.
+            </p>
+          </div>
+          <a href="https://shopmbisafrican.com/" 
+             target="_blank" 
+             rel="noopener" 
+             class="fire-gradient w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-main font-accent text-base font-bold uppercase tracking-wide text-white shadow-md hover:brightness-105 transition-all">
+            <span>Shop Flagship Store</span>
+            <i class="ph-bold ph-arrow-up-right"></i>
+          </a>
+        </div>
+
+        <!-- Channel 2: Etsy Storefront -->
+        <div class="channel-card bg-bgSurface border border-brandTan/25 rounded-main p-8 md:p-10 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-main bg-brandNavy/10 flex items-center justify-center mb-6">
+              <i class="ph ph-storefront text-3xl text-brandNavy"></i>
+            </div>
+            <h2 class="font-heading text-2xl font-bold text-brandInk mb-3">
+              Shop on Etsy
+            </h2>
+            <p class="text-brandInk/75 leading-relaxed mb-8">
+              Browse our handcrafted home, decor, and lifestyle selection on Etsy.
+            </p>
+          </div>
+          <a href="https://www.etsy.com/shop/MBHomeandLifestyle" 
+             target="_blank" 
+             rel="noopener" 
+             class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-main font-accent text-base font-bold uppercase tracking-wide bg-brandNavy text-white hover:bg-brandNavyDark transition-colors shadow-md">
+            <span>Visit Etsy Shop</span>
+            <i class="ph-bold ph-arrow-up-right"></i>
+          </a>
+        </div>
+
+        <!-- Channel 3: Social Media Shop -->
+        <div class="channel-card bg-bgSurface border border-brandTan/25 rounded-main p-8 md:p-10 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-main bg-brandGold/15 flex items-center justify-center mb-6">
+              <i class="ph ph-instagram-logo text-3xl text-brandNavy"></i>
+            </div>
+            <h2 class="font-heading text-2xl font-bold text-brandInk mb-3">
+              Shop on Social Media
+            </h2>
+            <p class="text-brandInk/75 leading-relaxed mb-8">
+              Discover curated pieces, featured collections, and new releases on our social channel.
+            </p>
+          </div>
+          <a href="#" 
+             class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-main font-accent text-base font-bold uppercase tracking-wide bg-bgMuted text-brandInk/60 border border-brandTan/30 cursor-not-allowed">
+            <span>Coming Soon</span>
+            <i class="ph-bold ph-clock"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Wholesale Redirection Banner -->
+      <div class="mt-16 bg-bgMuted border border-brandTan/30 rounded-main p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="max-w-2xl">
+          <h3 class="font-heading text-xl md:text-2xl font-bold text-brandNavy mb-2">
+            Looking for wholesale or bulk orders?
+          </h3>
+          <p class="text-brandInk/80 text-base leading-relaxed">
+            If you are a retailer, boutique owner, or distributor looking to stock your store with authentic African goods, we offer full wholesale terms and line sheets.
+          </p>
+        </div>
+        <a href="wholesale.html" class="inline-flex items-center gap-2 bg-brandNavy text-white font-accent text-base font-bold uppercase tracking-wide px-6 py-3 rounded-main hover:bg-brandNavyDark transition-colors flex-shrink-0">
+          <span>Wholesale Inquiries</span>
+          <i class="ph-fill ph-arrow-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  // Standard Dynamic Component Loader
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error("Component load error: " + response.status);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        // Re-execute any <script> tags inside the loaded fragment
+        const scripts = document.getElementById(id).querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+          Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+        console.log("[MBisAfrican] " + file + " loaded successfully into #" + id);
+      })
+      .catch(error => console.error("[MBisAfrican] Error loading " + file + " into #" + id + ":", error));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('header-placeholder', 'header.html');
+    loadComponent('footer-placeholder', 'footer.html');
+  });
+</script>
+
+</body>
+</html>

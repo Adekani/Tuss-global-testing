@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Vendors | MBisAfrican</title>
+<meta name="description" content="Sell your products in the United States at scale. MBisAfrican handles multi-channel listing, U.S. compliance, warehousing, fulfillment, and packaging.">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brandOrange: '#F0470A',
+          brandNavy: '#15247A',
+          brandNavyDark: '#0A1550',
+          brandGold: '#F8B400',
+          brandTan: '#C9A27A',
+          brandInk: '#1A1A1A',
+          bgCanvas: '#FBF7F1',
+          bgSurface: '#FFFFFF',
+          bgMuted: '#F1E9DD'
+        },
+        fontFamily: {
+          heading: ['Nunito Sans', 'sans-serif'],
+          body: ['Nunito Sans', 'sans-serif'],
+          accent: ['Barlow Condensed', 'sans-serif']
+        },
+        borderRadius: {
+          main: '10px'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  body {
+    background-color: #FBF7F1;
+    color: #1A1A1A;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  /* Fire gradient — signature animated accent */
+  .fire-gradient {
+    background: linear-gradient(135deg, #F0470A, #F8B400, #F0470A);
+    background-size: 200% 200%;
+    animation: fire-drift 10s ease infinite;
+  }
+
+  @keyframes fire-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hero grand reveal */
+  .hero-reveal {
+    opacity: 0;
+    transform: scale(1.03);
+    animation: hero-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-reveal-text {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-text-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.35s;
+  }
+
+  @keyframes hero-in {
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes hero-text-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Emphasis keyword animation on load ("gone") */
+  .emphasis-gone {
+    display: inline-block;
+    position: relative;
+    color: #F8B400;
+  }
+
+  .emphasis-gone::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #F0470A;
+    border-radius: 2px;
+    animation: underline-draw 0.8s ease forwards;
+    animation-delay: 1.1s;
+  }
+
+  @keyframes underline-draw {
+    to { width: 100%; }
+  }
+
+  /* Scroll reveal */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal, .hero-reveal-text, .scroll-reveal {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .emphasis-gone::after {
+      width: 100%;
+      animation: none;
+    }
+    .fire-gradient {
+      animation: none;
+    }
+  }
+
+  /* External application form link variable */
+  :root {
+    --vendor-app-url: 'contact.html';
+  }
+</style>
+</head>
+<body data-page="for-vendors">
+
+<div id="header-placeholder"></div>
+
+<main>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="relative overflow-hidden">
+    <div class="hero-reveal absolute inset-0">
+      <!-- PLACEHOLDER: replace with custom image. Original prompt: "A striking, editorial portrait of a successful African business owner (woman or man, 30s to 50s), dressed well, standing in a beautifully styled space that could belong on a design magazine cover, surrounded by a few of their own finished products displayed like art pieces rather than inventory. Calm, assured expression, direct eye contact with the camera, soft directional light with warm golden tones, rich background color (deep navy or warm tan), shot in the style of a high-end business or luxury lifestyle magazine profile. No visible text or logos." -->
+      <img src="business-owner.jpg"
+           alt="Successful African business owner in a modern, elegant studio"
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0" style="background: linear-gradient(0deg, rgba(10,21,80,0.92) 0%, rgba(10,21,80,0.65) 40%, rgba(10,21,80,0.3) 70%, rgba(10,21,80,0.2) 100%);"></div>
+    </div>
+
+    <div class="relative max-w-[1280px] mx-auto px-6 pt-28 pb-24 md:pt-36 md:pb-32 min-h-[580px] flex items-end">
+      <div class="hero-reveal-text max-w-3xl">
+        <h1 class="font-heading text-[2.2rem] leading-[1.08] md:text-[3.5rem] font-extrabold text-white mb-6">
+          Everything standing between you and the U.S. market is now <span class="emphasis-gone">gone.</span>
+        </h1>
+        <p class="text-white/90 text-lg md:text-xl leading-relaxed max-w-2xl mb-8">
+          You already make something worth selling. We make sure it gets sold, in America, at scale, without you learning a whole new industry to do it.
+        </p>
+        <div>
+          <a href="contact.html" class="fire-gradient inline-flex items-center gap-2 px-8 py-4 rounded-main font-accent text-xl font-bold uppercase tracking-wide text-white shadow-xl hover:shadow-2xl transition-all">
+            <span>Apply to work with us</span>
+            <i class="ph-fill ph-arrow-right text-xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2: NAMING THE PAIN (DEEPER) ============ -->
+  <section class="bg-bgCanvas">
+    <div class="max-w-[1280px] mx-auto px-6 py-20 md:py-28 grid md:grid-cols-12 gap-12 md:gap-16 items-center">
+      <div class="md:col-span-7">
+        <h2 class="font-heading text-3xl md:text-[2.3rem] font-extrabold mb-6 leading-tight text-brandNavy">
+          Right now, getting into the U.S. market means doing all of this alone.
+        </h2>
+        <div class="space-y-5 text-lg leading-relaxed text-brandInk/85">
+          <p>
+            Opening separate accounts on every platform. Working out which certificates you actually need, and which ones are just noise. Wondering how you would fulfill a wholesale order if one came in tomorrow.
+          </p>
+          <p>
+            Hoping your packaging looks right to someone who has never seen it in person. And doing all of this without a single person in the U.S. you can call.
+          </p>
+          <p class="pt-2 font-medium text-brandInk">
+            Most people selling into the U.S. today are relying on word of mouth. It has gotten you this far. But referrals are slow, and they will not get you to a real, scalable U.S. presence on their own.
+          </p>
+        </div>
+      </div>
+
+      <div class="md:col-span-5">
+        <!-- PLACEHOLDER: replace with custom image. Original prompt: "An elegant, symbolic visual in the style of a luxury print ad rather than a literal illustration: a single, beautifully lit object (a compass, a key, or a finely crafted African sculpture) resting on a dark, rich surface, with soft directional light and a sense of stillness and clarity, as though representing a single clear decision amid many small complications. Warm, cinematic lighting in navy and burnt orange tones. Shot like a premium product photograph, not a flat graphic. No text, no literal 'chaos' imagery, no abstract icon clutter." -->
+        <div class="relative rounded-main overflow-hidden shadow-xl bg-brandNavy">
+          <img src="african-products.jpg"
+               alt="A finely crafted object dramatically lit on a dark marble surface"
+               class="w-full h-auto object-cover min-h-[380px]">
+          <div class="absolute inset-0 bg-brandNavy/20 mix-blend-multiply"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3: THE ROUGH SHAPE OF THE OFFER ============ -->
+  <section class="bg">
+    <div class="max-w-[1280px] mx-auto px-6 py-20 md:py-28">
+      
+      <div class="max-w-3xl mb-14">
+        <h2 class="font-heading text-3xl md:text-[2.4rem] font-extrabold mb-6 leading-tight text-brandNavy">
+          One partner. Every part of your U.S. presence, handled.
+        </h2>
+        <p class="text-lg leading-relaxed text-brandInk/85">
+          We work with you to take care of the parts of U.S. selling that normally cost you the most time, money, and stress:
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+        
+        <div class="space-y-6">
+          
+          <div class="scroll-reveal bg-bgSurface p-6 rounded-main shadow-sm border border-brandTan/20">
+            <h3 class="font-heading text-xl font-bold text-brandNavy mb-1 flex items-center gap-2">
+              <i class="ph-bold ph-globe-hemisphere-west text-brandOrange"></i>
+              Getting seen.
+            </h3>
+            <p class="text-brandInk/80 leading-relaxed">
+              Your products listed across multiple marketplaces, not just one.
+            </p>
+          </div>
+
+          <div class="scroll-reveal bg-bgSurface p-6 rounded-main shadow-sm border border-brandTan/20">
+            <h3 class="font-heading text-xl font-bold text-brandNavy mb-1 flex items-center gap-2">
+              <i class="ph-bold ph-shield-check text-brandOrange"></i>
+              Getting compliant.
+            </h3>
+            <p class="text-brandInk/80 leading-relaxed">
+              We guide you through the certifications your product actually needs.
+            </p>
+          </div>
+
+          <div class="scroll-reveal bg-bgSurface p-6 rounded-main shadow-sm border border-brandTan/20">
+            <h3 class="font-heading text-xl font-bold text-brandNavy mb-1 flex items-center gap-2">
+              <i class="ph-bold ph-package text-brandOrange"></i>
+              Getting stocked.
+            </h3>
+            <p class="text-brandInk/80 leading-relaxed">
+              Tools built for wholesale and bulk orders, not just single sales.
+            </p>
+          </div>
+
+          <div class="scroll-reveal bg-bgSurface p-6 rounded-main shadow-sm border border-brandTan/20">
+            <h3 class="font-heading text-xl font-bold text-brandNavy mb-1 flex items-center gap-2">
+              <i class="ph-bold ph-truck text-brandOrange"></i>
+              Getting stored and shipped.
+            </h3>
+            <p class="text-brandInk/80 leading-relaxed">
+              Warehousing in the U.S., with fast fulfillment when an order comes in.
+            </p>
+          </div>
+
+          <div class="scroll-reveal bg-bgSurface p-6 rounded-main shadow-sm border border-brandTan/20">
+            <h3 class="font-heading text-xl font-bold text-brandNavy mb-1 flex items-center gap-2">
+              <i class="ph-bold ph-sparkle text-brandOrange"></i>
+              Getting shelf-ready.
+            </h3>
+            <p class="text-brandInk/80 leading-relaxed">
+              Packaging that makes people want to buy the moment they see it, not just packaging that survives the trip.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="flex flex-col h-full justify-between">
+          <!-- PLACEHOLDER: replace with custom image. Original prompt: "A bright, polished photograph of a modern, well-organized fulfillment space, almost boutique in feel rather than industrial: neatly arranged shelving holding well-packaged products, warm lighting, a sense of order and care rather than a warehouse grind. Rich navy and warm wood tones, a professional handling a package with visible care. Shot like a premium logistics brand's hero image, not a generic stock warehouse photo. No visible real brand names or logos." -->
+          <div class="rounded-main overflow-hidden shadow-lg mb-8">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop"
+                 alt="Clean, well-organized fulfillment center with carefully stacked boutique boxes"
+                 class="w-full h-72 md:h-80 object-cover">
+          </div>
+
+          <div class="bg-bgSurface p-8 rounded-main border-l-4 border-brandOrange shadow-sm">
+            <p class="text-lg leading-relaxed text-brandInk/85">
+              This is not a single fixed package. What you need depends on where your business is right now. Some vendors need all of it. Some need a few pieces. We work with what is actually useful to you.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dual CTAs -->
+      <div class="flex flex-wrap items-center justify-center gap-6 pt-4 border-t border-brandTan/30">
+        <a href="services.html" class="bg-brandNavy text-white font-accent text-lg font-bold uppercase tracking-wide px-8 py-3.5 rounded-main hover:bg-brandNavyDark transition-colors shadow-md">
+          See everything we offer
+        </a>
+        <a href="https://maisonblancheisafrican.com/vendor-pricing" class="bg-bgSurface text-brandNavy border border-brandNavy/30 font-accent text-lg font-bold uppercase tracking-wide px-8 py-3.5 rounded-main hover:border-brandNavy transition-colors">
+          See what it might cost
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4: REDUCING THE RISK OF SAYING YES ============ -->
+  <section class="bg-bgCanvas">
+    <div class="max-w-[1280px] mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14 items-center">
+      
+      <div class="order-2 md:order-1">
+        <!-- PLACEHOLDER: replace with custom image. Original prompt: "A warm, candid-feeling moment between two professionals, genuine and unposed, in conversation (in person or on a video call), both dressed well, in a well-styled setting with warm light. The feeling is partnership between equals, not a service provider pitching a struggling client. Rich, warm color grade matching brand palette. No visible logos or text." -->
+        <img src="professionals.jpg"
+             alt="Two professional partners in a warm, collaborative discussion"
+             class="w-full h-auto rounded-main object-cover shadow-md">
+      </div>
+
+      <div class="order-1 md:order-2">
+        <h2 class="font-heading text-3xl md:text-[2.3rem] font-extrabold mb-6 leading-tight text-brandNavy">
+          You are not signing up to figure this out alone.
+        </h2>
+        <p class="text-lg leading-relaxed mb-8 text-brandInk/85">
+          When you work with us, you are not getting a stack of software and a manual. You are getting a team on the ground in the United States who already understands this market, this paperwork, and this process. The parts that used to take you weeks of searching and guessing become one conversation with us.
+        </p>
+        <div>
+          <a href="contact.html" class="fire-gradient inline-flex items-center gap-2 px-8 py-4 rounded-main font-accent text-lg font-bold uppercase tracking-wide text-white shadow-lg">
+            <span>Apply now</span>
+            <i class="ph-fill ph-arrow-right text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  // Standard Dynamic Component Loader
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error("Component load error: " + response.status);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        // Re-execute any <script> tags inside the loaded fragment —
+        // innerHTML does not run them on its own.
+        const scripts = document.getElementById(id).querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+          Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+        console.log("[MBisAfrican] " + file + " loaded successfully into #" + id);
+      })
+      .catch(error => console.error("[MBisAfrican] Error loading " + file + " into #" + id + ":", error));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('header-placeholder', 'header.html');
+    loadComponent('footer-placeholder', 'footer.html');
+  });
+</script>
+
+<script>
+  // Scroll reveal observer logic
+  (function() {
+    const items = document.querySelectorAll('.scroll-reveal');
+    if (!items.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+
+    try {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('is-visible'), i * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      items.forEach(el => observer.observe(el));
+    } catch (error) {
+      console.error("[MBisAfrican] Scroll-reveal failed:", error);
+      items.forEach(el => el.classList.add('is-visible'));
+    }
+  })();
+</script>
+
+</body>
+</html>

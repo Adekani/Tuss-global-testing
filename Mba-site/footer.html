@@ -1,0 +1,270 @@
+<style>
+  /* Footer Specific Styling  */
+  .mba-footer {
+    background: linear-gradient(180deg, var(--mba-navy, #15247A) 0%, var(--mba-navy-dark, #0A1550) 100%);
+    color: #FFFFFF;
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 4.5rem 1.5rem 2rem 1.5rem;
+    position: relative;
+    border-top: 3px solid var(--mba-orange, #F0470A);
+  }
+
+  .mba-footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+  }
+
+  /* Brand Column */
+  .mba-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .mba-footer-logo-wrap {
+    background: #FFFFFF;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .mba-footer-logo {
+    height: 38px;
+    width: auto;
+    display: block;
+  }
+
+  .mba-footer-tagline {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    max-width: 340px;
+  }
+
+  /* Footer Headers */
+  .mba-footer-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--mba-gold, #F8B400);
+    margin-bottom: 1.25rem;
+  }
+
+  /* Footer Link Columns */
+  .mba-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mba-footer-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .mba-footer-links a:hover {
+    color: var(--mba-gold, #F8B400);
+    padding-left: 4px;
+  }
+
+  /* Contact & Retail Details */
+  .mba-footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .mba-footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .mba-footer-contact-item i {
+    color: var(--mba-orange, #F0470A);
+    font-size: 1.2rem;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .mba-footer-contact-item a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .mba-footer-contact-item a:hover {
+    color: var(--mba-gold, #F8B400);
+  }
+
+  /* External Shopping Channels */
+  .mba-external-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .mba-channel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.5rem 0.85rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .mba-channel-link:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: var(--mba-gold, #F8B400);
+  }
+
+  .mba-channel-link i {
+    color: var(--mba-gold, #F8B400);
+  }
+
+  /* Bottom Copyright & Legal Bar */
+  .mba-footer-bottom {
+    max-width: 1280px;
+    margin: 3.5rem auto 0 auto;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .mba-footer-legal-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .mba-footer-legal-links a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .mba-footer-legal-links a:hover {
+    color: var(--mba-gold, #F8B400);
+  }
+
+  /* Mobile Responsive adjustments */
+  @media (max-width: 992px) {
+    .mba-footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .mba-footer-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .mba-footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<footer class="mba-footer">
+  <div class="mba-footer-inner">
+    <!-- Brand Info -->
+    <div class="mba-footer-brand">
+      <div class="mba-footer-logo-wrap">
+        <img src="mba.png" alt="MBisAfrican Logo" class="mba-footer-logo">
+      </div>
+      <p class="mba-footer-tagline">
+        Helping established African businesses sell to U.S. customers with authority, scale, and clarity.
+      </p>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div>
+      <h4 class="mba-footer-title">Navigation</h4>
+      <ul class="mba-footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="for-vendors.html">For Vendors</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing Estimate</a></li>
+        <li><a href="shop.html">Shop Products</a></li>
+        <li><a href="wholesale.html">Wholesale</a></li>
+      </ul>
+    </div>
+
+    <!-- External Channels -->
+    <div>
+      <h4 class="mba-footer-title">Shop Channels</h4>
+      <div class="mba-external-channels">
+        <a href="https://shopmbisafrican.com/" target="_blank" rel="noopener" class="mba-channel-link">
+          <i class="ph ph-shopping-bag-open"></i>
+          <span>Shop MBisAfrican</span>
+        </a>
+        <a href="https://www.etsy.com/shop/MBHomeandLifestyle" target="_blank" rel="noopener" class="mba-channel-link">
+          <i class="ph ph-storefront"></i>
+          <span>Etsy Storefront</span>
+        </a>
+      </div>
+    </div> 
+
+    <!-- Contact Details -->
+    <div>
+      <h4 class="mba-footer-title">Contact Us</h4>
+      <div class="mba-footer-contact">
+        <div class="mba-footer-contact-item">
+          <i class="ph ph-envelope-simple"></i>
+          <a href="mailto:info@maisonblancheisafrican.com">info@maisonblancheisafrican.com</a>
+        </div>
+        <div class="mba-footer-contact-item">
+          <i class="ph ph-map-pin"></i>
+          <span>Merritt Drive, Lawrence Township, NJ 08648-3140</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom Bar -->
+  <div class="mba-footer-bottom">
+    <div>
+      &copy; <span id="mba-year">2026</span> Maison Blanche is African (MBisAfrican). All rights reserved.
+    </div>
+    <div class="mba-footer-legal-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="contact.html">Support</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dynamic copyright year update
+  const yearEl = document.getElementById('mba-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+</script>

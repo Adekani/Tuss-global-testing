@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wholesale & Retail Inquiries | MBisAfrican</title>
+<metaname="description" content="Stock your store with curated, high-quality African products. Bulk orders, line sheets, and wholesale terms for retailers and wholesalers through MBisAfrican.">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brandOrange: '#F0470A',
+          brandNavy: '#15247A',
+          brandNavyDark: '#0A1550',
+          brandGold: '#F8B400',
+          brandTan: '#C9A27A',
+          brandInk: '#1A1A1A',
+          bgCanvas: '#FBF7F1',
+          bgSurface: '#FFFFFF',
+          bgMuted: '#F1E9DD'
+        },
+        fontFamily: {
+          heading: ['Nunito Sans', 'sans-serif'],
+          body: ['Nunito Sans', 'sans-serif'],
+          accent: ['Barlow Condensed', 'sans-serif']
+        },
+        borderRadius: {
+          main: '10px'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  body {
+    background-color: #FBF7F1;
+    color: #1A1A1A;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  /* Animated Fire Gradient for high-priority CTA elements */
+  .fire-gradient {
+    background: linear-gradient(135deg, #F0470A, #F8B400, #F0470A);
+    background-size: 200% 200%;
+    animation: fire-drift 10s ease infinite;
+  }
+
+  @keyframes fire-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hero reveal animation */
+  .hero-reveal {
+    opacity: 0;
+    transform: scale(1.02);
+    animation: hero-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-reveal-text {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-text-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.35s;
+  }
+
+  @keyframes hero-in {
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes hero-text-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal, .hero-reveal-text {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .fire-gradient {
+      animation: none;
+    }
+  }
+</style>
+</head>
+<body data-page="wholesale">
+
+<div id="header-placeholder"></div>
+
+<main>
+
+  <!-- ============ HERO & WHOLESALE INQUIRY SECTION ============ -->
+  <section class="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center">
+    <!-- Hero Background Image -->
+    <div class="hero-reveal absolute inset-0">
+      <!-- PLACEHOLDER: replace with custom image. Original prompt: "A photograph of a beautifully styled boutique retail shelf being stocked, a retailer's hands placing elegant African-made products onto a well-lit, tastefully designed store shelf, warm and upscale retail environment, color grading matching brand palette, mid-shot composition, commercial retail photography style. No visible real store brand names or logos." -->
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2000&auto=format&fit=crop"
+           alt="A beautifully styled boutique retail shelf with premium products"
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0" style="background: linear-gradient(0deg, rgba(10,21,80,0.92) 0%, rgba(10,21,80,0.7) 45%, rgba(10,21,80,0.4) 100%);"></div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="relative max-w-[1280px] mx-auto px-6 py-20 md:py-28 w-full">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Headline & Body Copy -->
+        <div class="lg:col-span-7 hero-reveal-text">
+          <span class="inline-block font-accent text-brandGold font-bold text-lg uppercase tracking-wider mb-3">
+            Wholesale & Retail Partnerships
+          </span>
+          <h1 class="font-heading text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+            Want to stock your store with African products?
+          </h1>
+          <p class="text-white/90 text-lg md:text-xl leading-relaxed max-w-2xl mb-8">
+            If you are a retailer or wholesaler looking to buy in bulk, we can help you find the right products and place a wholesale order.
+          </p>
+          
+          <!-- Key Benefits List -->
+          <div class="grid sm:grid-cols-2 gap-4 mb-8 max-w-xl text-white/85">
+            <div class="flex items-center gap-3">
+              <i class="ph-bold ph-check text-brandGold text-xl"></i>
+              <span>Curated high-quality lines</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="ph-bold ph-check text-brandGold text-xl"></i>
+              <span>Digital line sheets available</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="ph-bold ph-check text-brandGold text-xl"></i>
+              <span>Reliable U.S. fulfillment</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="ph-bold ph-check text-brandGold text-xl"></i>
+              <span>Straightforward wholesale terms</span>
+            </div>
+          </div>
+
+          <!-- Direct CTA Button -->
+          <a href="mailto:info@maisonblancheisafrican.com?subject=Wholesale%20Inquiry%20-%20MBisAfrican&body=Hello%20MBisAfrican%20Team%2C%0A%0AI%20am%20interested%20in%20wholesale%20opportunities%20and%20stocking%20African%20products%20in%20my%20store.%0A%0ABusiness%20Name%3A%20%0ALocation%20%2F%20Website%3A%20%0AProduct%20Categories%20of%20Interest%3A%20%0A%0AThank%20you!"
+             class="fire-gradient inline-flex items-center gap-3 px-8 py-4 rounded-main font-accent text-lg font-bold uppercase tracking-wide text-white shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5">
+            <i class="ph-fill ph-envelope-simple text-xl"></i>
+            <span>Get in touch about wholesale</span>
+          </a>
+        </div>
+
+        <!-- Right: Information Card -->
+        <div class="lg:col-span-5">
+          <div class="bg-bgSurface/95 backdrop-blur-md p-8 md:p-10 rounded-main shadow-2xl border border-brandTan/30 text-brandInk">
+            <div class="w-12 h-12 rounded-main bg-brandNavy/10 flex items-center justify-center mb-6">
+              <i class="ph ph-buildings text-2xl text-brandNavy"></i>
+            </div>
+            <h2 class="font-heading text-2xl font-bold mb-4 text-brandNavy">
+              How Wholesale Works With Us
+            </h2>
+            <p class="text-brandInk/80 leading-relaxed mb-6">
+              We connect luxury boutiques, independent department stores, and catalog retailers directly with established African manufacturers and designers.
+            </p>
+            <hr class="border-brandTan/20 my-6">
+            <div class="space-y-4 text-sm text-brandInk/85">
+              <div class="flex items-start gap-3">
+                <i class="ph ph-arrows-merge text-brandOrange text-lg mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <strong class="block text-brandInk font-semibold">Single Point of Contact</strong>
+                  No need to coordinate with dozens of artisans across different time zones.
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i class="ph ph-package text-brandOrange text-lg mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <strong class="block text-brandInk font-semibold">U.S. Warehousing</strong>
+                  Orders ship directly from our U.S. facility, reducing lead times and import logistics.
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-brandTan/20 text-center">
+              <p class="text-xs text-brandInk/60">
+                Prefer to write directly? Reach us at <a href="mailto:info@maisonblancheisafrican.com" class="text-brandOrange font-semibold hover:underline">info@maisonblancheisafrican.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<!-- Dynamic Component Loader -->
+<script>
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error("Component load error: " + response.status);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        // Re-execute any <script> tags inside the loaded fragment
+        const scripts = document.getElementById(id).querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+          Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+        console.log("[MBisAfrican] " + file + " loaded successfully into #" + id);
+      })
+      .catch(error => console.error("[MBisAfrican] Error loading " + file + " into #" + id + ":", error));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('header-placeholder', 'header.html');
+    loadComponent('footer-placeholder', 'footer.html');
+  });
+</script>
+
+</body>
+</html>

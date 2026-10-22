@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBisAfrican | The U.S. Market Is Open</title>
+<meta name="description" content="MBisAfrican helps established African businesses sell to U.S. customers, without the pain of multiple accounts, heavy paperwork, and guesswork.">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brandOrange: '#F0470A',
+          brandNavy: '#15247A',
+          brandNavyDark: '#0A1550',
+          brandGold: '#F8B400',
+          brandTan: '#C9A27A',
+          brandInk: '#1A1A1A',
+          bgCanvas: '#FBF7F1',
+          bgSurface: '#FFFFFF',
+          bgMuted: '#F1E9DD'
+        },
+        fontFamily: {
+          heading: ['Nunito Sans', 'sans-serif'],
+          body: ['Nunito Sans', 'sans-serif'],
+          accent: ['Barlow Condensed', 'sans-serif']
+        },
+        borderRadius: {
+          main: '10px'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  body {
+    background-color: #FBF7F1;
+    color: #1A1A1A;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  /* Fire gradient — signature animated accent, used sparingly */
+  .fire-gradient {
+    background: linear-gradient(135deg, #F0470A, #F8B400, #F0470A);
+    background-size: 200% 200%;
+    animation: fire-drift 10s ease infinite;
+  }
+
+  @keyframes fire-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hero grand reveal */
+  .hero-reveal {
+    opacity: 0;
+    transform: scale(1.03);
+    animation: hero-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-reveal-text {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-text-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.35s;
+  }
+
+  @keyframes hero-in {
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes hero-text-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scroll reveal for staggered list items */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal, .hero-reveal-text, .scroll-reveal {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .fire-gradient {
+      animation: none;
+    }
+  }
+
+  .routing-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .routing-card:hover {
+    transform: translateY(-4px);
+  }
+</style>
+</head>
+<body data-page="index">
+
+<div id="header-placeholder"></div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="relative overflow-hidden">
+    <div class="hero-reveal absolute inset-0">
+      <!-- PLACEHOLDER: replace with custom image. Original prompt: "A wide, cinematic photograph of a polished, high-end African design studio or atelier, bathed in warm late-afternoon light. A confident designer or artisan (could be a woman) stands reviewing a finished, beautifully made product (a woven textile, a leather good, or a crafted home object) laid on a dark wood or marble surface. The space feels curated and intentional, like a boutique showroom, not a production workshop: considered shelving, a few striking finished pieces visible but not cluttered, rich wood tones and brass or gold accents mixed with the brand's burnt orange and navy. Shot on a 35mm lens, shallow depth of field, editorial luxury-brand photography style, warm golden color grade. No visible text or logos." -->
+      <img src="artisan-studio.jpg"
+           alt="A polished African design studio with finished handcrafted goods displayed on a dark wood surface"
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0" style="background: linear-gradient(0deg, rgba(10,21,80,0.88) 0%, rgba(10,21,80,0.55) 35%, rgba(10,21,80,0.25) 60%, rgba(10,21,80,0.15) 100%);"></div>
+    </div>
+
+    <div class="relative max-w-[1280px] mx-auto px-6 pt-28 pb-24 md:pt-36 md:pb-32 min-h-[560px] flex items-end">
+      <div class="hero-reveal-text max-w-2xl">
+        <h1 class="font-heading text-[2.1rem] leading-[1.08] md:text-[3.4rem] font-extrabold text-white mb-5">
+          The U.S. market is open. We are how you get there.
+        </h1>
+        <p class="text-white/90 text-lg md:text-xl leading-relaxed max-w-xl mb-8">
+          MBisAfrican helps established African businesses sell to U.S. customers, without the pain of multiple accounts, heavy paperwork, and guesswork.
+        </p>
+        <div class="flex flex-wrap items-center gap-5">
+          <a href="for-vendors.html" class="fire-gradient inline-flex items-center gap-2 px-7 py-3.5 rounded-main font-accent text-lg font-bold uppercase tracking-wide text-white shadow-lg">
+            See how it works
+          </a>
+          <a href="shop.html" class="inline-flex items-center gap-2 text-white font-semibold border-b border-white/40 pb-0.5 hover:border-brandGold hover:text-brandGold transition-colors">
+            Shop African products
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2: NAMING THE PAIN ============ -->
+  <section class="bg-bgCanvas">
+    <div class="max-w-[1280px] mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14 items-center">
+      <div>
+        <h2 class="font-heading text-3xl md:text-[2.3rem] font-extrabold mb-6 leading-tight">
+          You already know how hard this is.
+        </h2>
+        <p class="text-lg leading-relaxed mb-5 text-brandInk/85">
+          You have likely sold a little in the U.S. before. Someone you know bought from you. A contact shared your page. But referrals move slowly, and you cannot build a real U.S. presence waiting for the next one.
+        </p>
+        <p class="text-lg leading-relaxed text-brandInk/85">
+          Meanwhile, the advice is always different. Open an account here. Get a certificate there. Find a warehouse. Figure out customs. Find a wholesaler. It feels like ten jobs, and you only have time to run one business.
+        </p>
+      </div>
+      <div>
+        <!-- PLACEHOLDER: replace with custom image. Original prompt: "A stylish, uncluttered desk shot from above, styled like an editorial flat-lay rather than a mess: a sleek laptop, a few neatly fanned documents, a single elegant pen, a cup of coffee, all arranged with intention on a rich dark wood or marble surface, warm directional light casting soft shadows. The feeling should be 'many things to manage' conveyed through composition and a slightly cooler color temperature, not through visible clutter or chaos. Tasteful, considered, high-end editorial still life photography. No visible brand logos or readable text." -->
+        <img src="desk.jpg"
+             alt="An organized desk flat-lay with a laptop, documents, and coffee"
+             class="w-full h-auto rounded-main object-cover shadow-md">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3: THE SHIFT + ROUTING CARDS ============ -->
+  <section class="bg-bgMuted">
+    <div class="max-w-[1280px] mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-2xl mb-14">
+        <h2 class="font-heading text-3xl md:text-[2.3rem] font-extrabold mb-6 leading-tight">
+          You do not need to become an export expert. You need one partner who already is.
+        </h2>
+        <p class="text-lg leading-relaxed text-brandInk/85">
+          MBisAfrican becomes your team in the United States. One relationship to manage. Everything else, we carry for you.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Card 1: Vendors -->
+        <div class="routing-card bg-bgSurface rounded-main p-8 shadow-sm flex flex-col">
+          <div class="w-14 h-14 rounded-main bg-brandNavy/10 flex items-center justify-center mb-6">
+            <i class="ph ph-storefront text-3xl text-brandNavy"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold mb-2">I sell products and want U.S. customers</h3>
+          <p class="text-brandInk/75 mb-6 flex-1">Get listed, get paid, get supported.</p>
+          <a href="for-vendors.html" class="font-semibold text-brandOrange hover:text-brandNavy transition-colors">
+            See how we work with vendors
+          </a>
+        </div>
+
+        <!-- Card 2: Customers -->
+        <div class="routing-card bg-bgSurface rounded-main p-8 shadow-sm flex flex-col">
+          <div class="w-14 h-14 rounded-main bg-brandOrange/10 flex items-center justify-center mb-6">
+            <i class="ph ph-shopping-bag-open text-3xl text-brandOrange"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold mb-2">I want to buy African products</h3>
+          <p class="text-brandInk/75 mb-6 flex-1">Beautiful African products, delivered to you.</p>
+          <a href="shop.html" class="font-semibold text-brandOrange hover:text-brandNavy transition-colors">
+            Shop now
+          </a>
+        </div>
+
+        <!-- Card 3: Wholesale -->
+        <div class="routing-card bg-bgSurface rounded-main p-8 shadow-sm flex flex-col">
+          <div class="w-14 h-14 rounded-main bg-brandGold/15 flex items-center justify-center mb-6">
+            <i class="ph ph-stack text-3xl text-brandGold"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold mb-2">I want to stock my store with African products</h3>
+          <p class="text-brandInk/75 mb-6 flex-1">Bulk orders, line sheets, wholesale terms.</p>
+          <a href="wholesale.html" class="font-semibold text-brandOrange hover:text-brandNavy transition-colors">
+            Talk to us about wholesale
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4: ROUGH IDEA OF WHAT WE DO ============ -->
+  <section class="relative bg-bgCanvas overflow-hidden">
+    <!-- PLACEHOLDER: replace with custom image. Original prompt: "A refined, softly blurred background texture built from a luxury African textile (an elegant kente-inspired or geometric woven pattern, generic rather than referencing one specific sacred or trademarked design), rendered in deep, rich tones using the brand's tan, burnt orange, and golden yellow, with subtle gold-thread-like highlights. Low contrast, low opacity, so it reads as a premium background texture rather than a focal image, and text stays easy to read when placed on top." -->
+    <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?q=80&w=1974&auto=format&fit=crop"
+         alt=""
+         aria-hidden="true"
+         class="absolute inset-0 w-full h-full object-cover opacity-10">
+
+    <div class="relative max-w-[1280px] mx-auto px-6 py-20 md:py-28">
+      <h2 class="font-heading text-3xl md:text-[2.3rem] font-extrabold mb-10 leading-tight max-w-2xl">
+        Here is what "we handle it" actually means.
+      </h2>
+
+      <ul class="space-y-5 max-w-2xl mb-10" id="wedo-list">
+        <li class="scroll-reveal flex items-start gap-4 text-lg leading-relaxed text-brandInk/90">
+          <i class="ph ph-check-circle text-2xl text-brandOrange flex-shrink-0 mt-0.5"></i>
+          <span>We get your products in front of U.S. shoppers, wholesalers, and retailers</span>
+        </li>
+        <li class="scroll-reveal flex items-start gap-4 text-lg leading-relaxed text-brandInk/90">
+          <i class="ph ph-check-circle text-2xl text-brandOrange flex-shrink-0 mt-0.5"></i>
+          <span>We guide you through the compliance the U.S. market requires</span>
+        </li>
+        <li class="scroll-reveal flex items-start gap-4 text-lg leading-relaxed text-brandInk/90">
+          <i class="ph ph-check-circle text-2xl text-brandOrange flex-shrink-0 mt-0.5"></i>
+          <span>We store and ship your products so orders go out fast</span>
+        </li>
+        <li class="scroll-reveal flex items-start gap-4 text-lg leading-relaxed text-brandInk/90">
+          <i class="ph ph-check-circle text-2xl text-brandOrange flex-shrink-0 mt-0.5"></i>
+          <span>We help your packaging feel as good as the product inside it</span>
+        </li>
+        <li class="scroll-reveal flex items-start gap-4 text-lg leading-relaxed text-brandInk/90">
+          <i class="ph ph-check-circle text-2xl text-brandOrange flex-shrink-0 mt-0.5"></i>
+          <span>We are the team that handles it, so you do not have to</span>
+        </li>
+      </ul>
+
+      <a href="for-vendors.html" class="inline-flex items-center gap-2 bg-brandNavy text-white font-accent text-lg font-bold uppercase tracking-wide px-7 py-3.5 rounded-main hover:bg-brandNavyDark transition-colors">
+        See the full picture
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  // Standard Dynamic Component Loader
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error("Component load error: " + response.status);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        // Re-execute any <script> tags inside the loaded fragment —
+        // innerHTML does not run them on its own.
+        const scripts = document.getElementById(id).querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+          Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+        console.log("[MBisAfrican] " + file + " loaded successfully into #" + id);
+      })
+      .catch(error => console.error("[MBisAfrican] Error loading " + file + " into #" + id + ":", error));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('header-placeholder', 'header.html');
+    loadComponent('footer-placeholder', 'footer.html');
+  });
+</script>
+
+<script>
+  // Scroll-reveal for the "what we do" list — staggered fade/rise
+  (function() {
+    const items = document.querySelectorAll('#wedo-list .scroll-reveal');
+    if (!items.length) {
+      console.warn("[MBisAfrican] Scroll-reveal: no list items found to observe.");
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(el => el.classList.add('is-visible'));
+      console.warn("[MBisAfrican] IntersectionObserver unsupported — scroll-reveal items shown immediately.");
+      return;
+    }
+
+    try {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('is-visible'), i * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      items.forEach(el => observer.observe(el));
+      console.log("[MBisAfrican] Scroll-reveal initialized for " + items.length + " items.");
+    } catch (error) {
+      console.error("[MBisAfrican] Scroll-reveal failed to initialize:", error);
+      items.forEach(el => el.classList.add('is-visible'));
+    }
+  })();
+
+  // Guard: confirm header/footer interactivity actually wired up after load.
+  // The header's own script (inside header.html) attaches the mobile-menu
+  // listeners; this just verifies those hooks exist once the fragment lands,
+  // and logs clearly if something in the header or footer is unreachable.
+  (function() {
+    function checkFragmentInteractivity(id, label, requiredIds) {
+      const container = document.getElementById(id);
+      if (!container || !container.children.length) {
+        console.error("[MBisAfrican] " + label + " interaction check failed: fragment did not load, nothing to wire up.");
+        return;
+      }
+      requiredIds.forEach(reqId => {
+        if (!document.getElementById(reqId)) {
+          console.error("[MBisAfrican] " + label + " interaction check failed: expected element #" + reqId + " not found.");
+        }
+      });
+    }
+
+    // Give the fetch-based loader time to inject markup before checking.
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        checkFragmentInteractivity('header-placeholder', 'Header', ['mba-menu-open', 'mba-menu-close', 'mba-mobile-drawer']);
+        checkFragmentInteractivity('footer-placeholder', 'Footer', ['mba-year']);
+      }, 500);
+    });
+
+    // Catch runtime errors thrown from inside the re-executed header/footer scripts.
+    window.addEventListener('error', (e) => {
+      if (e && e.message) {
+        console.error("[MBisAfrican] Runtime error (possibly from header/footer interaction):", e.message);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

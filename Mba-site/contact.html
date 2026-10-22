@@ -1,0 +1,183 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talk to us | MBisAfrican</title>
+<meta name="description" content="Have a question that does not fit anywhere else? Reach out to MBisAfrican and we will get back to you.">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brandOrange: '#F0470A',
+          brandNavy: '#15247A',
+          brandNavyDark: '#0A1550',
+          brandGold: '#F8B400',
+          brandTan: '#C9A27A',
+          brandInk: '#1A1A1A',
+          bgCanvas: '#FBF7F1',
+          bgSurface: '#FFFFFF',
+          bgMuted: '#F1E9DD'
+        },
+        fontFamily: {
+          heading: ['Nunito Sans', 'sans-serif'],
+          body: ['Nunito Sans', 'sans-serif'],
+          accent: ['Barlow Condensed', 'sans-serif']
+        },
+        borderRadius: {
+          main: '10px'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  body {
+    background-color: #FBF7F1;
+    color: #1A1A1A;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  /* Fire gradient — signature animated accent */
+  .fire-gradient {
+    background: linear-gradient(135deg, #F0470A, #F8B400, #F0470A);
+    background-size: 200% 200%;
+    animation: fire-drift 10s ease infinite;
+  }
+
+  @keyframes fire-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hero grand reveal */
+  .hero-reveal-text {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-text-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+  }
+
+  @keyframes hero-text-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal-text {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .fire-gradient {
+      animation: none;
+    }
+  }
+</style>
+</head>
+<body data-page="contact">
+
+<div id="header-placeholder"></div>
+
+<main>
+
+  <!-- ============ HERO & CONTACT SECTION ============ -->
+  <section class="relative bg-bgCanvas py-20 md:py-32 overflow-hidden min-h-[75vh] flex items-center">
+    
+    <!-- PLACEHOLDER: replace with custom image. Original prompt: "A soft, minimal background image of a refined desk with a notebook, an elegant pen, and a phone, warm natural lighting, uncluttered, calm and upscale, muted brand color accents only. No readable text, professional lifestyle photography style." -->
+    <div class="absolute inset-0 opacity-15 pointer-events-none">
+      <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=2000&auto=format&fit=crop"
+           alt="Refined workspace with notebook and pen"
+           class="w-full h-full object-cover">
+    </div>
+
+    <div class="relative max-w-[1280px] mx-auto px-6 w-full">
+      <div class="max-w-2xl mx-auto text-center hero-reveal-text">
+        
+        <h1 class="font-heading text-4xl md:text-6xl font-extrabold text-brandNavy mb-6 tracking-tight">
+          Talk to us.
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-brandInk/85 leading-relaxed mb-10">
+          Have a question that does not fit anywhere else? Reach out and we will get back to you.
+        </p>
+
+        <!-- Pre-filled Email Trigger Button -->
+        <div class="mb-12">
+          <a href="mailto:info@maisonblancheisafrican.com?subject=Inquiry%20from%20MBisAfrican%20Website&body=Hello%20MBisAfrican%20Team%2C%0A%0AI%20have%20a%20question%20regarding%3A%0A%0A" 
+             class="fire-gradient inline-flex items-center justify-center gap-3 px-9 py-4 rounded-main font-accent text-xl font-bold uppercase tracking-wide text-white shadow-lg transition-transform hover:-translate-y-0.5">
+            <i class="ph ph-envelope-simple text-2xl"></i>
+            <span>Send Us an Email</span>
+          </a>
+        </div>
+
+        <!-- Contact Detail Cards -->
+        <div class="grid md:grid-cols-2 gap-6 text-left max-w-xl mx-auto">
+          
+          <div class="bg-bgSurface p-6 rounded-main shadow-sm border border-brandTan/20">
+            <div class="w-10 h-10 rounded-main bg-brandNavy/10 flex items-center justify-center mb-4 text-brandNavy">
+              <i class="ph ph-envelope-simple text-2xl"></i>
+            </div>
+            <h2 class="font-heading font-bold text-lg text-brandNavy mb-1">Direct Email</h2>
+            <a href="mailto:info@maisonblancheisafrican.com" class="text-brandOrange hover:underline font-medium break-all">
+              info@maisonblancheisafrican.com
+            </a>
+          </div>
+
+          <div class="bg-bgSurface p-6 rounded-main shadow-sm border border-brandTan/20">
+            <div class="w-10 h-10 rounded-main bg-brandNavy/10 flex items-center justify-center mb-4 text-brandNavy">
+              <i class="ph ph-map-pin text-2xl"></i>
+            </div>
+            <h2 class="font-heading font-bold text-lg text-brandNavy mb-1">Location</h2>
+            <p class="text-brandInk/80 font-medium">
+              Merritt Drive, Lawrence Township, NJ 08648-3140
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  // Standard Dynamic Component Loader
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error("Component load error: " + response.status);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        // Re-execute any <script> tags inside the loaded fragment —
+        // innerHTML does not run them on its own.
+        const scripts = document.getElementById(id).querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+          Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+        console.log("[MBisAfrican] " + file + " loaded successfully into #" + id);
+      })
+      .catch(error => console.error("[MBisAfrican] Error loading " + file + " into #" + id + ":", error));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('header-placeholder', 'header.html');
+    loadComponent('footer-placeholder', 'footer.html');
+  });
+</script>
+
+</body>
+</html>

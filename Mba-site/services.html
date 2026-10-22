@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | MBisAfrican</title>
+<meta name="description" content="Detailed breakdown of MBisAfrican's services for African vendors: multi-channel listing, compliance, wholesale tools, warehousing, fulfillment, packaging consultation, and export advisory.">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brandOrange: '#F0470A',
+          brandNavy: '#15247A',
+          brandNavyDark: '#0A1550',
+          brandGold: '#F8B400',
+          brandTan: '#C9A27A',
+          brandInk: '#1A1A1A',
+          bgCanvas: '#FBF7F1',
+          bgSurface: '#FFFFFF',
+          bgMuted: '#F1E9DD'
+        },
+        fontFamily: {
+          heading: ['Nunito Sans', 'sans-serif'],
+          body: ['Nunito Sans', 'sans-serif'],
+          accent: ['Barlow Condensed', 'sans-serif']
+        },
+        borderRadius: {
+          main: '10px'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  body {
+    background-color: #FBF7F1;
+    color: #1A1A1A;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  /* Fire gradient — signature animated accent */
+  .fire-gradient {
+    background: linear-gradient(135deg, #F0470A, #F8B400, #F0470A);
+    background-size: 200% 200%;
+    animation: fire-drift 10s ease infinite;
+  }
+
+  @keyframes fire-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Reveal animations */
+  .hero-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes hero-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* FAQ Accordion Styling */
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    opacity: 0;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  .faq-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .service-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(21, 36, 122, 0.06);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal, .faq-answer, .faq-icon, .fire-gradient {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .faq-answer {
+      max-height: none !important;
+    }
+  }
+</style>
+</head>
+<body data-page="services">
+
+<div id="header-placeholder"></div>
+
+<main>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="bg-bgMuted border-b border-brandTan/20">
+    <div class="max-w-[1280px] mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+      <div class="grid md:grid-cols-12 gap-10 items-center">
+        <div class="md:col-span-7 hero-reveal">
+          <span class="font-accent text-brandOrange font-bold uppercase tracking-wider text-sm md:text-base mb-3 block">
+            Comprehensive Operational Support
+          </span>
+          <h1 class="font-heading text-3xl md:text-5xl font-extrabold text-brandNavy mb-6 leading-tight">
+            Everything we do for vendors, in detail.
+          </h1>
+          <p class="text-lg md:text-xl text-brandInk/85 leading-relaxed max-w-2xl">
+            Not every vendor needs every service. This is the full range of what we offer, so you can see exactly what applies to you, and act on any of it directly.
+          </p>
+        </div>
+
+        <div class="md:col-span-5 hero-reveal" style="animation-delay: 0.2s;">
+          <!-- PLACEHOLDER: replace with custom image. Original prompt: "A wide, elegant overhead flat-lay showing a curated arrangement of symbolic objects: a beautifully wrapped gift box, a swatch of fine fabric, an elegant shipping label, a small finished product, all arranged with the care of a luxury editorial spread rather than a utilitarian list. Rich tan and warm wood surface, soft natural top-down light, brand colors present as accents (a ribbon in burnt orange, a card in golden yellow). Professional luxury product photography style. No readable text on any prop." -->
+          <img src="packaging.jpg" 
+               alt="A curated luxury flat-lay of handcrafted textiles and packaged gifts" 
+               class="w-full h-auto rounded-main object-cover shadow-md">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ SERVICES CATEGORIES ============ -->
+  <section class="py-16 md:py-24 bg-bgCanvas">
+    <div class="max-w-[1280px] mx-auto px-6 space-y-20">
+
+      <!-- Category 1: Getting Seen -->
+      <div>
+        <div class="flex items-center gap-3 mb-8 pb-3 border-b border-brandTan/30">
+          <div class="w-10 h-10 rounded-main bg-brandNavy text-white flex items-center justify-center font-bold text-xl">
+            <i class="ph ph-storefront"></i>
+          </div>
+          <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-brandNavy">
+            Getting Seen
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Multi-channel listing</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                We list your products across multiple marketplaces, including our own platform, our Etsy store, and our social media shops, so you are not managing separate accounts yourself.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Exhibition opportunities</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                We let you know about U.S. exhibitions and trade events, including major industry shows, where your products can get in front of more buyers.
+              </p>
+            </div>
+            <div>
+              <a href="contact.html" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Ask us about upcoming exhibitions</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Category 2: Getting Compliant -->
+      <div>
+        <div class="flex items-center gap-3 mb-8 pb-3 border-b border-brandTan/30">
+          <div class="w-10 h-10 rounded-main bg-brandOrange text-white flex items-center justify-center font-bold text-xl">
+            <i class="ph ph-shield-check"></i>
+          </div>
+          <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-brandNavy">
+            Getting Compliant
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Certification guidance</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                We help you understand which certifications your product needs to legally sell in the U.S., which may include things like DUNS registration, FDA requirements, or FTC compliance, depending on your product.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Compliance support</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                Either we help you get the certification directly, or we guide you step by step through the process, so you are never left guessing what to do next.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Category 3: Getting Stocked -->
+      <div>
+        <div class="flex items-center gap-3 mb-8 pb-3 border-b border-brandTan/30">
+          <div class="w-10 h-10 rounded-main bg-brandGold text-brandInk flex items-center justify-center font-bold text-xl">
+            <i class="ph ph-stack"></i>
+          </div>
+          <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-brandNavy">
+            Getting Stocked (Wholesale & Retail)
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Wholesale and bulk tools</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                We equip you to handle bulk orders from retailers and wholesalers, not just individual customers, including tools like line sheets.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Physical retail placement</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                We work to get your products placed inside physical U.S. stores, so customers can see and buy your product in person, not only online.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Category 4: Getting Stored and Shipped -->
+      <div>
+        <div class="flex items-center gap-3 mb-8 pb-3 border-b border-brandTan/30">
+          <div class="w-10 h-10 rounded-main bg-brandNavy text-white flex items-center justify-center font-bold text-xl">
+            <i class="ph ph-package"></i>
+          </div>
+          <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-brandNavy">
+            Getting Stored and Shipped
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">U.S. warehousing</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                If you prefer to keep stock closer to your customers, we store your products in the U.S.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Fulfilled by MBisAfrican</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                When an order comes in, we handle storage and delivery so your products reach customers quickly.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Self-managed dropshipping</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                If you prefer to handle packaging and delivery yourself, you can still sell through us this way. You cover shipping the same way you would for any order; we simply are not involved in that part of the process.
+              </p>
+            </div>
+            <div>
+              <a href="contact.html" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Ask us about this option</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Category 5: Packaging (Core Service) -->
+      <div class="bg-bgMuted p-8 md:p-12 rounded-main border border-brandTan/40">
+        <div class="max-w-3xl mb-10">
+          <div class="inline-block bg-brandOrange/10 text-brandOrange font-accent text-xs md:text-sm font-bold uppercase tracking-widest px-3 py-1 rounded-md mb-3">
+            Core Service Highlight
+          </div>
+          <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-brandNavy mb-4">
+            Packaging
+          </h2>
+          <p class="text-brandInk/85 text-base md:text-lg leading-relaxed">
+            Packaging is not an afterthought here. It is one of the services MBisAfrican was built around. Your product should arrive safely, and it should arrive beautifully, because packaging shapes whether someone wants to buy again the moment they open the box.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Sub-Service -->
+          <div class="bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Packaging consultation</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                We review and advise on your packaging, so it protects your product and makes people want to buy the moment they see it.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Sub-Service -->
+          <div class="bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Experience-focused packaging</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                For vendors who want it, we can help design packaging and gifting experiences that engage more than one sense, the way a well-made gift should feel.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Category 6: Getting Online -->
+      <div>
+        <div class="flex items-center gap-3 mb-8 pb-3 border-b border-brandTan/30">
+          <div class="w-10 h-10 rounded-main bg-brandNavy text-white flex items-center justify-center font-bold text-xl">
+            <i class="ph ph-globe"></i>
+          </div>
+          <h2 class="font-heading text-2xl md:text-3xl font-extrabold text-brandNavy">
+            Getting Online
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Website design</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                If you do not yet have a website, we can build one for you.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service Item -->
+          <div class="service-card bg-bgSurface p-8 rounded-main border border-brandTan/20 flex flex-col justify-between">
+            <div>
+              <h3 class="font-heading text-xl font-bold text-brandInk mb-3">Export consultancy</h3>
+              <p class="text-brandInk/80 text-base leading-relaxed mb-6">
+                General guidance on exporting your products to the U.S. market.
+              </p>
+            </div>
+            <div>
+              <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-accent text-base font-bold uppercase tracking-wider text-brandOrange hover:text-brandNavy transition-colors">
+                <span>Request this service</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============ BILLING STRUCTURE BANNER ============ -->
+  <section class="bg-brandNavy text-white py-14">
+    <div class="max-w-[1280px] mx-auto px-6 text-center md:flex md:items-center md:justify-between md:text-left gap-8">
+      <div class="max-w-2xl mb-8 md:mb-0">
+        <h3 class="font-heading text-2xl md:text-3xl font-bold mb-3">
+          How billing works
+        </h3>
+        <p class="text-white/80 text-lg leading-relaxed">
+          We work on a quarterly basis. You are billed every three months for the services you use.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center md:justify-end">
+        <a href="https://maisonblancheisafrican.com/vendor-pricing" class="fire-gradient inline-flex items-center gap-2 px-6 py-3.5 rounded-main font-accent text-base font-bold uppercase tracking-wide text-white">
+          See what this might cost you
+        </a>
+        <a href="https://tally.so/r/mZDYyP" target="_blank" rel="noopener" class="inline-flex items-center gap-2 border border-white/40 hover:border-white px-6 py-3.5 rounded-main font-accent text-base font-bold uppercase tracking-wide text-white transition-colors">
+          Apply to work with us
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ FAQ SECTION ============ -->
+  <section class="py-20 md:py-28 bg-bgMuted">
+    <div class="max-w-[960px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="font-accent text-brandOrange font-bold uppercase tracking-wider text-sm mb-2 block">
+          Clarity Before We Talk
+        </span>
+        <h2 class="font-heading text-3xl md:text-4xl font-extrabold text-brandNavy mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-brandInk/75 text-lg">
+          Clear answers to common questions about working with MBisAfrican.
+        </p>
+      </div>
+
+      <div class="space-y-4" id="faq-accordion">
+
+        <!-- Question 1 -->
+        <div class="faq-item bg-bgSurface rounded-main border border-brandTan/30 overflow-hidden">
+          <button class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none" aria-expanded="false">
+            <span class="font-heading text-lg font-bold text-brandNavy">
+              Will you buy my stock upfront?
+            </span>
+            <i class="ph ph-caret-down text-xl text-brandOrange faq-icon flex-shrink-0"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-brandInk/80 leading-relaxed">
+              No. We do not purchase your inventory from you directly. We get your products listed, seen, and sold across U.S. marketplaces and retail channels, and when an order comes in, we help you fulfill it. Think of us as the team that gets your products in front of U.S. buyers and handles the operations around that sale, not a wholesaler buying your stock in bulk.
+            </p>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="faq-item bg-bgSurface rounded-main border border-brandTan/30 overflow-hidden">
+          <button class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none" aria-expanded="false">
+            <span class="font-heading text-lg font-bold text-brandNavy">
+              If I work with you, does that mean I do not need FDA or other compliance certifications anymore?
+            </span>
+            <i class="ph ph-caret-down text-xl text-brandOrange faq-icon flex-shrink-0"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-brandInk/80 leading-relaxed">
+              No, and we want to be upfront about this. If your product requires a certification to legally sell in the U.S., that requirement does not go away because you are working with us. What we offer is guidance through that process, help understanding exactly which certifications your product needs, and either direct help getting them or clear step-by-step support, so you are not figuring it out alone or guessing which ones actually apply to you.
+            </p>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="faq-item bg-bgSurface rounded-main border border-brandTan/30 overflow-hidden">
+          <button class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none" aria-expanded="false">
+            <span class="font-heading text-lg font-bold text-brandNavy">
+              Why does this cost more than other platforms that say they can list my products for less?
+            </span>
+            <i class="ph ph-caret-down text-xl text-brandOrange faq-icon flex-shrink-0"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-brandInk/80 leading-relaxed">
+              Other platforms are often one piece of what we offer: listing. We include multi-channel listing, but we also handle compliance guidance, wholesale and bulk order tools, physical retail placement, U.S. warehousing and fulfillment, and packaging consultation. The price reflects a full U.S. operations team, not a single listing tool. Which services you need, and what that costs, depends on your business, which is why we encourage you to check the pricing estimate before your call.
+            </p>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="faq-item bg-bgSurface rounded-main border border-brandTan/30 overflow-hidden">
+          <button class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none" aria-expanded="false">
+            <span class="font-heading text-lg font-bold text-brandNavy">
+              Is this a monthly subscription?
+            </span>
+            <i class="ph ph-caret-down text-xl text-brandOrange faq-icon flex-shrink-0"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-brandInk/80 leading-relaxed">
+              No. We bill quarterly, every three months, for the services you use.
+            </p>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="faq-item bg-bgSurface rounded-main border border-brandTan/30 overflow-hidden">
+          <button class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none" aria-expanded="false">
+            <span class="font-heading text-lg font-bold text-brandNavy">
+              Do I have to use every service you offer?
+            </span>
+            <i class="ph ph-caret-down text-xl text-brandOrange faq-icon flex-shrink-0"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-brandInk/80 leading-relaxed">
+              No. What you need depends on where your business is right now. Some vendors use most of what we offer. Others only need one or two pieces, like compliance guidance or warehousing. We work with what is actually useful to you, not a fixed, all-or-nothing package.
+            </p>
+          </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="faq-item bg-bgSurface rounded-main border border-brandTan/30 overflow-hidden">
+          <button class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none" aria-expanded="false">
+            <span class="font-heading text-lg font-bold text-brandNavy">
+              If I choose to handle shipping myself instead of using your warehousing, do you still charge me for that?
+            </span>
+            <i class="ph ph-caret-down text-xl text-brandOrange faq-icon flex-shrink-0"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-brandInk/80 leading-relaxed">
+              If you choose to manage your own packaging and delivery for an order, we are not involved in that part of the process, so there is no charge from us for it. You would still cover shipping the same way you normally would for any order; the only difference is that we are not the ones handling it.
+            </p>
+          </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="faq-item bg-bgSurface rounded-main border border-brandTan/30 overflow-hidden">
+          <button class="w-full text-left p-6 flex justify-between items-center gap-4 focus:outline-none" aria-expanded="false">
+            <span class="font-heading text-lg font-bold text-brandNavy">
+              I already have some U.S. customers through referrals. Why do I need this?
+            </span>
+            <i class="ph ph-caret-down text-xl text-brandOrange faq-icon flex-shrink-0"></i>
+          </button>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-brandInk/80 leading-relaxed">
+              Referrals are a great sign that your product works in the U.S. market. But referrals are slow, and they are not something you can scale on purpose. What we offer is a way to build a real, repeatable U.S. presence, instead of waiting for the next person to mention you to someone they know.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<!-- Loader Script -->
+<script>
+  function loadComponent(id, file) {
+    fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error("Component load error: " + response.status);
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById(id).innerHTML = data;
+        const scripts = document.getElementById(id).querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+          Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+      })
+      .catch(error => console.error("[MBisAfrican] Error loading " + file + " into #" + id + ":", error));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('header-placeholder', 'header.html');
+    loadComponent('footer-placeholder', 'footer.html');
+  });
+</script>
+
+<!-- FAQ Accordion Interactive Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqContainer = document.getElementById('faq-accordion');
+    if (!faqContainer) return;
+
+    const faqItems = faqContainer.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const button = item.querySelector('button');
+      button.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('button').setAttribute('aria-expanded', 'false');
+        });
+
+        // Toggle clicked item
+        if (!isActive) {
+          item.classList.add('active');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
