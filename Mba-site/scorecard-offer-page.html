@@ -1,0 +1,584 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Global Market Readiness Scorecard | MBisAfrican</title>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=true;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1028094412913865');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1028094412913865&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mbaOrange: '#F0470A',
+                        mbaNavy: '#15247A',
+                        mbaGold: '#F8B400',
+                        mbaTan: '#C9A27A',
+                        mbaInk: '#1A1A1A',
+                        bgCanvas: '#FBF7F1',
+                        bgSurface: '#FFFFFF',
+                        bgMuted: '#F1E9DD'
+                    },
+                    fontFamily: {
+                        display: ['"Nunito Sans"', 'sans-serif'],
+                        body: ['"Nunito Sans"', 'sans-serif'],
+                        accent: ['"Barlow Condensed"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Nunito Sans & Barlow Condensed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..900;1,6..12,300..900&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@latest/src/regular/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@latest/src/fill/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@latest/src/bold/style.css">
+
+    <style>
+        body {
+            background-color: #FBF7F1;
+            color: #1A1A1A;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 800;
+        }
+        .font-accent {
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+        /* Fire Gradient Animation */
+        @keyframes fireDrift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .fire-gradient {
+            background: linear-gradient(135deg, #F0470A, #F8B400, #F0470A);
+            background-size: 200% 200%;
+            animation: fireDrift 10s ease infinite;
+        }
+        .navy-gradient {
+            background: linear-gradient(135deg, #15247A 0%, #0A1550 100%);
+        }
+    </style>
+</head>
+<body class="bg-bgCanvas text-mbaInk antialiased selection:bg-mbaOrange selection:text-white">
+
+    <!-- Standalone Minimal Brand Bar -->
+    <header class="py-6 px-6 max-w-5xl mx-auto flex justify-between items-center border-b border-mbaTan/20">
+        <a href="https://maisonblancheisafrican.com" class="font-display font-extrabold text-xl tracking-tight text-mbaNavy">
+            MBisAfrican
+        </a>
+        <a href="https://maisonblancheisafrican.com" onclick="fbq('track', 'InitiateCheckout');" class="text-sm font-accent font-semibold tracking-wider uppercase text-mbaOrange hover:underline">
+            Get Score — $29.99
+        </a>
+    </header>
+
+    <main>
+        <!-- 01 & 02. Hero Section -->
+        <section class="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden border-b border-mbaTan/20">
+            <div class="absolute inset-0 opacity-5 pointer-events-none">
+                <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-mbaOrange blur-3xl"></div>
+                <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-mbaNavy blur-3xl"></div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-6 relative z-10">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bgMuted border border-mbaTan/30 text-mbaNavy text-sm font-accent font-semibold uppercase tracking-wider mb-6">
+                    <i class="ph-fill ph-shield-check text-mbaOrange text-base"></i> MBisAfrican Export Intelligence
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-mbaNavy leading-[1.1] mb-6">
+                    Find Out If Your Brand Is Actually Ready for US Buyers <span class="text-mbaOrange">— Before a Distributor, a Customs Agent, or a Retail Buyer Finds Out For You</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-mbaInk/80 font-normal leading-relaxed max-w-3xl mb-10">
+                    The Global Market Readiness Scorecard scores your brand across all <strong class="text-mbaNavy font-bold">12 pillars</strong> US importers check before they say yes — compliance, packaging, pricing, logistics, and more — in under 8 minutes, for <span class="text-mbaOrange font-bold">$29.99</span>.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+                    <a href="https://maisonblancheisafrican.com" onclick="fbq('track', 'InitiateCheckout');" class="fire-gradient text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-3">
+                        <i class="ph-bold ph-rocket-launch text-xl"></i> Get My Readiness Score — $29.99
+                    </a>
+                </div>
+
+                <p class="text-sm text-mbaInk/60 font-accent tracking-wide flex items-center gap-2">
+                    <i class="ph ph-clock text-mbaOrange text-base"></i> Takes under 8 minutes. Answer honestly, get your personalized report instantly.
+                </p>
+            </div>
+        </section>
+
+        <!-- 03. Problem Section -->
+        <section class="py-20 bg-bgMuted/50 border-b border-mbaTan/20">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-8">
+                    You've built something real.
+                </h2>
+                <div class="space-y-6 text-lg text-mbaInk/85 leading-relaxed font-normal">
+                    <p>
+                        The product works. People who've tried it love it. You've got a story worth telling, maybe even a waitlist, a few loyal customers, a page full of "when is this coming to the US?" comments.
+                    </p>
+                    <p>
+                        So you start looking at exporting. And that's where it gets foggy.
+                    </p>
+                    <p>
+                        Somebody tells you that you need an HS code. Somebody else mentions HACCP. A friend who "exported once" says wholesale margins are nothing like retail margins, and you realize you've never actually calculated your landed cost. You open a forum thread about FDA facility registration and close it twelve minutes later more confused than when you opened it.
+                    </p>
+                    <p class="font-semibold text-mbaNavy bg-white p-6 rounded-2xl border border-mbaTan/30 shadow-sm">
+                        Here's the part nobody says out loud: most African brands don't fail to break into the US market because the product isn't good enough. They fail because somewhere in the chain, a label that isn't formatted right, a certification that was never started, a price that doesn't leave room for a distributor's cut, there was a gap nobody flagged until it was too late to fix quietly.
+                    </p>
+                    <p>
+                        You don't have a product problem. You might have a readiness problem. And right now, you have no way to know which pillars are solid and which ones are quietly waiting to end a deal.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Stakes Section -->
+        <section class="py-20 bg-bgCanvas">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-8">
+                    Here's what staying in the fog actually costs you.
+                </h2>
+                <div class="grid gap-6 md:grid-cols-2">
+                    <div class="bg-white p-6 rounded-2xl border border-mbaTan/20 shadow-sm flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-mbaOrange/10 text-mbaOrange flex items-center justify-center font-bold text-lg shrink-0">
+                                <i class="ph ph-x-circle text-xl"></i>
+                            </div>
+                            <p class="text-mbaInk/80 leading-relaxed">
+                                It costs you the buyer meeting that goes well right up until they ask for your compliance documentation, and you don't have it ready, so the conversation ends there, politely, and never restarts.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-mbaTan/20 shadow-sm flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-mbaOrange/10 text-mbaOrange flex items-center justify-center font-bold text-lg shrink-0">
+                                <i class="ph ph-package text-xl"></i>
+                            </div>
+                            <p class="text-mbaInk/80 leading-relaxed">
+                                It costs you a shipment that gets held at customs because your HS code was never confirmed, while your product sits in a warehouse accruing fees instead of hitting shelves.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-mbaTan/20 shadow-sm flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-mbaOrange/10 text-mbaOrange flex items-center justify-center font-bold text-lg shrink-0">
+                                <i class="ph ph-currency-dollar text-xl"></i>
+                            </div>
+                            <p class="text-mbaInk/80 leading-relaxed">
+                                It costs you a wholesale deal where you quoted a price built on domestic margins, only to realize after the contract that a 40 to 50% distributor discount means you're now losing money on every unit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-mbaTan/20 shadow-sm flex flex-col justify-between">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-mbaOrange/10 text-mbaOrange flex items-center justify-center font-bold text-lg shrink-0">
+                                <i class="ph ph-timer text-xl"></i>
+                            </div>
+                            <p class="text-mbaInk/80 leading-relaxed">
+                                It costs you months, sometimes a year, because you find out about a missing certification or an unformatted ingredient panel after you've already pitched, already gotten someone excited, already built momentum you now have to rebuild from scratch.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 p-6 bg-mbaNavy text-white rounded-2xl shadow-lg">
+                    <p class="text-lg font-medium leading-relaxed">
+                        None of these are stories about bad products. They're stories about brands that walked into the room strong and left because of a gap they didn't know existed. That's the real cost of staying in the fog: not that you fail, but that you fail in a way that was completely avoidable.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. Solution & Mechanism -->
+        <section class="py-20 bg-bgMuted/50 border-t border-b border-mbaTan/20">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mbaNavy/10 text-mbaNavy text-sm font-accent font-semibold uppercase tracking-wider mb-4">
+                    The Mechanism
+                </div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-12">
+                    The Global Market Readiness Scorecard tells you exactly where you stand, before a buyer, a distributor, or customs does it for you.
+                </h2>
+
+                <div class="space-y-8">
+                    <div class="bg-white p-8 rounded-2xl border border-mbaTan/30 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-mbaOrange"></div>
+                        <span class="text-xs font-accent font-bold uppercase tracking-widest text-mbaOrange mb-2 block">Step 1</span>
+                        <h3 class="text-xl font-bold text-mbaNavy mb-3">Answer 41 questions across the 12 pillars that actually determine export readiness.</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">
+                            Packaging. Compliance. Brand Positioning. Pricing. Production Capacity. Documentation. Logistics. Fulfillment. Digital Presence. Wholesale Readiness. Retail Readiness. Financial Readiness. These aren't generic business questions, they're the specific checkpoints US buyers, distributors, and customs actually use to decide whether your brand is a safe bet.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl border border-mbaTan/30 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-mbaGold"></div>
+                        <span class="text-xs font-accent font-bold uppercase tracking-widest text-mbaGold mb-2 block">Step 2</span>
+                        <h3 class="text-xl font-bold text-mbaNavy mb-3">Get your Global Readiness Score out of 100, instantly.</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">
+                            Your score comes with a plain-language band (from "Early Stage" to "Market Ready") and a breakdown across every one of the 12 pillars, so you can see at a glance where you're strong and where you're exposed.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl border border-mbaTan/30 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-mbaNavy"></div>
+                        <span class="text-xs font-accent font-bold uppercase tracking-widest text-mbaNavy mb-2 block">Step 3</span>
+                        <h3 class="text-xl font-bold text-mbaNavy mb-3">Get your Red Flags and your Top 5 Action Priorities.</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">
+                            This is the part that actually changes what you do on Monday morning. The Scorecard identifies specific red flags, the exact gaps that stall deals, trigger customs holds, or make buyers walk, and ranks your Top 5 Action Priorities by severity, so you know precisely what to fix first and why it matters most.
+                        </p>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-center text-mbaInk/70 font-accent text-lg">
+                    No vague advice. No "you should probably look into compliance at some point." A real, specific, ranked roadmap built from your actual answers.
+                </p>
+            </div>
+        </section>
+
+        <!-- 06. What's Included -->
+        <section class="py-20 bg-bgCanvas">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-8">
+                    When you complete your Scorecard, here's exactly what you walk away with:
+                </h2>
+                
+                <div class="bg-white rounded-3xl p-8 sm:p-10 border border-mbaTan/30 shadow-sm space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-mbaOrange/15 text-mbaOrange flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-bold ph-check text-sm"></i>
+                        </div>
+                        <p class="text-mbaInk/85 text-lg">
+                            <strong class="text-mbaNavy font-bold">Your Global Readiness Score (out of 100)</strong> with a clear readiness band, so you know in one number where your brand stands today.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-mbaOrange/15 text-mbaOrange flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-bold ph-check text-sm"></i>
+                        </div>
+                        <p class="text-mbaInk/85 text-lg">
+                            <strong class="text-mbaNavy font-bold">A full breakdown across all 12 readiness pillars</strong>, Packaging, Compliance, Brand Positioning, Pricing, Production Capacity, Documentation, Logistics, Fulfillment, Digital Presence, Wholesale Readiness, Retail Readiness, and Financial Readiness.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-mbaOrange/15 text-mbaOrange flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-bold ph-check text-sm"></i>
+                        </div>
+                        <p class="text-mbaInk/85 text-lg">
+                            <strong class="text-mbaNavy font-bold">Your personalized Red Flags report</strong>, the specific answers that signal risk to customs, buyers, or distributors, named plainly so nothing is left to guess at.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-mbaOrange/15 text-mbaOrange flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-bold ph-check text-sm"></i>
+                        </div>
+                        <p class="text-mbaInk/85 text-lg">
+                            <strong class="text-mbaNavy font-bold">Your Top 5 Action Priorities</strong>, ranked strictly by business impact, so you spend your next 90 days fixing what actually moves the needle, not busywork.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-mbaOrange/15 text-mbaOrange flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-bold ph-check text-sm"></i>
+                        </div>
+                        <p class="text-mbaInk/85 text-lg">
+                            <strong class="text-mbaNavy font-bold">A Recommended Next Steps summary</strong> tailored to your results.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-mbaOrange/15 text-mbaOrange flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-bold ph-check text-sm"></i>
+                        </div>
+                        <p class="text-mbaInk/85 text-lg">
+                            <strong class="text-mbaNavy font-bold">Instant delivery</strong>, your full report generates the moment you finish, no waiting, no "check your email in 48 hours".
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-mbaOrange/15 text-mbaOrange flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-bold ph-check text-sm"></i>
+                        </div>
+                        <p class="text-mbaInk/85 text-lg">
+                            <strong class="text-mbaNavy font-bold">A saved, printable report</strong> you can export to PDF, share with a cofounder, or bring into a buyer conversation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center font-accent text-lg text-mbaNavy">
+                    Total time investment: <strong class="text-mbaOrange">under 8 minutes</strong>. Total cost: <strong class="text-mbaOrange">$29.99</strong>.
+                </div>
+            </div>
+        </section>
+
+        <!-- 07. Proof Section -->
+        <section class="py-20 bg-bgMuted/50 border-t border-b border-mbaTan/20">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-8">
+                    Built from real-world experience, not theory.
+                </h2>
+                <p class="text-lg text-mbaInk/80 mb-10 leading-relaxed">
+                    The 12 pillars in this Scorecard aren't theoretical. They're pulled directly from what MBisAfrican has seen, firsthand, sitting across the table from African brands trying to enter the US market: the certifications buyers actually ask for, the packaging standards that actually get products rejected at the port, the pricing mistakes that actually turn a "yes" into a brand quietly losing money on every order.
+                </p>
+                <p class="text-lg text-mbaInk/80 mb-12 leading-relaxed">
+                    This is the same lens MBisAfrican uses when vetting brands for its own portfolio of export-ready African suppliers. The Scorecard simply puts that lens directly in your hands, before you need it to matter.
+                </p>
+            </div>
+        </section>
+
+        <!-- 08. Who This Is For, and Who It Isn't -->
+        <section class="py-20 bg-bgCanvas">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-12 text-center">
+                    Is this right for your brand right now?
+                </h2>
+
+                <div class="grid gap-8 md:grid-cols-2">
+                    <!-- For You -->
+                    <div class="bg-white p-8 rounded-3xl border border-mbaTan/30 shadow-sm">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-mbaNavy text-white flex items-center justify-center font-bold">
+                                <i class="ph-bold ph-check text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-mbaNavy">This is for you if:</h3>
+                        </div>
+                        <ul class="space-y-4 text-mbaInk/80">
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-dot text-mbaOrange text-xl shrink-0 mt-0.5"></i>
+                                <span>You're an African brand with a finished product, not raw materials, and you're seriously considering the US market, not just daydreaming about it</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-dot text-mbaOrange text-xl shrink-0 mt-0.5"></i>
+                                <span>You've started thinking about exporting but you're not sure what you actually know versus what you're assuming</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-dot text-mbaOrange text-xl shrink-0 mt-0.5"></i>
+                                <span>You want a clear, honest number before you invest time, money, or a pitch meeting into a push for the US market</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-dot text-mbaOrange text-xl shrink-0 mt-0.5"></i>
+                                <span>You'd rather find out about a gap today, in private, for $29.99, than find out about it in front of a buyer</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-dot text-mbaOrange text-xl shrink-0 mt-0.5"></i>
+                                <span>You're done with vague advice and ready for a specific, ranked list of what to fix</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Not For You -->
+                    <div class="bg-bgMuted/60 p-8 rounded-3xl border border-mbaTan/30">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-mbaInk/15 text-mbaInk flex items-center justify-center font-bold">
+                                <i class="ph-bold ph-x text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-mbaNavy">This isn't for you if:</h3>
+                        </div>
+                        <ul class="space-y-4 text-mbaInk/80">
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-dot text-mbaInk/50 text-xl shrink-0 mt-0.5"></i>
+                                <span>You deal exclusively in raw materials or unprocessed goods, this Scorecard is built around finished consumer products</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-dot text-mbaInk/50 text-xl shrink-0 mt-0.5"></i>
+                                <span>You're not planning to export to the US specifically and want a generic international-readiness check</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-dot text-mbaInk/50 text-xl shrink-0 mt-0.5"></i>
+                                <span>You're looking for someone to do the work for you right now, rather than a clear diagnostic of where you stand, though your results will point you toward exactly that kind of support if you need it</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-center text-mbaInk/70 italic text-sm">
+                    If that second list sounds like you, that's fine. This simply isn't the right tool for where you are, and we'd rather tell you now than take your $29.99 for something that won't serve you.
+                </p>
+            </div>
+        </section>
+
+        <!-- 09. Bonuses & The Stack -->
+        <section class="py-20 bg-bgMuted/50 border-t border-b border-mbaTan/20">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-6 text-center">
+                    Here's everything you get when you complete your Scorecard
+                </h2>
+                <p class="text-center text-mbaInk/80 mb-12">
+                    This isn't a trimmed-down teaser version of a bigger product. It's the complete diagnostic, delivered in full, the moment you finish answering.
+                </p>
+
+                <div class="bg-white rounded-3xl border border-mbaTan/30 overflow-hidden shadow-sm">
+                    <div class="p-6 sm:p-8 space-y-4">
+                        <div class="flex justify-between items-center py-3 border-b border-mbaTan/20">
+                            <span class="text-mbaInk font-medium">Full 41-question assessment across 12 readiness pillars</span>
+                            <span class="font-accent text-mbaNavy font-bold">$75</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-mbaTan/20">
+                            <span class="text-mbaInk font-medium">Global Readiness Score + pillar-by-pillar breakdown</span>
+                            <span class="font-accent text-mbaNavy font-bold">$45</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-mbaTan/20">
+                            <span class="text-mbaInk font-medium">Personalized Red Flags report</span>
+                            <span class="font-accent text-mbaNavy font-bold">$60</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-mbaTan/20">
+                            <span class="text-mbaInk font-medium">Top 5 Action Priorities, ranked by severity</span>
+                            <span class="font-accent text-mbaNavy font-bold">$65</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-mbaTan/20">
+                            <span class="text-mbaInk font-medium">Recommended Next Steps summary</span>
+                            <span class="font-accent text-mbaNavy font-bold">$35</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-mbaTan/20">
+                            <span class="text-mbaInk font-medium">Instant results, no wait time</span>
+                            <span class="font-accent text-mbaNavy font-bold">Included</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3">
+                            <span class="text-mbaInk font-medium">Saved, printable, shareable report</span>
+                            <span class="font-accent text-mbaNavy font-bold">$20</span>
+                        </div>
+                    </div>
+                    <div class="bg-mbaNavy text-white p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div>
+                            <span class="text-mbaTan uppercase font-accent tracking-widest text-sm block">Total Value: $300</span>
+                            <span class="text-2xl sm:text-3xl font-extrabold">Your Price Today: $29.99</span>
+                        </div>
+                        <a href="https://maisonblancheisafrican.com" onclick="fbq('track', 'InitiateCheckout');" class="fire-gradient text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all text-center">
+                            Get Instant Access — $29.99
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Pricing & Guarantee -->
+        <section class="py-20 bg-bgCanvas">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-mbaNavy mb-6">
+                    $29.99. One time. Instant access.
+                </h2>
+                <p class="text-lg text-mbaInk/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    That's it. No subscription, no upsell you have to decline before you reach checkout, no "unlock the full report for an additional fee." You pay once, you answer 41 questions, you get your complete Global Readiness Score, pillar breakdown, red flags, and action priorities, all of it, immediately.
+                </p>
+                <div class="bg-white p-8 rounded-3xl border border-mbaTan/30 shadow-sm max-w-2xl mx-auto mb-10 text-left">
+                    <p class="text-mbaInk/85 leading-relaxed mb-4">
+                        <strong class="text-mbaNavy">For reference:</strong> a single wasted pitch meeting, a held shipment, or a mispriced wholesale contract can cost you thousands of dollars and months of momentum. This Scorecard costs less than a dinner out and takes less time than a single episode of your favorite show.
+                    </p>
+                    <p class="text-mbaInk/85 leading-relaxed">
+                        <strong class="text-mbaNavy">Our guarantee:</strong> if you complete the full assessment and feel it genuinely didn't give you clear, specific, usable information about your brand's export readiness, reach out and we'll make it right. We built this Scorecard to be useful, not to be clever, if it doesn't deliver, we want to know.
+                    </p>
+                </div>
+
+                <a href="https://maisonblancheisafrican.com" onclick="fbq('track', 'InitiateCheckout');" class="inline-flex items-center justify-center gap-3 fire-gradient text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all">
+                    <i class="ph-bold ph-rocket-launch text-xl"></i> Get My Readiness Score Now — $29.99
+                </a>
+            </div>
+        </section>
+
+        <!-- 11. FAQ -->
+        <section class="py-20 bg-bgMuted/50 border-t border-b border-mbaTan/20">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-12 text-center">
+                    Frequently Asked Questions
+                </h2>
+
+                <div class="space-y-6">
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-mbaTan/30 shadow-sm">
+                        <h3 class="text-lg font-bold text-mbaNavy mb-2">How long does this actually take?</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">Most people finish in under 8 minutes. The questions are direct, multiple-choice, and move fast, you don't need to prepare anything beforehand.</p>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-mbaTan/30 shadow-sm">
+                        <h3 class="text-lg font-bold text-mbaNavy mb-2">I'm just starting out. Will this still be useful, or is it only for brands further along?</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">It's useful at any stage. If you're early, your Scorecard will show you exactly what to prioritize before you spend time or money chasing the wrong things first. If you're further along, it'll catch the specific gaps that are easy to miss once you're deep in the work.</p>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-mbaTan/30 shadow-sm">
+                        <h3 class="text-lg font-bold text-mbaNavy mb-2">What if my product doesn't need food safety certification or an FDA-style label?</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">The Scorecard accounts for that. Several questions include a "not applicable" option so your score reflects your actual product category, not a generic checklist that assumes every brand sells food.</p>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-mbaTan/30 shadow-sm">
+                        <h3 class="text-lg font-bold text-mbaNavy mb-2">Is this specific to the US market, or general export advice?</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">This Scorecard is built specifically around entering the US market, the compliance standards, the retail and wholesale expectations, and the logistics requirements are all US-focused.</p>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-mbaTan/30 shadow-sm">
+                        <h3 class="text-lg font-bold text-mbaNavy mb-2">What happens after I get my score? Do I have to buy anything else?</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">No. Your report is yours to keep, use, and act on independently. If your results show gaps that need outside support, your Recommended Next Steps will point you toward relevant options, but there's no obligation, and no pressure.</p>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-mbaTan/30 shadow-sm">
+                        <h3 class="text-lg font-bold text-mbaNavy mb-2">Can I retake it later once I've fixed some gaps?</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">Yes. Your past results are saved so you can track how your score and readiness pillars improve over time as you close the gaps.</p>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-mbaTan/30 shadow-sm">
+                        <h3 class="text-lg font-bold text-mbaNavy mb-2">Is my information kept private?</h3>
+                        <p class="text-mbaInk/80 leading-relaxed">Your answers are used only to generate your personalized report and aren't shared externally.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. Final CTA & P.S. -->
+        <section class="py-24 bg-bgCanvas relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-mbaNavy mb-8 leading-tight">
+                    You already know your product is good. The only open question is whether your brand is ready to prove it to a buyer who's never heard of you.
+                </h2>
+                <p class="text-lg text-mbaInk/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Forty-one questions. Under 8 minutes. One clear score, a full pillar breakdown, your red flags, and your Top 5 priorities, ranked and ready to act on.
+                </p>
+
+                <div class="mb-12">
+                    <a href="https://maisonblancheisafrican.com" onclick="fbq('track', 'InitiateCheckout');" class="fire-gradient text-white font-bold text-xl px-10 py-5 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 transition-all inline-flex items-center gap-3">
+                        <i class="ph-bold ph-rocket-launch text-2xl"></i> Get My Readiness Score Now — $29.99
+                    </a>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-mbaTan/30 shadow-sm max-w-2xl mx-auto text-left">
+                    <p class="text-mbaInk/80 text-sm leading-relaxed">
+                        <strong class="text-mbaNavy font-bold">P.S.</strong> The gap that stalls a deal is never the one you knew about. It's the one you didn't think to check, the ingredient panel formatted for the wrong market, the landed cost nobody verified, the production capacity question nobody asked until a 2,000-unit order was already on the table. For $29.99 and 8 minutes, you can know all 12 pillars before a buyer finds the one you missed. <a href="https://maisonblancheisafrican.com" onclick="fbq('track', 'InitiateCheckout');" class="text-mbaOrange underline font-semibold">Get your score now.</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Standalone Minimal Footer -->
+    <footer class="bg-mbaNavy text-white py-12 px-6">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
+            <div>
+                <span class="font-display font-bold text-lg block mb-1">MBisAfrican</span>
+                <p class="text-mbaTan text-sm">Global Market Readiness Scorecard &copy; 2026. All rights reserved.</p>
+            </div>
+            <div class="text-sm text-mbaTan">
+                <a href="https://maisonblancheisafrican.com" class="hover:text-white transition-colors">maisonblancheisafrican.com</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
