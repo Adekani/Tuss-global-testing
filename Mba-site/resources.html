@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products & Resources | MBisAfrican</title>
+<meta name="description" content="Explore paid tools, templates, guides, and free resources created by MBisAfrican to help African businesses expand to the U.S. market.">
+
+<!-- Phosphor Icons -->
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@latest/src/regular/style.css">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brandOrange: '#F0470A',
+          brandNavy: '#15247A',
+          brandNavyDark: '#0A1550',
+          brandGold: '#F8B400',
+          brandTan: '#C9A27A',
+          brandInk: '#1A1A1A',
+          bgCanvas: '#FBF7F1',
+          bgSurface: '#FFFFFF',
+          bgMuted: '#F1E9DD'
+        },
+        fontFamily: {
+          heading: ['Nunito Sans', 'sans-serif'],
+          body: ['Nunito Sans', 'sans-serif'],
+          accent: ['Barlow Condensed', 'sans-serif']
+        },
+        borderRadius: {
+          main: '10px'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  body {
+    background-color: #FBF7F1;
+    color: #1A1A1A;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
+  /* Animated Fire Gradient Accent for Products */
+  .fire-gradient {
+    background: linear-gradient(135deg, #F0470A, #F8B400, #F0470A);
+    background-size: 200% 200%;
+    animation: fire-drift 10s ease infinite;
+  }
+
+  @keyframes fire-drift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hero Animations */
+  .hero-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-text-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes hero-text-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Card Clamping & Interactions */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .resource-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px rgba(21, 36, 122, 0.08);
+  }
+
+  /* Filter transition */
+  .category-chip {
+    transition: all 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal, .fire-gradient, .resource-card {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+</style>
+</head>
+<body data-page="resources">
+
+<div id="header-placeholder"></div>
+
+<main class="min-h-screen">
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="bg-bgMuted border-b border-brandTan/20 relative overflow-hidden">
+    <div class="max-w-[1280px] mx-auto px-6 py-16 md:py-20 relative z-10 hero-reveal">
+      <div class="max-w-3xl">
+        <span class="inline-block font-accent text-sm md:text-base font-semibold uppercase tracking-wider text-brandOrange mb-3">
+          Knowledge Base & Digital Tools
+        </span>
+        <h1 class="font-heading text-3xl md:text-5xl font-extrabold text-brandNavy mb-5 leading-tight">
+          Products & Resources
+        </h1>
+        <p class="text-brandInk/85 text-lg md:text-xl leading-relaxed">
+          Accelerate your market expansion with our practical toolkits, operational templates, downloadable guides, and dedicated market expansion services.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAIN CONTENT AREA ============ -->
+  <section class="max-w-[1280px] mx-auto px-6 py-10 md:py-16">
+    
+    <!-- TOOLBAR & FILTERS -->
+    <div class="space-y-6 mb-10">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-brandTan/20">
+        
+        <!-- Primary Filter: Type Toggle -->
+        <div class="inline-flex p-1 bg-bgMuted/80 rounded-main border border-brandTan/30 self-start md:self-auto" role="tablist" aria-label="Listing Types">
+          <button id="type-btn-all" onclick="setTypeFilter('all')" role="tab" aria-selected="true"
+            class="px-5 py-2 rounded-md font-semibold text-sm transition-all bg-brandNavy text-white shadow-sm">
+            All Items
+          </button>
+          <button id="type-btn-product" onclick="setTypeFilter('product')" role="tab" aria-selected="false"
+            class="px-5 py-2 rounded-md font-semibold text-sm transition-all text-brandInk/75 hover:text-brandNavy">
+            Products & Tools
+          </button>
+          <button id="type-btn-resource" onclick="setTypeFilter('resource')" role="tab" aria-selected="false"
+            class="px-5 py-2 rounded-md font-semibold text-sm transition-all text-brandInk/75 hover:text-brandNavy">
+            Free Resources
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative min-w-[260px] md:w-80">
+          <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-lg text-brandInk/40"></i>
+          <input type="text" id="search-input" oninput="handleSearchInput(event)" placeholder="Search products & resources..."
+            class="w-full pl-10 pr-4 py-2.5 bg-bgSurface border border-brandTan/40 rounded-main text-sm text-brandInk focus:outline-none focus:border-brandNavy focus:ring-1 focus:ring-brandNavy transition-all shadow-sm">
+          <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-brandInk/40 hover:text-brandInk">
+            <i class="ph ph-x-circle text-base"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Secondary Filter: Category Chips -->
+      <div id="category-chips-container" class="flex flex-wrap items-center gap-2">
+        <!-- Dynamic chips rendered by JS -->
+      </div>
+    </div>
+
+    <!-- LOADING STATE -->
+    <div id="loading-state" class="py-20 text-center">
+      <div class="inline-flex items-center gap-3 text-brandNavy font-semibold">
+        <i class="ph ph-spinner animate-spin text-2xl"></i>
+        <span>Loading resources...</span>
+      </div>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div id="empty-state" class="hidden py-16 text-center max-w-md mx-auto bg-bgSurface p-8 rounded-main border border-brandTan/20 shadow-sm">
+      <div class="w-12 h-12 rounded-full bg-brandTan/20 text-brandNavy inline-flex items-center justify-center mb-4 text-2xl">
+        <i class="ph ph-cards"></i>
+      </div>
+      <h3 class="font-heading text-xl font-bold text-brandInk mb-2">No items found</h3>
+      <p class="text-brandInk/70 text-sm mb-6">We couldn't find anything matching your selected filters or search query.</p>
+      <button onclick="resetFilters()" class="inline-flex items-center gap-2 text-sm font-semibold text-brandOrange hover:text-brandNavy transition-colors">
+        <i class="ph ph-arrows-counter-clockwise"></i>
+        Reset all filters
+      </button>
+    </div>
+
+    <!-- CARD GRID -->
+    <div id="listings-grid" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Cards rendered via JS -->
+    </div>
+
+  </section>
+
+</main>
+
+<div id="footer-placeholder"></div>
+
+<!-- Supabase JS Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Main Client Logic -->
+<script>
+  // Supabase Initialization
+  const SUPABASE_URL = "https://pymqjxxgralvpuflzavc.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5bXFqeHhncmFsdnB1Zmx6YXZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0MTk0NzksImV4cCI6MjA5ODk5NTQ3OX0.JVrRyGL7b-bJ53kkdIo6B8o2eGJC7EvwiB5LBQFN3oI";
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // Category Sets
+  const CATEGORIES = {
+    all: ['All Categories'],
+    product: ['All Categories', 'Tool', 'Template', 'Course', 'Service', 'Other'],
+    resource: ['All Categories', 'Guide', 'Checklist', 'Infographic', 'Quiz/Assessment', 'Link', 'Other']
+  };
+
+  // State Management
+  let allListings = [];
+  let activeType = 'all'; // 'all', 'product', 'resource'
+  let activeCategory = 'All Categories';
+  let searchQuery = '';
+  let searchDebounceTimer = null;
+
+  // Initialize Page
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchListings();
+  });
+
+  // Fetch Published Listings from Supabase
+  async function fetchListings() {
+    try {
+      const { data, error } = await supabaseClient
+        .from('mba_listings')
+        .select('*')
+        .eq('is_published', true)
+        .order('display_order', { ascending: true });
+
+      if (error) throw error;
+
+      allListings = data || [];
+      document.getElementById('loading-state').classList.add('hidden');
+      document.getElementById('listings-grid').classList.remove('hidden');
+      
+      renderCategoryChips();
+      renderListings();
+    } catch (err) {
+      console.error('Error fetching listings:', err);
+      document.getElementById('loading-state').innerHTML = `
+        <div class="text-center text-red-600">
+          <i class="ph ph-warning-circle text-3xl mb-2"></i>
+          <p>Failed to load resources. Please try again later.</p>
+        </div>
+      `;
+    }
+  }
+
+  // Type Toggle Handler
+  function setTypeFilter(type) {
+    if (activeType === type) return;
+    activeType = type;
+    activeCategory = 'All Categories'; // Reset category on type change
+
+    // Update Tab UI
+    ['all', 'product', 'resource'].forEach(t => {
+      const btn = document.getElementById(`type-btn-${t}`);
+      if (!btn) return;
+      if (t === type) {
+        btn.className = "px-5 py-2 rounded-md font-semibold text-sm transition-all bg-brandNavy text-white shadow-sm";
+        btn.setAttribute('aria-selected', 'true');
+      } else {
+        btn.className = "px-5 py-2 rounded-md font-semibold text-sm transition-all text-brandInk/75 hover:text-brandNavy";
+        btn.setAttribute('aria-selected', 'false');
+      }
+    });
+
+    renderCategoryChips();
+    renderListings();
+  }
+
+  // Category Filter Handler
+  function setCategoryFilter(category) {
+    activeCategory = category;
+    renderCategoryChips();
+    renderListings();
+  }
+
+  // Search Debounce Handler
+  function handleSearchInput(e) {
+    const clearBtn = document.getElementById('clear-search-btn');
+    clearBtn.classList.toggle('hidden', !e.target.value);
+
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(() => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      renderListings();
+    }, 250);
+  }
+
+  function clearSearch() {
+    const input = document.getElementById('search-input');
+    input.value = '';
+    document.getElementById('clear-search-btn').classList.add('hidden');
+    searchQuery = '';
+    renderListings();
+  }
+
+  function resetFilters() {
+    activeType = 'all';
+    activeCategory = 'All Categories';
+    searchQuery = '';
+    document.getElementById('search-input').value = '';
+    document.getElementById('clear-search-btn').classList.add('hidden');
+    
+    setTypeFilter('all');
+  }
+
+  // Render Category Chips dynamically based on activeType
+  function renderCategoryChips() {
+    const container = document.getElementById('category-chips-container');
+    const chipList = CATEGORIES[activeType] || CATEGORIES.all;
+
+    container.innerHTML = chipList.map(cat => {
+      const isSelected = activeCategory === cat;
+      const baseClass = "category-chip text-xs font-semibold px-3 py-1.5 rounded-full border cursor-pointer";
+      const selectedClass = isSelected 
+        ? "bg-brandNavy text-white border-brandNavy shadow-sm" 
+        : "bg-bgSurface text-brandInk/70 border-brandTan/40 hover:border-brandNavy hover:text-brandNavy";
+      
+      return `<button onclick="setCategoryFilter('${cat.replace(/'/g, "\\'")}')" class="${baseClass} ${selectedClass}">${cat}</button>`;
+    }).join('');
+  }
+
+  // Render Filtered Listings
+  function renderListings() {
+    const grid = document.getElementById('listings-grid');
+    const emptyState = document.getElementById('empty-state');
+
+    const filtered = allListings.filter(item => {
+      // Type Match
+      if (activeType !== 'all' && item.listing_type !== activeType) return false;
+      
+      // Category Match
+      if (activeCategory !== 'All Categories') {
+        const itemCat = (item.category || '').toLowerCase();
+        const activeCat = activeCategory.toLowerCase();
+        if (itemCat !== activeCat) return false;
+      }
+
+      // Search Match
+      if (searchQuery) {
+        const title = (item.title || '').toLowerCase();
+        const desc = (item.description || '').toLowerCase();
+        if (!title.includes(searchQuery) && !desc.includes(searchQuery)) return false;
+      }
+
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      grid.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      return;
+    }
+
+    emptyState.classList.add('hidden');
+    grid.classList.remove('hidden');
+
+    grid.innerHTML = filtered.map(item => createCardHTML(item)).join('');
+  }
+
+  // Generate Card HTML
+  function createCardHTML(item) {
+    const isProduct = item.listing_type === 'product';
+
+    // Type Badge Design
+    const typeBadge = isProduct
+      ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-accent font-bold uppercase tracking-wider text-white fire-gradient">
+          <i class="ph ph-lightning font-bold"></i> Product
+         </span>`
+      : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-accent font-bold uppercase tracking-wider bg-brandNavy/10 text-brandNavy">
+          <i class="ph ph-sparkle"></i> Free Resource
+         </span>`;
+
+    // Price Display for products
+    const priceDisplay = (isProduct && item.price_display) 
+      ? `<span class="font-accent text-xl font-bold text-brandNavy">${escapeHTML(item.price_display)}</span>`
+      : '';
+
+    // Fallback Image/Icon
+    const fallbackIcon = isProduct ? 'ph-package' : 'ph-file-text';
+    const coverMedia = item.cover_image_url 
+      ? `<img src="${escapeHTML(item.cover_image_url)}" alt="${escapeHTML(item.title)}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">`
+      : `<div class="w-full h-48 bg-bgMuted flex items-center justify-center text-brandNavy/30 border-b border-brandTan/20">
+          <i class="ph ${fallbackIcon} text-5xl"></i>
+         </div>`;
+
+    // Button Logic
+    let buttonHTML = '';
+    const ctaLabel = item.cta_label 
+      ? escapeHTML(item.cta_label) 
+      : (item.file_url ? 'Download' : (isProduct ? 'Buy Now' : 'Get Access'));
+
+    if (item.file_url) {
+      // Download File via Blob pattern
+      buttonHTML = `
+        <button onclick="downloadFile('${escapeHTML(item.file_url)}', '${escapeHTML(item.title)}', this)" 
+          class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-main font-accent text-sm font-bold uppercase tracking-wide text-white ${isProduct ? 'bg-brandOrange hover:bg-brandNavy' : 'bg-brandNavy hover:bg-brandNavyDark'} transition-colors">
+          <i class="ph ph-download-simple text-lg"></i>
+          <span>${ctaLabel}</span>
+        </button>`;
+    } else if (item.external_url) {
+      // External Link
+      buttonHTML = `
+        <a href="${escapeHTML(item.external_url)}" target="_blank" rel="noopener"
+          class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-main font-accent text-sm font-bold uppercase tracking-wide text-white ${isProduct ? 'fire-gradient shadow-sm hover:opacity-95' : 'bg-brandNavy hover:bg-brandNavyDark'} transition-all">
+          <span>${ctaLabel}</span>
+          <i class="ph ph-arrow-up-right text-base"></i>
+        </a>`;
+    } else {
+      // Disabled Fallback
+      buttonHTML = `
+        <button disabled class="w-full py-3 px-4 rounded-main font-accent text-sm font-bold uppercase tracking-wide bg-gray-200 text-gray-500 cursor-not-allowed">
+          Unavailable
+        </button>`;
+    }
+
+    return `
+      <div class="resource-card bg-bgSurface rounded-main border border-brandTan/30 overflow-hidden flex flex-col justify-between group shadow-sm">
+        <div>
+          <!-- Image Frame -->
+          <div class="relative overflow-hidden">
+            ${coverMedia}
+            <div class="absolute top-3 left-3 flex items-center gap-2">
+              ${typeBadge}
+            </div>
+          </div>
+
+          <!-- Content Frame -->
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-semibold uppercase tracking-wider text-brandInk/50">
+                ${escapeHTML(item.category || 'General')}
+              </span>
+              ${priceDisplay}
+            </div>
+
+            <h3 class="font-heading text-lg font-extrabold text-brandInk group-hover:text-brandNavy transition-colors mb-2.5 line-clamp-2">
+              ${escapeHTML(item.title)}
+            </h3>
+
+            <p class="text-sm text-brandInk/75 leading-relaxed mb-4 line-clamp-3">
+              ${escapeHTML(item.description || '')}
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Button Frame -->
+        <div class="px-6 pb-6 pt-0 mt-auto">
+          ${buttonHTML}
+        </div>
+      </div>
+    `;
+  }
+
+  // Blob Direct File Download with Fallback
+  async function downloadFile(url, fileName, btnElement) {
+    const originalText = btnElement.innerHTML;
+    try {
+      btnElement.disabled = true;
+      btnElement.innerHTML = `<i class="ph ph-spinner animate-spin text-lg"></i> <span>Downloading...</span>`;
+
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Fetch failed');
+      
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = fileName || 'download';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      console.warn('Direct blob download failed, attempting fallback tab open:', err);
+      window.open(url, '_blank', 'noopener');
+    } finally {
+      btnElement.disabled = false;
+      btnElement.innerHTML = originalText;
+    }
+  }
+
+  // Utility to prevent XSS
+  function escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+</script>
+
+<!-- Shared Header/Footer Component Loader Script -->
+<script>
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => {
+                if (!response.ok) throw new Error("Component load error");
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById(id).innerHTML = data;
+                const scripts = document.getElementById(id).querySelectorAll("script");
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement("script");
+                    Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
+                });
+            })
+            .catch(error => console.error('Error loading segment:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadComponent('header-placeholder', 'header.html');
+        loadComponent('footer-placeholder', 'footer.html');
+    });
+</script>
+
+</body>
+</html>
